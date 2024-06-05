@@ -64,9 +64,14 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  # FIXME: Add the rest of your current configuration
-
   networking.hostName = "blazej-legion";
+
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    home-manager
+  ];
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
