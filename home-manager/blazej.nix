@@ -6,8 +6,14 @@
     homeDirectory = "/home/blazej";
 
     file = {
+      ".config/dunst" = {
+        source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/dunst;
+      };
       ".config/hypr" = {
         source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/hypr;
+      };
+      ".config/rofi" = {
+        source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/rofi;
       };
       ".config/waybar" = {
         source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/waybar;

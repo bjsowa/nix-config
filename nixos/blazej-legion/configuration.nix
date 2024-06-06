@@ -16,6 +16,8 @@
     cryptsetup
     dolphin
     dunst
+    element-desktop-wayland
+    flameshot
     git
     konsole
     pavucontrol
