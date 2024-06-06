@@ -1,0 +1,18 @@
+[pyprland]
+plugins = ["scratchpads", "fetch_client_menu", "magnify", "workspaces_follow_focus"]
+
+[scratchpads.term]
+# command = "kitty --class kitty-dropterm"
+command = "konsole --hide-menubar"
+animation = "fromTop"
+margin = 50
+size = "75% 50%"
+lazy = true
+max_size = "1920px 100%"
+
+[scratchpads.volume]
+command = "pavucontrol"
+animation = "fromRight"
+class = "pavucontrol"
+lazy = true
+size = "40% 90%"

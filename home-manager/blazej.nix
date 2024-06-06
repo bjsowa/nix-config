@@ -4,6 +4,16 @@
   home = {
     username = "blazej";
     homeDirectory = "/home/blazej";
+
+    file = {
+      ".config/hypr" = {
+        source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/hypr;
+      };
+      ".config/waybar" = {
+        source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/waybar;
+      };
+    };
+
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
   };

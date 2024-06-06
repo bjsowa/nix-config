@@ -1,0 +1,40 @@
+{
+    "mode": "hide",
+    "height": 60, // Waybar height (to be removed for auto height)
+    "layer": "top", // Waybar at top layer
+    "position": "bottom",
+    "fixed-center": false,
+    "spacing": 3, // Gaps between modules
+    "width": 2,
+
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-bottom": 10,
+    "margin-right": 0,
+
+    "exclusive": false,
+
+    "modules-left": [],
+    "modules-center": [
+        "wlr/taskbar"
+    ],
+    "modules-right": [],
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 30,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+           "Picture in picture",
+           "pavucontrol",
+           "kitty-dropterm"
+        ],
+        "app_ids-mapping": {
+          "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    }
+}
+

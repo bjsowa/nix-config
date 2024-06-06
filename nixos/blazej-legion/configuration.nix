@@ -15,13 +15,21 @@
   environment.systemPackages = with pkgs; [
     cryptsetup
     dolphin
+    dunst
     git
     konsole
+    pavucontrol
+    pulseaudio
+    pyprland
+    python3
+    rofi-wayland
+    swaybg
+    swaylock
+    waybar
     wget
     vim
     vivaldi
     vivaldi-ffmpeg-codecs
-    wofi
     vscode
   ];
 
