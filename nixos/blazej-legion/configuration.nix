@@ -21,6 +21,7 @@
     git
     konsole
     pavucontrol
+    playerctl
     pulseaudio
     pyprland
     python3

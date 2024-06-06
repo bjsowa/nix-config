@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Current Theme
 dir="~/.config/waybar/scripts/power-menu"
