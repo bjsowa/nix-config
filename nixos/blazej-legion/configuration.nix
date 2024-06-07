@@ -19,6 +19,8 @@
     element-desktop-wayland
     flameshot
     git
+    grim
+    kdePackages.qtwayland
     konsole
     pavucontrol
     playerctl
