@@ -45,7 +45,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
-    users = { blazej = import ../../home-manager/blazej.nix; };
+    users = { blazej = import ../../home-manager/blazej/home.nix; };
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
