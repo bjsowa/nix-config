@@ -20,8 +20,52 @@
       };
     };
 
+
+    packages = with pkgs; [
+      (catppuccin-kvantum.override {
+        accent = "Blue";
+        variant = "Macchiato";
+      })
+      libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qt5ct
+      papirus-folders
+    ];
+
+    pointerCursor = {
+      gtk.enable = true;
+      name = "Catppuccin-Macchiato-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoDark;
+      size = 16;
+    };
+
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        size = "standard";
+        variant = "macchiato";
+      };
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "macchiato";
+        accent = "blue";
+      };
+    };
+    cursorTheme = {
+      name = "Catppuccin-Macchiato-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoDark;
+    };
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
   };
 
   nixpkgs = {
@@ -35,6 +79,7 @@
   };
 
   programs = {
+    bash.enable = true;
     git = {
       enable = true;
       userName = "Błażej Sowa";
@@ -43,6 +88,16 @@
     home-manager.enable = true;
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
+  };
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+    General.theme = "Catppuccin-Macchiato-Blue";
+  };
 }
