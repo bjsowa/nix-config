@@ -1,20 +1,17 @@
-# This file defines overlays
 { inputs, ... }: {
-  # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
-  modifications = final: prev:
-    {
-      # example = prev.example.overrideAttrs (oldAttrs: rec {
-      # ...
-      # });
-    };
+  modifications = final: prev: {
+    flameshot = prev.flameshot.overrideAttrs (old: {
+      src = prev.fetchFromGitHub {
+        owner = "flameshot-org";
+        repo = "flameshot";
+        rev = "a1dda59108d420a26d603a40d1c7d25e4114d748";
+        sha256 = "sha256-uISujW2Bqv07MpxCj9sbms//cJQJNRI+uJmkUphl1ds=";
+      };
+    });
+  };
 
-  # When applied, the unstable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
