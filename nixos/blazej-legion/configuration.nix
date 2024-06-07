@@ -5,6 +5,7 @@
   ];
 
   boot = {
+    blacklistedKernelModules = [ "ideapad_laptop" ];
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
