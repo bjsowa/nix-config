@@ -30,6 +30,7 @@
     flameshot
     git
     grim
+    htop
     kdePackages.qtwayland
     konsole
     pavucontrol
@@ -41,6 +42,7 @@
     swaybg
     swaylock
     waybar
+    wdisplays
     wget
     vim
     vivaldi
