@@ -116,7 +116,7 @@
     },
 
     "network#wlan": {
-        "interface": "wlp5s0",
+        "interface": "wlo1",
         "format-wifi": " {essid}",
         "tooltip-format": "signal: {signalStrength}%\nfrequency: {frequency} GHz\naddress: {ipaddr}/{cidr}",
         // "format-ethernet": " wired",
