@@ -97,7 +97,19 @@
 
   services = {
 
-    displayManager.sddm.enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+
+      autoLogin = {
+        enable = true;
+        user = "blazej";
+      };
+
+      defaultSession = "hyprland";
+    };
 
     libinput.enable = true;
 
