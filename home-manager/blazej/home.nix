@@ -20,7 +20,6 @@
       };
     };
 
-
     packages = with pkgs; [
       (catppuccin-kvantum.override {
         accent = "Blue";
@@ -63,9 +62,7 @@
       name = "Catppuccin-Macchiato-Dark-Cursors";
       package = pkgs.catppuccin-cursors.macchiatoDark;
     };
-    gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = true;
-    };
+    gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
 
   nixpkgs = {
@@ -97,7 +94,8 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-    General.theme = "Catppuccin-Macchiato-Blue";
-  };
+  xdg.configFile."Kvantum/kvantum.kvconfig".source =
+    (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+      General.theme = "Catppuccin-Macchiato-Blue";
+    };
 }
