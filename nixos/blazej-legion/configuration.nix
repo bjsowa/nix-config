@@ -60,6 +60,11 @@
   };
 
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
     opengl = {
       enable = true;
       driSupport = true;
