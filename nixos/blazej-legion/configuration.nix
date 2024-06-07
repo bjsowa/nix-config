@@ -35,6 +35,7 @@
     kdePackages.qtwayland
     konsole
     light
+    lshw
     pamixer
     pavucontrol
     playerctl
