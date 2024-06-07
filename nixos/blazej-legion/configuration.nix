@@ -34,6 +34,8 @@
     htop
     kdePackages.qtwayland
     konsole
+    light
+    pamixer
     pavucontrol
     playerctl
     pulseaudio
