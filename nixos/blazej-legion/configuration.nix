@@ -4,8 +4,18 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+      };
+    };
+    initrd.luks.devices.cryptroot.device =
+      "/dev/disk/by-uuid/1200359f-6591-46d5-8de4-85bea1ab9a59";
+  };
 
   console = {
     font = "Lat2-Terminus16";
