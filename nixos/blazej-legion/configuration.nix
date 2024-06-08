@@ -6,6 +6,7 @@
 
   boot = {
     blacklistedKernelModules = [ "ideapad_laptop" ];
+    kernelPackages = pkgs.linuxPackages_6_9;
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
