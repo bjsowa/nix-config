@@ -172,7 +172,7 @@
 
     "custom/power-menu": {
         "format": " <span color='#6a92d7'>⏻ </span>",
-        "on-click": "bash ~/.config/hypr/waybar/scripts/power-menu/powermenu.sh",
-    }, 
+        "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh"
+    }
 }
 
