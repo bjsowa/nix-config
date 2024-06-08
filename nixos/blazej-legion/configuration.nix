@@ -25,9 +25,10 @@
 
   environment.systemPackages = with pkgs; [
     cryptsetup
+    dmidecode
     dolphin
     dunst
-    element-desktop-wayland
+    element-desktop
     flameshot
     git
     grim
