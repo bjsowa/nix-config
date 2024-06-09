@@ -208,6 +208,8 @@
       defaultSession = "hyprland";
     };
 
+    logind.lidSwitch = "ignore";
+
     libinput.enable = true;
 
     locate.enable = true;
