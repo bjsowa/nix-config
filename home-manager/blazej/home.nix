@@ -42,6 +42,7 @@
         ".config/Caprine"
         ".config/Code"
         ".config/Element"
+        ".config/Slack"
         ".config/vivaldi"
 
         ".local/share/dolphin"

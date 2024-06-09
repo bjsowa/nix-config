@@ -85,6 +85,7 @@
     pyprland
     python3
     rofi-wayland
+    slack
     swaybg
     swaylock
     waybar
