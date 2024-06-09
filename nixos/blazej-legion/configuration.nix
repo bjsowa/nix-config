@@ -255,11 +255,8 @@
 
   users.users = {
     blazej = {
-      initialPassword = "12345";
+      hashedPasswordFile = "/persist/passwords/blazej";
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
       extraGroups = [ "networkmanager" "wheel" ];
     };
   };
