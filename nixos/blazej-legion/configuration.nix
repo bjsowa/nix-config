@@ -1,6 +1,7 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
+    inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -17,11 +18,47 @@
     };
     initrd.luks.devices.cryptroot.device =
       "/dev/disk/by-uuid/1200359f-6591-46d5-8de4-85bea1ab9a59";
+    initrd.postDeviceCommands = lib.mkAfter ''
+      mkdir /btrfs_tmp
+      mount /dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e /btrfs_tmp
+      if [[ -e /btrfs_tmp/root ]]; then
+          mkdir -p /btrfs_tmp/old_roots
+          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+          mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+      fi
+
+      delete_subvolume_recursively() {
+          IFS=$'\n'
+          for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+              delete_subvolume_recursively "/btrfs_tmp/$i"
+          done
+          btrfs subvolume delete "$1"
+      }
+
+      for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+          delete_subvolume_recursively "$i"
+      done
+
+      btrfs subvolume create /btrfs_tmp/root
+      umount /btrfs_tmp
+    '';
   };
 
   console = {
     font = "Lat2-Terminus16";
     keyMap = "pl";
+  };
+
+  environment.persistence."/persist/system" = {
+    hideMounts = true;
+    directories = [
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+    ];
+    files = [ "/etc/machine-id" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -37,6 +74,7 @@
     kdePackages.qtwayland
     konsole
     light
+    lm_sensors
     lshw
     pamixer
     pavucontrol
@@ -55,6 +93,8 @@
     vivaldi-ffmpeg-codecs
     vscode
   ];
+
+  fileSystems."/persist".neededForBoot = true;
 
   fonts = {
     fontDir.enable = true;
@@ -134,6 +174,8 @@
   };
 
   programs = {
+    fuse.userAllowOther = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -212,6 +254,7 @@
 
   users.users = {
     blazej = {
+      initialPassword = "12345";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect

@@ -1,5 +1,5 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ ];
+  imports = [ inputs.impermanence.nixosModules.home-manager.impermanence ];
 
   home = {
     username = "blazej";
@@ -21,6 +21,20 @@
       libsForQt5.qt5ct
       papirus-folders
     ];
+
+    persistence."/persist/home/blazej" = {
+      allowOther = true;
+      directories = [
+        "nix-config"
+        "Downloads"
+        "Music"
+        "Pictures"
+        "Documents"
+        "Videos"
+        ".gnupg"
+        ".ssh"
+      ];
+    };
 
     pointerCursor = {
       gtk.enable = true;
