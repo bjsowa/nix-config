@@ -33,6 +33,8 @@
         "Videos"
         ".gnupg"
         ".ssh"
+
+        ".config/Code"
       ];
     };
 
