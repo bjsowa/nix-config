@@ -111,6 +111,9 @@
       };
     "dunst".source = ../../dotfiles/dunst;
     "hypr".source = ../../dotfiles/hypr;
+    "qt5ct/qt5ct.conf".source = (pkgs.formats.ini { }).generate "qt5ct.conf" {
+      Appearance.icon_theme = "Papirus-Dark";
+    };
     "rofi".source = ../../dotfiles/rofi;
     "waybar".source = ../../dotfiles/waybar;
   };
