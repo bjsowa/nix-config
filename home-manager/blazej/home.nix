@@ -5,13 +5,6 @@
     username = "blazej";
     homeDirectory = "/home/blazej";
 
-    file = {
-      ".config/dunst".source = ../../dotfiles/dunst;
-      ".config/hypr".source = ../../dotfiles/hypr;
-      ".config/rofi".source = ../../dotfiles/rofi;
-      ".config/waybar".source = ../../dotfiles/waybar;
-    };
-
     packages = with pkgs; [
       (catppuccin-kvantum.override {
         accent = "Blue";
@@ -25,17 +18,26 @@
     persistence."/persist/home/blazej" = {
       allowOther = true;
       directories = [
-        "nix-config"
+        "Documents"
         "Downloads"
         "Music"
         "Pictures"
-        "Documents"
         "Videos"
+        "nix-config"
+
+        ".cache"
         ".gnupg"
         ".ssh"
+        ".vscode"
 
         ".config/Code"
+        ".config/Element"
+        ".config/vivaldi"
+
+        ".local/share/dolphin"
+        ".local/share/konsole"
       ];
+      files = [ ".bash_history" ];
     };
 
     pointerCursor = {
@@ -102,8 +104,14 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".source =
-    (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-      General.theme = "Catppuccin-Macchiato-Blue";
-    };
+  xdg.configFile = {
+    "Kvantum/kvantum.kvconfig".source =
+      (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+        General.theme = "Catppuccin-Macchiato-Blue";
+      };
+    "dunst".source = ../../dotfiles/dunst;
+    "hypr".source = ../../dotfiles/hypr;
+    "rofi".source = ../../dotfiles/rofi;
+    "waybar".source = ../../dotfiles/waybar;
+  };
 }
