@@ -5,6 +5,15 @@
     username = "blazej";
     homeDirectory = "/home/blazej";
 
+    file.".local/share/konsole/Default.profile".text = ''
+      [Appearance]
+      Font=DejaVu Sans Mono,12,-1,5,50,0,0,0,0,0
+
+      [General]
+      Name=Default
+      Parent=FALLBACK/
+    '';
+
     packages = with pkgs; [
       (catppuccin-kvantum.override {
         accent = "Blue";
@@ -111,6 +120,9 @@
       };
     "dunst".source = ../../dotfiles/dunst;
     "hypr".source = ../../dotfiles/hypr;
+    "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
+      "Desktop Entry".DefaultProfile = "Default.profile";
+    };
     "qt5ct/qt5ct.conf".source = (pkgs.formats.ini { }).generate "qt5ct.conf" {
       Appearance.icon_theme = "Papirus-Dark";
     };
