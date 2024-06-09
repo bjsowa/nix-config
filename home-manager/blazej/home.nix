@@ -39,6 +39,7 @@
         ".ssh"
         ".vscode"
 
+        ".config/Caprine"
         ".config/Code"
         ".config/Element"
         ".config/vivaldi"
