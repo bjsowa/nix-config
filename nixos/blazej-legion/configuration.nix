@@ -119,7 +119,7 @@
     nvidia = {
       modesetting.enable = true;
       nvidiaSettings = true;
-      open = true;
+      open = false;
       powerManagement.enable = true;
       powerManagement.finegrained = true;
 
