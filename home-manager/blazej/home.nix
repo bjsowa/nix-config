@@ -133,8 +133,10 @@
       "waybar".source = ../../dotfiles/waybar;
     };
     dataFile = {
-      "hypr/scripts".source = "${pkgs.hypr-scripts}/bin";
-      "waybar/scripts".source = "${pkgs.waybar-scripts}/bin";
+      "datafiles".source = ../../datafiles;
+      "dunst/scripts".source = "${pkgs.my-nixos-scripts}/dunst";
+      "hypr/scripts".source = "${pkgs.my-nixos-scripts}/hypr";
+      "waybar/scripts".source = "${pkgs.my-nixos-scripts}/waybar";
     };
   };
 }
