@@ -115,20 +115,23 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  xdg.configFile = {
-    "Kvantum/kvantum.kvconfig".source =
-      (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-        General.theme = "Catppuccin-Macchiato-Blue";
+  xdg = {
+    configFile = {
+      "Kvantum/kvantum.kvconfig".source =
+        (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+          General.theme = "Catppuccin-Macchiato-Blue";
+        };
+      "dunst".source = ../../dotfiles/dunst;
+      "hypr".source = ../../dotfiles/hypr;
+      "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
+        "Desktop Entry".DefaultProfile = "Default.profile";
       };
-    "dunst".source = ../../dotfiles/dunst;
-    "hypr".source = ../../dotfiles/hypr;
-    "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
-      "Desktop Entry".DefaultProfile = "Default.profile";
+      "qt5ct/qt5ct.conf".source = (pkgs.formats.ini { }).generate "qt5ct.conf" {
+        Appearance.icon_theme = "Papirus-Dark";
+      };
+      "rofi".source = ../../dotfiles/rofi;
+      "waybar".source = ../../dotfiles/waybar;
     };
-    "qt5ct/qt5ct.conf".source = (pkgs.formats.ini { }).generate "qt5ct.conf" {
-      Appearance.icon_theme = "Papirus-Dark";
-    };
-    "rofi".source = ../../dotfiles/rofi;
-    "waybar".source = ../../dotfiles/waybar;
+    dataFile = { "waybar/scripts".source = "${pkgs.waybar-scripts}/bin"; };
   };
 }
