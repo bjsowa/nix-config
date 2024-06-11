@@ -188,6 +188,8 @@
       enable = true;
       xwayland.enable = true;
     };
+
+    nix-ld = { enable = true; };
   };
 
   security.polkit.enable = true;
