@@ -119,8 +119,32 @@
     style.name = "kvantum";
   };
 
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  systemd.user = {
+    # Nicely reload system units when changing configs
+    startServices = "sd-switch";
+
+    services = {
+      polkit-kde-authentication-agent = {
+        Unit = {
+          Description = "KDE Polkit authentication agent";
+          Documentation = "https://gitlab.freedesktop.org/polkit/polkit/";
+          After = [ "graphical-session-pre.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          Type = "simple";
+          ExecStart =
+            "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+          Restart = "always";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+    };
+  };
 
   xdg = {
     configFile = {
