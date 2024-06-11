@@ -104,6 +104,10 @@
       userEmail = "bsowa123@gmail.com";
     };
     home-manager.enable = true;
+    pyenv = {
+      enable = true;
+      enableBashIntegration = true;
+    };
   };
 
   qt = {
