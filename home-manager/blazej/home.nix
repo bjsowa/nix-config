@@ -32,11 +32,14 @@
         "Music"
         "Pictures"
         "Videos"
+
         "nix-config"
+        "praca"
 
         ".cache"
         ".gnupg"
         ".ssh"
+        ".thunderbird"
         ".vscode"
 
         ".config/Caprine"
