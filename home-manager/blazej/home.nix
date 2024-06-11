@@ -132,6 +132,9 @@
       "rofi".source = ../../dotfiles/rofi;
       "waybar".source = ../../dotfiles/waybar;
     };
-    dataFile = { "waybar/scripts".source = "${pkgs.waybar-scripts}/bin"; };
+    dataFile = {
+      "hypr/scripts".source = "${pkgs.hypr-scripts}/bin";
+      "waybar/scripts".source = "${pkgs.waybar-scripts}/bin";
+    };
   };
 }
