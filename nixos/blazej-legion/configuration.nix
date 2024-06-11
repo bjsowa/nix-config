@@ -192,6 +192,7 @@
     nix-ld = { enable = true; };
   };
 
+  security.pam.services.swaylock = { };
   security.polkit.enable = true;
 
   services = {
