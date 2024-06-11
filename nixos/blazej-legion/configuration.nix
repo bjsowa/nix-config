@@ -63,21 +63,29 @@
   };
 
   environment.systemPackages = with pkgs; [
+    brightnessctl
     caprine-bin
+    cmake
     cryptsetup
     dmidecode
     dolphin
     dunst
     element-desktop
     flameshot
+    font-manager
+    gcc
     git
+    gnumake
     grim
+    file
     htop
     kdePackages.qtwayland
     konsole
     light
     lm_sensors
     lshw
+    mpv
+    ninja
     pamixer
     pavucontrol
     playerctl
@@ -87,7 +95,8 @@
     rofi-wayland
     slack
     swaybg
-    swaylock
+    swaylock-effects
+    thunderbird
     waybar
     wdisplays
     wget
