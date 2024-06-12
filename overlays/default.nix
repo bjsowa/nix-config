@@ -9,6 +9,8 @@
         rev = "a1dda59108d420a26d603a40d1c7d25e4114d748";
         sha256 = "sha256-uISujW2Bqv07MpxCj9sbms//cJQJNRI+uJmkUphl1ds=";
       };
+      cmakeFlags = old.cmakeFlags
+        ++ [ (prev.lib.cmakeBool "USE_WAYLAND_GRIM" true) ];
     });
   };
 
