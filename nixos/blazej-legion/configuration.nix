@@ -108,6 +108,7 @@
     vim
     vivaldi
     vivaldi-ffmpeg-codecs
+    wl-clipboard
     vscode
   ];
 
