@@ -68,7 +68,6 @@
     cmake
     cryptsetup
     dmidecode
-    dolphin
     dunst
     ecryptfs
     element-desktop
@@ -80,8 +79,13 @@
     grim
     file
     htop
-    kdePackages.qtwayland
-    konsole
+    keyutils
+    libsForQt5.dolphin
+    libsForQt5.ffmpegthumbs
+    libsForQt5.kdegraphics-thumbnailers
+    libsForQt5.kio-admin
+    libsForQt5.kio-extras
+    libsForQt5.konsole
     light
     lm_sensors
     lshw
