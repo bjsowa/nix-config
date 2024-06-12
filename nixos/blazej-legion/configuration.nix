@@ -70,6 +70,7 @@
     dmidecode
     dolphin
     dunst
+    ecryptfs
     element-desktop
     flameshot
     font-manager
@@ -186,6 +187,8 @@
   };
 
   programs = {
+    ecryptfs.enable = true;
+
     fuse.userAllowOther = true;
 
     gnupg.agent = {

@@ -5,14 +5,19 @@
     username = "blazej";
     homeDirectory = "/home/blazej";
 
-    file.".local/share/konsole/Default.profile".text = ''
-      [Appearance]
-      Font=DejaVu Sans Mono,12,-1,5,50,0,0,0,0,0
+    file = {
+      ".local/share/konsole/Default.profile".text = ''
+        [Appearance]
+        Font=DejaVu Sans Mono,12,-1,5,50,0,0,0,0,0
 
-      [General]
-      Name=Default
-      Parent=FALLBACK/
-    '';
+        [General]
+        Name=Default
+        Parent=FALLBACK/
+      '';
+
+      ".Private".source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/Documents/.Private";
+    };
 
     packages = with pkgs; [
       (catppuccin-kvantum.override {
@@ -37,6 +42,7 @@
         "praca"
 
         ".cache"
+        ".ecryptfs"
         ".gnupg"
         ".ssh"
         ".thunderbird"
