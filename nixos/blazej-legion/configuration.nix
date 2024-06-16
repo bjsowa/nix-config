@@ -284,7 +284,10 @@
       # defaultShared = true;
     };
 
-    thermald.enable = true;
+    # thermald = {
+    #   enable = true;
+    #   ignoreCpuidCheck = true;
+    # };
 
     tlp.enable = true;
 
