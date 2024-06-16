@@ -209,6 +209,8 @@
 
     fuse.userAllowOther = true;
 
+    gamemode.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -220,6 +222,11 @@
     };
 
     nix-ld = { enable = true; };
+
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
   };
 
   security.pam.services.swaylock = { };
