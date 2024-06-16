@@ -64,6 +64,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    autoconf
+    automake
     brightnessctl
     caprine-bin
     cmake
@@ -81,20 +83,27 @@
     file
     htop
     keyutils
+    libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.ffmpegthumbs
+    libsForQt5.gwenview
     libsForQt5.kdegraphics-thumbnailers
     libsForQt5.kio-admin
     libsForQt5.kio-extras
     libsForQt5.konsole
+    libsForQt5.okular
+    libtool
     light
     lm_sensors
     lshw
+    lutris
     mpv
     ninja
     pamixer
     pavucontrol
     playerctl
+    pkg-config
+    protonup
     pulseaudio
     pyprland
     python3
@@ -103,14 +112,17 @@
     swaybg
     swaylock-effects
     thunderbird
+    tor-browser
     waybar
     wdisplays
     wget
     vim
+    wineWowPackages.stable
     vivaldi
     vivaldi-ffmpeg-codecs
     wl-clipboard
     vscode
+    yarn
   ];
 
   fileSystems."/persist".neededForBoot = true;
