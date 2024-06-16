@@ -284,6 +284,10 @@
       # defaultShared = true;
     };
 
+    thermald.enable = true;
+
+    tlp.enable = true;
+
     xserver = {
       enable = true;
       xkb = {
