@@ -179,5 +179,7 @@
         Parent=FALLBACK/
       '';
     };
+
+    mimeApps = { enable = true; };
   };
 }
