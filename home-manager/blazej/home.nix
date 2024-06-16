@@ -45,8 +45,11 @@
         ".config/Slack"
         ".config/vivaldi"
 
+        ".local/share/direnv"
         ".local/share/dolphin"
         ".local/share/konsole"
+        ".local/share/pyenv"
+        ".local/share/Steam"
       ];
       files = [ ".bash_history" ];
     };
