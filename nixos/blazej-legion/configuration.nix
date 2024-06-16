@@ -313,7 +313,7 @@
     blazej = {
       hashedPasswordFile = "/persist/passwords/blazej";
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "dialout" "networkmanager" "wheel" ];
     };
   };
 }
