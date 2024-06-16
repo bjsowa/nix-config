@@ -233,6 +233,8 @@
       defaultSession = "hyprland";
     };
 
+    fstrim.enable = true;
+
     logind.lidSwitch = "ignore";
 
     libinput.enable = true;
