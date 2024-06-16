@@ -293,6 +293,11 @@
       videoDrivers = [ "nvidia" ];
     };
 
+    udev.extraRules = ''
+      # ST-Link V3MINIE
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3754", MODE="660", GROUP="plugdev", TAG+="uaccess"
+    '';
+
     udisks2 = { enable = true; };
 
   };
