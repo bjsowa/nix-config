@@ -7,6 +7,16 @@
 
   boot = {
     blacklistedKernelModules = [ "ideapad_laptop" ];
+
+    extraModprobeConfig = ''
+      options legion_laptop force=1
+    '';
+
+    extraModulePackages = with config.boot.kernelPackages;
+      [ lenovo-legion-module ];
+
+    kernelModules = [ "legion_laptop" ];
+
     kernelPackages = pkgs.linuxPackages_6_9;
     loader = {
       efi.canTouchEfiVariables = true;
@@ -83,6 +93,7 @@
     file
     htop
     keyutils
+    lenovo-legion
     libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.ffmpegthumbs
