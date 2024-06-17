@@ -120,6 +120,7 @@
     pyprland
     python3
     rofi-wayland
+    screen
     slack
     swaybg
     swaylock-effects
