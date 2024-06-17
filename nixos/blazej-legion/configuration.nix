@@ -88,6 +88,7 @@
     font-manager
     gcc
     git
+    gitkraken
     gnumake
     grim
     file
