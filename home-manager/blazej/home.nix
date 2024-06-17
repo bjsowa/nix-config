@@ -34,6 +34,7 @@
 
         ".cache"
         ".ecryptfs"
+        ".gitkraken"
         ".gnupg"
         ".ssh"
         ".thunderbird"
@@ -42,6 +43,7 @@
         ".config/Caprine"
         ".config/Code"
         ".config/Element"
+        ".config/GitKraken"
         ".config/Slack"
         ".config/vivaldi"
 
