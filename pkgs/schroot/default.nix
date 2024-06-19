@@ -11,11 +11,16 @@ stdenv.mkDerivation rec {
   };
 
   patches = map fetchurl (import ./debian-patches.nix)
-    ++ [ ./no-setuid.patch ./no-pam-service.patch ];
+    ++ [ ./no-setuid.patch ./no-pam-service.patch ./no-default-config.patch ];
 
   nativeBuildInputs = [ cmake ];
 
   buildInputs = [ boost gettext mandoc perl perlPackages.Po4a ];
+
+  cmakeFlags = [
+    "-DSCHROOT_SYSCONF_DIR=/etc/schroot"
+    "-DSCHROOT_CONF_SETUP_D=${placeholder "out"}/etc/schroot/setup.d"
+  ];
 
   meta = with lib; {
     description = "Lightweight virtualisation tool";
