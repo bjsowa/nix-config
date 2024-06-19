@@ -18,7 +18,10 @@
 
     kernelModules = [ "legion_laptop" ];
 
-    kernelPackages = pkgs.linuxPackages_6_9;
+    kernelPackages = pkgs.linuxPackages_6_8;
+
+    kernelParams = [ "acpi_osi=Linux" ];
+
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
@@ -27,6 +30,7 @@
         efiSupport = true;
       };
     };
+
     initrd.luks.devices.cryptroot.device =
       "/dev/disk/by-uuid/1200359f-6591-46d5-8de4-85bea1ab9a59";
     initrd.postDeviceCommands = lib.mkAfter ''
