@@ -119,6 +119,7 @@
     pulseaudio
     pyprland
     python3
+    reaper
     rofi-wayland
     screen
     slack
@@ -135,6 +136,8 @@
     vivaldi-ffmpeg-codecs
     wl-clipboard
     vscode
+    yabridge
+    yabridgectl
     yarn
   ];
 
