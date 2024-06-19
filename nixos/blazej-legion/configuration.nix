@@ -246,6 +246,8 @@
     };
 
     wireshark.enable = true;
+
+    zsh.enable = true;
   };
 
   security.pam.services.swaylock = { };
@@ -341,6 +343,7 @@
       isNormalUser = true;
       extraGroups =
         [ "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
+      shell = pkgs.zsh;
     };
   };
 }

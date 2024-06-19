@@ -53,6 +53,7 @@
         ".local/share/konsole"
         ".local/share/pyenv"
         ".local/share/Steam"
+        ".local/share/zsh"
       ];
       files = [ ".bash_history" ];
     };
@@ -118,6 +119,40 @@
     pyenv = {
       enable = true;
       enableBashIntegration = true;
+    };
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      history = {
+        size = 10000;
+        path = "${config.xdg.dataHome}/zsh/history";
+      };
+      oh-my-zsh = {
+        enable = true;
+        theme = "agnoster";
+        plugins = [
+          "aliases"
+          "common-aliases"
+          "colored-man-pages"
+          "copybuffer"
+          "dircycle"
+          "git"
+          "last-working-dir"
+          "magic-enter"
+          "nmap"
+          "safe-paste"
+          "scd"
+          "sudo"
+          "timer"
+          "transfer"
+          "zbell"
+        ];
+      };
+      envExtra = ''
+        export DEFAULT_USER=${config.home.username}
+      '';
     };
   };
 
