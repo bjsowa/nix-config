@@ -219,6 +219,7 @@
   networking = {
     hostName = "blazej-legion";
     networkmanager.enable = true;
+    firewall.enable = false;
   };
 
   nixpkgs = {
