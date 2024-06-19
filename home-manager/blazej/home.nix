@@ -3,7 +3,7 @@
 
   home = {
     username = "blazej";
-    homeDirectory = "/home/blazej";
+    homeDirectory = "/home/${config.home.username}";
 
     file = {
       ".Private".source = config.lib.file.mkOutOfStoreSymlink
@@ -20,7 +20,7 @@
       papirus-folders
     ];
 
-    persistence."/persist/home/blazej" = {
+    persistence."/persist/home/${config.home.username}" = {
       allowOther = true;
       directories = [
         "Documents"
