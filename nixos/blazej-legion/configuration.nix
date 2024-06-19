@@ -130,6 +130,7 @@
     waybar
     wdisplays
     wget
+    wireshark
     vim
     wineWowPackages.stable
     vivaldi
@@ -243,6 +244,8 @@
       enable = true;
       gamescopeSession.enable = true;
     };
+
+    wireshark.enable = true;
   };
 
   security.pam.services.swaylock = { };
@@ -336,7 +339,8 @@
     blazej = {
       hashedPasswordFile = "/persist/passwords/blazej";
       isNormalUser = true;
-      extraGroups = [ "dialout" "networkmanager" "wheel" ];
+      extraGroups =
+        [ "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
     };
   };
 }
