@@ -1,0 +1,16 @@
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/proc           /proc           none    rw,bind         0       0
+/sys            /sys            none    rw,bind         0       0
+/dev            /dev            none    rw,bind         0       0
+/dev/pts        /dev/pts        none    rw,bind         0       0
+/home           /home           none    rw,bind         0       0
+/tmp            /tmp            none    rw,bind         0       0
+/dev/shm        /dev/shm        none    rw,bind         0       0
+/nix            /nix            none    ro,bind         0       0
+/run/user/1000  /run/user/1000  none    rw,bind,uid=1000,gid=1000         0       0
+
+#/proc/sys/fs/binfmt_misc /proc/sys/fs/binfmt_misc none    rw,bind         0       0
+#/var/run/docker.sock   /var/run/docker.sock    none    rw,bind         0       0
+#/run/shm       /run/shm        none    rw,bind         0       0
+#/run           /run            none    rw,bind         0       0
+#/run/lock      /run/lock       none    rw,bind         0       0

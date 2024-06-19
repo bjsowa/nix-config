@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
+    outputs.nixosModules.schroot
   ];
 
   boot = {
@@ -69,78 +70,99 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/srv/chroot"
     ];
     files = [ "/etc/machine-id" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    autoconf
-    automake
-    brightnessctl
-    caprine-bin
-    cmake
-    cryptsetup
-    dmidecode
-    dunst
-    ecryptfs
-    element-desktop
-    flameshot
-    font-manager
-    gcc
-    git
-    gitkraken
-    gnumake
-    grim
-    file
-    htop
-    keyutils
-    lenovo-legion
-    libsForQt5.ark
-    libsForQt5.dolphin
-    libsForQt5.ffmpegthumbs
-    libsForQt5.gwenview
-    libsForQt5.kdegraphics-thumbnailers
-    libsForQt5.kio-admin
-    libsForQt5.kio-extras
-    libsForQt5.konsole
-    libsForQt5.okular
-    libtool
-    light
-    lm_sensors
-    lshw
-    lutris
-    mpv
-    ninja
-    pamixer
-    pavucontrol
-    playerctl
-    pkg-config
-    protonup
-    pulseaudio
-    pyprland
-    python3
-    reaper
-    rofi-wayland
-    screen
-    slack
-    swaybg
-    swaylock-effects
-    thunderbird
-    tor-browser
-    waybar
-    wdisplays
-    wget
-    wireshark
-    vim
-    wineWowPackages.stable
-    vivaldi
-    vivaldi-ffmpeg-codecs
-    wl-clipboard
-    vscode
-    yabridge
-    yabridgectl
-    yarn
-  ];
+  environment = {
+    etc = {
+      "schroot/schroot.conf".source = (pkgs.formats.ini { }).generate "schroot.conf" {
+        "jammy" = {
+          type = "directory";
+          description = "Ubuntu 22.04 Jammy Jellyfish";
+          directory = "/srv/chroot/jammy";
+          users = "blazej";
+          root-users = "blazej";
+          personality = "linux";
+          preserve-environment = false;
+          profile = "my-profile";
+        };
+      };
+      "schroot/my-profile".source = ../../dotfiles/schroot/my-profile;
+    };
+
+    systemPackages = with pkgs; [
+      autoconf
+      automake
+      brightnessctl
+      caprine-bin
+      cmake
+      cryptsetup
+      debootstrap
+      dmidecode
+      dunst
+      ecryptfs
+      element-desktop
+      flameshot
+      font-manager
+      gcc
+      git
+      gitkraken
+      gnumake
+      grim
+      file
+      htop
+      keyutils
+      lenovo-legion
+      libsForQt5.ark
+      libsForQt5.dolphin
+      libsForQt5.ffmpegthumbs
+      libsForQt5.gwenview
+      libsForQt5.kdegraphics-thumbnailers
+      libsForQt5.kio-admin
+      libsForQt5.kio-extras
+      libsForQt5.konsole
+      libsForQt5.okular
+      libtool
+      light
+      lm_sensors
+      lshw
+      lutris
+      mpv
+      ncdu
+      ninja
+      pamixer
+      pavucontrol
+      playerctl
+      pkg-config
+      protonup
+      pulseaudio
+      pyprland
+      python3
+      reaper
+      rofi-wayland
+      screen
+      slack
+      swaybg
+      swaylock-effects
+      thunderbird
+      tor-browser
+      waybar
+      wdisplays
+      wget
+      wireshark
+      vim
+      wineWowPackages.stable
+      vivaldi
+      vivaldi-ffmpeg-codecs
+      wl-clipboard
+      vscode
+      yabridge
+      yabridgectl
+      yarn
+    ];
+  };
 
   fileSystems."/persist".neededForBoot = true;
 
@@ -239,6 +261,8 @@
     };
 
     nix-ld = { enable = true; };
+
+    schroot.enable = true;
 
     steam = {
       enable = true;
