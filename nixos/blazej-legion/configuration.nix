@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
+    inputs.musnix.nixosModules.musnix
     outputs.nixosModules.schroot
   ];
 
@@ -228,6 +229,8 @@
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # musnix.enable = true;
 
   networking = {
     hostName = "blazej-legion";

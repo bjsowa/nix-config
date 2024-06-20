@@ -12,6 +12,10 @@
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
+
+    # Musnix
+    musnix.url = "github:musnix/musnix";
+    musnix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
