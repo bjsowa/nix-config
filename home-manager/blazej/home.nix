@@ -222,14 +222,15 @@
       "dunst/scripts".source = "${pkgs.my-nixos-scripts}/dunst";
       "hypr/scripts".source = "${pkgs.my-nixos-scripts}/hypr";
       "waybar/scripts".source = "${pkgs.my-nixos-scripts}/waybar";
-      "konsole/Default.profile".text = ''
-        [Appearance]
-        Font=DejaVu Sans Mono,12,-1,5,50,0,0,0,0,0
-
-        [General]
-        Name=Default
-        Parent=FALLBACK/
-      '';
+      "konsole/Default.profile".source =
+        (pkgs.formats.ini { }).generate "Default.profile" {
+          Appearance.Font = "DejaVu Sans Mono,12,-1,5,50,0,0,0,0,0";
+          General = {
+            Name = "Default";
+            Parent = "FALLBACK/";
+          };
+          Scrolling.HistorySize = 50000;
+        };
     };
 
     mimeApps = { enable = true; };
