@@ -81,18 +81,31 @@
 
   environment = {
     etc = {
-      "schroot/schroot.conf".source = (pkgs.formats.ini { }).generate "schroot.conf" {
-        "jammy" = {
-          type = "directory";
-          description = "Ubuntu 22.04 Jammy Jellyfish";
-          directory = "/srv/chroot/jammy";
-          users = "blazej";
-          root-users = "blazej";
-          personality = "linux";
-          preserve-environment = false;
-          profile = "my-profile";
+      "schroot/schroot.conf".source =
+        (pkgs.formats.ini { }).generate "schroot.conf" {
+          "focal" = {
+            type = "directory";
+            description = "Ubuntu 20.04 Focal Fossa";
+            directory = "/srv/chroot/focal";
+            users = "blazej";
+            root-users = "blazej";
+            personality = "linux";
+            preserve-environment = false;
+            profile = "my-profile";
+            shell = "/bin/zsh";
+          };
+          "jammy" = {
+            type = "directory";
+            description = "Ubuntu 22.04 Jammy Jellyfish";
+            directory = "/srv/chroot/jammy";
+            users = "blazej";
+            root-users = "blazej";
+            personality = "linux";
+            preserve-environment = false;
+            profile = "my-profile";
+            shell = "/bin/zsh";
+          };
         };
-      };
       "schroot/my-profile".source = ../../dotfiles/schroot/my-profile;
     };
 
