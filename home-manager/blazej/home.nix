@@ -207,13 +207,13 @@
       };
       "rofi".source = ../../dotfiles/rofi;
       "waybar".source = ../../dotfiles/waybar;
-      "yabridge/config.toml".source =
+      "yabridgectl/config.toml".source =
         (pkgs.formats.toml { }).generate "config.toml" {
           plugin_dirs = [
             "${config.home.homeDirectory}/.wine/drive_c/Program Files/Common Files/VST3"
           ];
           vst2_location = "centralized";
-          no_verify = "false";
+          no_verify = false;
           blacklist = [ ];
         };
     };
