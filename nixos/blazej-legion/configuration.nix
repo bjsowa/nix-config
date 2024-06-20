@@ -17,7 +17,7 @@
     extraModulePackages = with config.boot.kernelPackages;
       [ lenovo-legion-module ];
 
-    kernelModules = [ "legion_laptop" ];
+    # kernelModules = [ "legion_laptop" ];
 
     kernelPackages = pkgs.linuxPackages_6_8;
 
@@ -205,15 +205,16 @@
       modesetting.enable = true;
       nvidiaSettings = true;
       open = false;
-      powerManagement.enable = true;
-      powerManagement.finegrained = true;
+      # powerManagement.enable = true;
+      # powerManagement.finegrained = true;
 
       prime = {
-        reverseSync.enable = true;
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+        sync.enable = true;
+        # reverseSync.enable = true;
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = true;
+        # };
 
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:5:0:0";
@@ -269,7 +270,7 @@
 
     fuse.userAllowOther = true;
 
-    gamemode.enable = true;
+    # gamemode.enable = true;
 
     gnupg.agent = {
       enable = true;
@@ -355,7 +356,7 @@
     #   ignoreCpuidCheck = true;
     # };
 
-    tlp.enable = true;
+    # tlp.enable = true;
 
     xserver = {
       enable = true;
