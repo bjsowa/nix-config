@@ -131,7 +131,9 @@
       };
       oh-my-zsh = {
         enable = true;
-        theme = "agnoster";
+        custom =
+          "${config.home.homeDirectory}/.local/share/datafiles/oh-my-zsh";
+        theme = "agnoster-custom";
         plugins = [
           "aliases"
           "common-aliases"
