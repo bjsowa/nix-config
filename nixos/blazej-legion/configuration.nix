@@ -384,7 +384,7 @@
       hashedPasswordFile = "/persist/passwords/blazej";
       isNormalUser = true;
       extraGroups =
-        [ "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
+        [ "audio" "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
       shell = pkgs.zsh;
     };
   };
