@@ -38,6 +38,7 @@
         ".gnupg"
         ".ssh"
         ".thunderbird"
+        ".wine"
         ".vscode"
         ".vst3"
 
