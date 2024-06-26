@@ -66,18 +66,22 @@
     keyMap = "pl";
   };
 
-  environment.persistence."/persist/system" = {
-    hideMounts = true;
-    directories = [
-      "/var/cache"
-      "/var/log"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      "/srv/chroot"
-    ];
-    files = [ "/etc/machine-id" ];
+  environment = {
+    persistence."/persist/system" = {
+      hideMounts = true;
+      directories = [
+        "/var/cache"
+        "/var/log"
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/var/lib/systemd/coredump"
+        "/etc/NetworkManager/system-connections"
+        "/srv/chroot"
+      ];
+      files = [ "/etc/machine-id" ];
+    };
+
+    sessionVariables = { NIXOS_OZONE_WL = "1"; };
   };
 
   environment = {
