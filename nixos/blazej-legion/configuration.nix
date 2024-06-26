@@ -173,6 +173,7 @@
       pulseaudio
       pyprland
       python3
+      qbittorrent-qt5
       reaper
       rofi-wayland
       screen
