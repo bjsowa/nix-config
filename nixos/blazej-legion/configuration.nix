@@ -225,12 +225,11 @@
       # powerManagement.finegrained = true;
 
       prime = {
-        sync.enable = true;
-        # reverseSync.enable = true;
-        # offload = {
-        #   enable = true;
-        #   enableOffloadCmd = true;
-        # };
+        reverseSync.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
 
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:5:0:0";
@@ -380,7 +379,10 @@
         layout = "pl";
         variant = "";
       };
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [
+        # "displaylink"
+        "nvidia"
+      ];
     };
 
     udev.extraRules = ''
