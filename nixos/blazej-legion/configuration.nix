@@ -106,6 +106,17 @@
             profile = "my-profile";
             shell = "/bin/zsh";
           };
+          "noble" = {
+            type = "directory";
+            description = "Ubuntu 24.04 Noble";
+            directory = "/srv/chroot/noble";
+            users = "blazej";
+            root-users = "blazej";
+            personality = "linux";
+            preserve-environment = false;
+            profile = "my-profile";
+            shell = "/bin/zsh";
+          };
         };
       "schroot/my-profile".source = ../../dotfiles/schroot/my-profile;
     };
