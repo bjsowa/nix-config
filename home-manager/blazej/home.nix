@@ -156,6 +156,25 @@
       envExtra = ''
         export DEFAULT_USER=${config.home.username}
       '';
+      shellAliases = let COLCON_COMMON_ARGS = "--symlink-install";
+      in {
+        cc-build =
+          "colcon build ${COLCON_COMMON_ARGS} --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON";
+        cc-buildpackage =
+          "colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-select";
+        cc-buildpackage-verbose =
+          "VERBOSE=1 colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-select";
+        cc-buildupto =
+          "colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-up-to";
+        cc-test = "colcon test";
+        cc-testpackage =
+          "colcon test --event-handlers console_direct+ --packages-select";
+        cc-testpackage-verbose =
+          "VERBOSE=1 colcon test --event-handlers console_direct+ --packages-select";
+        cc-clean = "colcon build ${COLCON_COMMON_ARGS} --cmake-target clean";
+        cc-cleanpackage =
+          "colcon build ${COLCON_COMMON_ARGS} --cmake-target clean --packages-select";
+      };
     };
   };
 
