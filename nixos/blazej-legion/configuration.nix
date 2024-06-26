@@ -415,13 +415,16 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  users.users = {
-    blazej = {
-      hashedPasswordFile = "/persist/passwords/blazej";
-      isNormalUser = true;
-      extraGroups =
-        [ "audio" "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
-      shell = pkgs.zsh;
+  users = {
+    groups = { plugdev = { }; };
+    users = {
+      blazej = {
+        hashedPasswordFile = "/persist/passwords/blazej";
+        isNormalUser = true;
+        extraGroups =
+          [ "audio" "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
+        shell = pkgs.zsh;
+      };
     };
   };
 }
