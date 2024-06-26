@@ -48,7 +48,7 @@ stdenv.mkDerivation {
           gnused # sed
           hyprland # hyprctl
           playerctl
-          rofi
+          rofi-wayland
           swaylock-effects # swaylock
           systemd # systemctl
         ]
@@ -62,7 +62,7 @@ stdenv.mkDerivation {
           coreutils # sleep
           gnugrep # grep
           procps # pgrep
-          rofi
+          rofi-wayland
           util-linux # rfkill, kill
         ]
       }"
