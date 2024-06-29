@@ -3,7 +3,6 @@
     ./hardware-configuration.nix
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
-    inputs.musnix.nixosModules.musnix
     outputs.nixosModules.schroot
   ];
 
@@ -19,7 +18,7 @@
 
     # kernelModules = [ "legion_laptop" ];
 
-    kernelPackages = pkgs.linuxPackages_6_8;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_8;
 
     kernelParams = [ "acpi_osi=Linux" ];
 
@@ -246,8 +245,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # musnix.enable = true;
-
   networking = {
     hostName = "blazej-legion";
     networkmanager.enable = true;
@@ -406,6 +403,10 @@
 
     udisks2 = { enable = true; };
 
+  };
+
+  specialisation = {
+    rt-audio.configuration.imports = [ ./specialisations/rt-audio.nix ];
   };
 
   sound.enable = true;
