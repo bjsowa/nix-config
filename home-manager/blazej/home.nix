@@ -63,9 +63,9 @@
 
     pointerCursor = {
       gtk.enable = true;
-      name = "Catppuccin-Macchiato-Dark-Cursors";
+      name = "catppuccin-macchiato-dark-cursors";
       package = pkgs.catppuccin-cursors.macchiatoDark;
-      size = 16;
+      size = 24;
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -75,7 +75,7 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      name = "catppuccin-macchiato-blue-standard+default";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
@@ -90,7 +90,7 @@
       };
     };
     cursorTheme = {
-      name = "Catppuccin-Macchiato-Dark-Cursors";
+      name = "catppuccin-macchiato-dark-cursors";
       package = pkgs.catppuccin-cursors.macchiatoDark;
     };
     gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
