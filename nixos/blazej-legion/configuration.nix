@@ -161,6 +161,7 @@
       lm_sensors
       lshw
       lutris
+      mattermost-desktop
       mpv
       ncdu
       ninja
@@ -173,6 +174,7 @@
       pyprland
       python3
       qbittorrent-qt5
+      qjackctl
       reaper
       rofi-wayland
       screen
@@ -186,7 +188,8 @@
       wget
       wireshark
       vim
-      wineWowPackages.stable
+      wineWowPackages.staging
+      winetricks
       vivaldi
       vivaldi-ffmpeg-codecs
       wl-clipboard
