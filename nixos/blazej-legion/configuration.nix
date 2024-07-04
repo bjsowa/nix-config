@@ -393,10 +393,7 @@
         layout = "pl";
         variant = "";
       };
-      videoDrivers = [
-        # "displaylink"
-        "nvidia"
-      ];
+      videoDrivers = [ "nvidia" ];
     };
 
     udev.extraRules = ''
