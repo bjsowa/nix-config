@@ -25,6 +25,7 @@
       directories = [
         "Documents"
         "Downloads"
+        "Games"
         "Music"
         "Pictures"
         "Videos"
@@ -52,6 +53,7 @@
         ".local/share/direnv"
         ".local/share/dolphin"
         ".local/share/konsole"
+        ".local/share/lutris"
         ".local/share/pyenv"
         ".local/share/Steam"
         ".local/share/zsh"
