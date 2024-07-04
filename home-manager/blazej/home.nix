@@ -186,6 +186,8 @@
     style.name = "kvantum";
   };
 
+  services = { mpris-proxy.enable = true; };
+
   systemd.user = {
     # Nicely reload system units when changing configs
     startServices = "sd-switch";
