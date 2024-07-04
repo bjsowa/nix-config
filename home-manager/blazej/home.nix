@@ -58,7 +58,7 @@
         ".local/share/Steam"
         ".local/share/zsh"
       ];
-      files = [ ".bash_history" ];
+      files = [ ".bash_history" ".config/hypr/monitors.conf" ];
     };
 
     pointerCursor = {
@@ -222,7 +222,8 @@
           General.theme = "Catppuccin-Macchiato-Blue";
         };
       "dunst".source = ../../dotfiles/dunst;
-      "hypr".source = ../../dotfiles/hypr;
+      "hypr/hyprland.conf".source = ../../dotfiles/hypr/hyprland.conf;
+      "hypr/pyprland.toml".source = ../../dotfiles/hypr/pyprland.toml;
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";
       };

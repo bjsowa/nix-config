@@ -165,6 +165,7 @@
       mpv
       ncdu
       ninja
+      nwg-displays
       pamixer
       pavucontrol
       playerctl
