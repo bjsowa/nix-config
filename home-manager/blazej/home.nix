@@ -1,6 +1,4 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ inputs.impermanence.nixosModules.home-manager.impermanence ];
-
   home = {
     username = "blazej";
     homeDirectory = "/home/${config.home.username}";
@@ -19,47 +17,6 @@
       libsForQt5.qt5ct
       papirus-folders
     ];
-
-    persistence."/persist/home/${config.home.username}" = {
-      allowOther = true;
-      directories = [
-        "Documents"
-        "Downloads"
-        "Games"
-        "Music"
-        "Pictures"
-        "Videos"
-
-        "nix-config"
-        "praca"
-
-        ".cache"
-        ".ecryptfs"
-        ".gitkraken"
-        ".gnupg"
-        ".ssh"
-        ".thunderbird"
-        ".wine"
-        ".vscode"
-        ".vst3"
-
-        ".config/Caprine"
-        ".config/Code"
-        ".config/Element"
-        ".config/GitKraken"
-        ".config/Slack"
-        ".config/vivaldi"
-
-        ".local/share/direnv"
-        ".local/share/dolphin"
-        ".local/share/konsole"
-        ".local/share/lutris"
-        ".local/share/pyenv"
-        ".local/share/Steam"
-        ".local/share/zsh"
-      ];
-      files = [ ".bash_history" ".config/hypr/monitors.conf" ];
-    };
 
     pointerCursor = {
       gtk.enable = true;
