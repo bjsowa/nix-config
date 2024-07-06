@@ -13,8 +13,8 @@
       options legion_laptop force=1
     '';
 
-    extraModulePackages = with config.boot.kernelPackages;
-      [ lenovo-legion-module ];
+    # extraModulePackages = with config.boot.kernelPackages;
+    # [ lenovo-legion-module ];
 
     # kernelModules = [ "legion_laptop" ];
 
