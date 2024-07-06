@@ -206,6 +206,7 @@
       mpv
       ncdu
       ninja
+      nmap
       nwg-displays
       pamixer
       pavucontrol
