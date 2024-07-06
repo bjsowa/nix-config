@@ -18,6 +18,8 @@
 
     # kernelModules = [ "legion_laptop" ];
 
+    kernel.sysctl."kernel.sysrq" = 1;
+    
     kernelPackages = lib.mkDefault pkgs.linuxPackages_6_8;
 
     kernelParams = [ "acpi_osi=Linux" ];
