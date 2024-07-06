@@ -7,6 +7,8 @@
   ];
 
   boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
+
     blacklistedKernelModules = [ "ideapad_laptop" ];
 
     extraModprobeConfig = ''
