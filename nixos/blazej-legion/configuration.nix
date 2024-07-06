@@ -326,6 +326,11 @@
   };
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
+
     ecryptfs.enable = true;
 
     fuse.userAllowOther = true;
