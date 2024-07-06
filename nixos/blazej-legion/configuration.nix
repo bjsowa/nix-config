@@ -78,6 +78,47 @@
         "/srv/chroot"
       ];
       files = [ "/etc/machine-id" ];
+      users.blazej = {
+        directories = [
+          "Documents"
+          "Downloads"
+          "Games"
+          "Music"
+          "Pictures"
+          "Videos"
+
+          "nix-config"
+          "praca"
+
+          ".cache"
+          ".ecryptfs"
+          ".gitkraken"
+          ".gnupg"
+          ".platformio"
+          ".ssh"
+          ".thunderbird"
+          ".wine"
+          ".vscode"
+          ".vst3"
+
+          ".config/Caprine"
+          ".config/Code"
+          ".config/Element"
+          ".config/GitKraken"
+          ".config/Slack"
+          ".config/vivaldi"
+
+          ".local/share/direnv"
+          ".local/share/dolphin"
+          ".local/share/konsole"
+          ".local/share/lutris"
+          ".local/share/pyenv"
+          ".local/share/Steam"
+          ".local/share/zsh"
+        ];
+        files =
+          [ ".bash_history" ".config/bloom" ".config/hypr/monitors.conf" ];
+      };
     };
 
     sessionVariables = { NIXOS_OZONE_WL = "1"; };
