@@ -451,6 +451,8 @@
       ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3754", MODE="660", GROUP="plugdev", TAG+="uaccess"
     '';
 
+    udev.packages = [ pkgs.openocd ];
+
     udisks2 = { enable = true; };
 
   };
