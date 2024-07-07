@@ -89,6 +89,7 @@
           "Games"
           "Music"
           "Pictures"
+          ".Private"
           "Videos"
 
           "nix-config"

@@ -3,11 +3,6 @@
     username = "blazej";
     homeDirectory = "/home/${config.home.username}";
 
-    file = {
-      ".Private".source = config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/Documents/.Private";
-    };
-
     packages = with pkgs; [
       (catppuccin-kvantum.override {
         accent = "Blue";
