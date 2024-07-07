@@ -172,6 +172,11 @@
     };
   };
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+    extraConfig = builtins.readFile ../../dotfiles/hypr/hyprland.conf;
+  };
+
   xdg = {
     configFile = {
       "Kvantum/kvantum.kvconfig".source =
@@ -179,7 +184,6 @@
           General.theme = "Catppuccin-Macchiato-Blue";
         };
       "dunst".source = ../../dotfiles/dunst;
-      "hypr/hyprland.conf".source = ../../dotfiles/hypr/hyprland.conf;
       "hypr/pyprland.toml".source = ../../dotfiles/hypr/pyprland.toml;
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";
