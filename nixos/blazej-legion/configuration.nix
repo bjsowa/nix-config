@@ -454,6 +454,9 @@
     udev.extraRules = ''
       # ST-Link V3MINIE
       ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3754", MODE="660", GROUP="plugdev", TAG+="uaccess"
+
+      # Luxonis OAK cameras
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"
     '';
 
     udev.packages = [ pkgs.openocd ];
