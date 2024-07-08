@@ -1,8 +1,14 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./specialisations/default.nix
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     outputs.nixosModules.schroot
   ];
 
@@ -11,20 +17,11 @@
 
     blacklistedKernelModules = [ "ideapad_laptop" ];
 
-    extraModprobeConfig = ''
-      options legion_laptop force=1
-    '';
-
-    # extraModulePackages = with config.boot.kernelPackages;
-    # [ lenovo-legion-module ];
-
-    # kernelModules = [ "legion_laptop" ];
-
     kernel.sysctl."kernel.sysrq" = 1;
 
     kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_6;
 
-    kernelParams = [ "acpi_osi=Linux" ];
+    kernelParams = [ "acpi_osi=Linux" "amdgpu.sg_display=0" ];
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -266,27 +263,6 @@
       driSupport = true;
       driSupport32Bit = true;
     };
-
-    nvidia = {
-      modesetting.enable = true;
-      nvidiaSettings = true;
-      open = false;
-      # powerManagement.enable = true;
-      # powerManagement.finegrained = true;
-
-      prime = {
-        reverseSync.enable = true;
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-
-        nvidiaBusId = "PCI:1:0:0";
-        amdgpuBusId = "PCI:5:0:0";
-      };
-
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
   };
 
   home-manager = {
@@ -294,7 +270,15 @@
     users = { blazej = import ../../home-manager/blazej/home.nix; };
   };
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "C.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+      "pl_PL.UTF-8/UTF-8"
+      "ja_JP.UTF-8/UTF-8"
+    ];
+  };
 
   networking = {
     hostName = "blazej-legion";
@@ -414,6 +398,10 @@
       jack.enable = true;
     };
 
+    # AMD has better battery life with PPD over TLP:
+    # https://community.frame.work/t/responded-amd-7040-sleep-states/38101/13
+    power-profiles-daemon.enable = true;
+
     printing = {
       enable = true;
       drivers = [ ];
@@ -426,29 +414,12 @@
     #   ignoreCpuidCheck = true;
     # };
 
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
-      };
-    };
-
     xserver = {
       enable = true;
       xkb = {
         layout = "pl";
         variant = "";
       };
-      videoDrivers = [ "nvidia" ];
     };
 
     udev.extraRules = ''
@@ -466,7 +437,14 @@
   };
 
   specialisation = {
-    rt-audio.configuration.imports = [ ./specialisations/rt-audio.nix ];
+    nvidia.configuration = {
+      imports = [ ./specialisations/nvidia.nix ];
+      disabledModules = [ ./specialisations/default.nix ];
+    };
+    rt-audio.configuration = {
+      imports = [ ./specialisations/rt-audio.nix ];
+      disabledModules = [ ./specialisations/default.nix ];
+    };
   };
 
   sound.enable = true;
