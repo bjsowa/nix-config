@@ -107,6 +107,7 @@
           ".config/Code"
           ".config/Element"
           ".config/GitKraken"
+          ".config/REAPER"
           ".config/Slack"
           ".config/vivaldi"
 
