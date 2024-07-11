@@ -213,6 +213,7 @@
       mpv
       ncdu
       ninja
+      nix-output-monitor
       nmap
       nwg-displays
       pamixer
