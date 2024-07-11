@@ -119,8 +119,12 @@
           ".local/share/Steam"
           ".local/share/zsh"
         ];
-        files =
-          [ ".bash_history" ".config/bloom" ".config/hypr/monitors.conf" ];
+        files = [
+          ".bash_history"
+          ".config/bloom"
+          ".config/hypr/monitors.conf"
+          ".scdhistory"
+        ];
       };
     };
 
