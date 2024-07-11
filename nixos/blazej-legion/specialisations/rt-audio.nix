@@ -5,7 +5,9 @@
     enable = true;
     kernel = {
       realtime = true;
-      packages = pkgs.linuxPackages_6_8_rt;
+      packages = pkgs.linuxPackages_6_9_rt;
     };
   };
+
+  hardware.bluetooth.enable = lib.mkForce false;
 }
