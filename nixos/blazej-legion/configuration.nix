@@ -73,6 +73,7 @@
         "/var/cache"
         "/var/log"
         "/var/lib/bluetooth"
+        "/var/lib/libvirt"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
@@ -353,6 +354,8 @@
 
     wireshark.enable = true;
 
+    virt-manager.enable = true;
+
     zsh.enable = true;
   };
 
@@ -475,6 +478,8 @@
       };
     };
   };
+
+  virtualisation.libvirtd.enable = true;
 
   xdg.mime.defaultApplications = {
     "text/html" = "vivaldi-stable.desktop";
