@@ -27,7 +27,7 @@
   gtk = {
     enable = true;
     theme = {
-      name = "catppuccin-macchiato-blue-standard+default";
+      name = "catppuccin-macchiato-blue-standard";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
