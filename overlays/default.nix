@@ -27,5 +27,6 @@
       system = final.system;
       config.allowUnfree = true;
     };
+    hyprland-git = inputs.hyprland.packages.${final.system};
   };
 }

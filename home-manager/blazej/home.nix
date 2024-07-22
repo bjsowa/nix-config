@@ -170,6 +170,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = builtins.readFile ../../dotfiles/hypr/hyprland.conf;
+    # package = pkgs.hyprland-git.hyprland;
   };
 
   xdg = {
