@@ -239,6 +239,7 @@
       swaylock-effects
       thunderbird
       tor-browser
+      usbutils
       waybar
       wdisplays
       wget
