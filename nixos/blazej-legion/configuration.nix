@@ -430,6 +430,8 @@
     #   ignoreCpuidCheck = true;
     # };
 
+    upower.enable = true;
+
     xserver = {
       enable = true;
       xkb = {
