@@ -21,9 +21,7 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_6;
-
-    kernelParams = [ "acpi_osi=Linux" "amdgpu.sg_display=0" ];
+    kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_10;
 
     loader = {
       efi.canTouchEfiVariables = true;
