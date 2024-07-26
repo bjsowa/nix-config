@@ -1,12 +1,11 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
-    ./specialisations/default.nix
+    ./nvidia.nix
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     outputs.nixosModules.schroot
@@ -458,14 +457,7 @@
   };
 
   specialisation = {
-    nvidia.configuration = {
-      imports = [ ./specialisations/nvidia.nix ];
-      disabledModules = [ ./specialisations/default.nix ];
-    };
-    rt-audio.configuration = {
-      imports = [ ./specialisations/rt-audio.nix ];
-      disabledModules = [ ./specialisations/default.nix ];
-    };
+    rt-audio.configuration = { imports = [ ./specialisations/rt-audio.nix ]; };
   };
 
   sound.enable = true;
