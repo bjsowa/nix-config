@@ -233,6 +233,7 @@
       reaper
       rofi-wayland
       screen
+      sidequest
       slack
       swaybg
       swaylock-effects
@@ -325,6 +326,10 @@
   };
 
   programs = {
+    adb.enable = true;
+
+    alvr.enable = true;
+
     appimage = {
       enable = true;
       binfmt = true;
@@ -475,8 +480,15 @@
       blazej = {
         hashedPasswordFile = "/persist/passwords/blazej";
         isNormalUser = true;
-        extraGroups =
-          [ "audio" "dialout" "networkmanager" "plugdev" "wheel" "wireshark" ];
+        extraGroups = [
+          "adbusers"
+          "audio"
+          "dialout"
+          "networkmanager"
+          "plugdev"
+          "wheel"
+          "wireshark"
+        ];
         shell = pkgs.zsh;
       };
     };
