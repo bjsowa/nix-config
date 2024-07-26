@@ -102,6 +102,7 @@
           ".thunderbird"
           ".wine"
           ".vscode"
+          ".vscode-server"
           ".vst3"
 
           ".config/Caprine"
