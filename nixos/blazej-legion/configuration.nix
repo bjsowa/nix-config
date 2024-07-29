@@ -190,7 +190,8 @@
       font-manager
       gcc
       git
-      gitkraken
+      master.gitkraken
+      gnome.simple-scan
       gnumake
       grim
       file
@@ -272,6 +273,17 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+    };
+
+    sane = {
+      brscan4 = {
+        enable = true;
+        netDevices = {
+          fictionlab-brother = { model = "MFC-L2700DW"; ip = "192.168.1.21"; };
+        };
+      };
+      brscan5.enable = true;
+      enable = true;
     };
   };
 
@@ -478,8 +490,10 @@
           "adbusers"
           "audio"
           "dialout"
+          "lp"
           "networkmanager"
           "plugdev"
+          "scanner"
           "wheel"
           "wireshark"
         ];
