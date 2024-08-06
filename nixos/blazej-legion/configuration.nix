@@ -510,11 +510,22 @@
 
   virtualisation.libvirtd.enable = true;
 
-  xdg.mime.defaultApplications = {
-    "text/html" = "vivaldi-stable.desktop";
-    "x-scheme-handler/http" = "vivaldi-stable.desktop";
-    "x-scheme-handler/https" = "vivaldi-stable.desktop";
-    "x-scheme-handler/about" = "vivaldi-stable.desktop";
-    "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+  xdg = {
+    mime = {
+      addedAssociations = {
+        "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
+      };
+      defaultApplications = {
+        "text/html" = "vivaldi-stable.desktop";
+        "x-scheme-handler/http" = "vivaldi-stable.desktop";
+        "x-scheme-handler/https" = "vivaldi-stable.desktop";
+        "x-scheme-handler/about" = "vivaldi-stable.desktop";
+        "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+      };
+    };
+    portal = {
+      extraPortals = lib.mkAfter [ pkgs.xdg-desktop-portal-gtk ];
+      xdgOpenUsePortal = true;
+    };
   };
 }
