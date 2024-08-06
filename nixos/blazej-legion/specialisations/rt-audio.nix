@@ -3,10 +3,10 @@
 
   musnix = {
     enable = true;
-    kernel = {
-      realtime = true;
-      packages = pkgs.linuxPackages_6_9_rt;
-    };
+    # kernel = {
+    # realtime = true;
+    # packages = pkgs.linuxPackages_6_9_rt;
+    # };
   };
 
   hardware.bluetooth.enable = lib.mkForce false;
