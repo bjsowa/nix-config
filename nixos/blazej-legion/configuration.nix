@@ -192,6 +192,7 @@
       gcc
       git
       master.gitkraken
+      gnome.dconf-editor
       gnome.simple-scan
       gnumake
       grim
@@ -244,6 +245,7 @@
       waybar
       wdisplays
       wget
+      winbox
       wireshark
       vim
       wineWowPackages.staging
@@ -252,6 +254,8 @@
       vivaldi-ffmpeg-codecs
       wl-clipboard
       vscode
+      xorg.xeyes
+      xorg.xhost
       yabridge
       yabridgectl
       yarn
