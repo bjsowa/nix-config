@@ -109,6 +109,7 @@
           ".config/Code"
           ".config/Element"
           ".config/GitKraken"
+          ".config/PrusaSlicer"
           ".config/REAPER"
           ".config/Slack"
           ".config/vivaldi"
@@ -224,6 +225,7 @@
       playerctl
       pkg-config
       protonup
+      prusa-slicer
       pulseaudio
       pyprland
       python3
