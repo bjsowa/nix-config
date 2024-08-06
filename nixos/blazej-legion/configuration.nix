@@ -285,7 +285,10 @@
       brscan4 = {
         enable = true;
         netDevices = {
-          fictionlab-brother = { model = "MFC-L2700DW"; ip = "192.168.1.21"; };
+          fictionlab-brother = {
+            model = "MFC-L2700DW";
+            ip = "192.168.1.21";
+          };
         };
       };
       brscan5.enable = true;
