@@ -369,7 +369,10 @@
       xwayland.enable = true;
     };
 
-    hyprlock.enable = true;
+    hyprlock = {
+      enable = true;
+      package = pkgs.hyprlock-git.hyprlock;
+    };
 
     nix-ld = { enable = true; };
 

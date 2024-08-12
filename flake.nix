@@ -22,8 +22,11 @@
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # hyprland-aqua
+    # hyprland-git
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+    # hyprlock-git
+    hyprlock.url = "git+https://github.com/hyprwm/Hyprlock";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

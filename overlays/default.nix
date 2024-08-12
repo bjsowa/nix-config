@@ -58,5 +58,6 @@
       config.allowUnfree = true;
     };
     hyprland-git = inputs.hyprland.packages.${final.system};
+    hyprlock-git = inputs.hyprlock.packages.${final.system};
   };
 }
