@@ -237,8 +237,6 @@
       screen
       sidequest
       slack
-      swaybg
-      swaylock-effects
       thunderbird
       tor-browser
       usbutils
@@ -371,6 +369,8 @@
       xwayland.enable = true;
     };
 
+    hyprlock.enable = true;
+
     nix-ld = { enable = true; };
 
     schroot.enable = true;
@@ -387,7 +387,6 @@
     zsh.enable = true;
   };
 
-  security.pam.services.swaylock = { };
   security.polkit.enable = true;
 
   services = {

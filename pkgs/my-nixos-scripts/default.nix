@@ -47,9 +47,9 @@ stdenv.mkDerivation {
           coreutils # cat, cut
           gnused # sed
           hyprland # hyprctl
+          hyprlock
           playerctl
           rofi-wayland
-          swaylock-effects # swaylock
           systemd # systemctl
         ]
       }"

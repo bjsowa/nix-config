@@ -192,7 +192,9 @@
           General.theme = "Catppuccin-Macchiato-Blue";
         };
       "dunst".source = ../../dotfiles/dunst;
+      "hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
       "hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
+      "hypr/macchiato.conf".source = ../../dotfiles/hypr/macchiato.conf;
       "hypr/pyprland.toml".source = ../../dotfiles/hypr/pyprland.toml;
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";

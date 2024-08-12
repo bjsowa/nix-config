@@ -72,7 +72,7 @@ case ${chosen} in
     run_cmd --reboot
     ;;
   $lock)
-    swaylock --clock --indicator
+    hyprlock
     ;;
   $suspend)
     run_cmd --suspend
