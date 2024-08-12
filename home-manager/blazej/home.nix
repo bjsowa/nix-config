@@ -79,6 +79,10 @@
       enable = true;
       enableBashIntegration = true;
     };
+    waybar = {
+      enable = true;
+      systemd.enable = true;
+    };
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -142,7 +146,11 @@
     style.name = "kvantum";
   };
 
-  services = { mpris-proxy.enable = true; };
+  services = {
+    dunst = { enable = true; };
+    hyprpaper = { enable = true; };
+    mpris-proxy.enable = true;
+  };
 
   systemd.user = {
     # Nicely reload system units when changing configs
@@ -174,7 +182,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = builtins.readFile ../../dotfiles/hypr/hyprland.conf;
-    # package = pkgs.hyprland-git.hyprland;
+    package = pkgs.hyprland-git.hyprland;
   };
 
   xdg = {
@@ -184,6 +192,7 @@
           General.theme = "Catppuccin-Macchiato-Blue";
         };
       "dunst".source = ../../dotfiles/dunst;
+      "hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
       "hypr/pyprland.toml".source = ../../dotfiles/hypr/pyprland.toml;
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";
