@@ -484,7 +484,10 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"
 
       # Oculus Quest
-      SUBSYSTEM="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0660", GROUP="plugdev", symlink+="ocuquest%n"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="2833", ATTRS{idProduct}=="0186", MODE="0660", GROUP="plugdev", SYMLINK+="ocuquest%n"
+
+      # Insta360 X4
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="2e1a", ATTRS{idProduct}=="0002", MODE="0666", SYMLINK+="insta%n"
     '';
 
     udev.packages = [ pkgs.openocd ];
