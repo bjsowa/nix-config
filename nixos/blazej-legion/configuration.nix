@@ -180,9 +180,11 @@
       automake
       brightnessctl
       caprine-bin
+      clang-tools
       cmake
       cryptsetup
       debootstrap
+      discord
       dmidecode
       dunst
       ecryptfs
@@ -190,11 +192,13 @@
       flameshot
       font-manager
       gcc
+      gdb
       git
       master.gitkraken
       gnome.dconf-editor
       gnome.simple-scan
       gnumake
+      gparted
       grim
       file
       htop
@@ -248,10 +252,12 @@
       vim
       wineWowPackages.staging
       winetricks
-      vivaldi
-      vivaldi-ffmpeg-codecs
+      (vivaldi.override {
+        proprietaryCodecs = true;
+        enableWidevine = true;
+      })
       wl-clipboard
-      vscode
+      master.vscode
       xorg.xeyes
       xorg.xhost
       yabridge
