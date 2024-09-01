@@ -19,6 +19,8 @@
 
     blacklistedKernelModules = [ "ideapad_laptop" ];
 
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+
     kernel.sysctl."kernel.sysrq" = 1;
 
     kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_10;
