@@ -283,6 +283,9 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+
+      package = pkgs.hyprland-nixpkgs.mesa.drivers;
+      package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
     };
 
     sane = {
