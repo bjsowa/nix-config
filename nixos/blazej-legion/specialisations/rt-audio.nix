@@ -1,6 +1,8 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [ inputs.musnix.nixosModules.musnix ];
 
+  boot = { kernelPackages = pkgs.master.linuxPackages_6_6; };
+
   musnix = {
     enable = true;
     # kernel = {
