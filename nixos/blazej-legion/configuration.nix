@@ -109,8 +109,10 @@
 
           ".config/Caprine"
           ".config/Code"
+          ".config/discord"
           ".config/Element"
           ".config/GitKraken"
+          ".config/Mattermost"
           ".config/PrusaSlicer"
           ".config/REAPER"
           ".config/Slack"
