@@ -1,14 +1,16 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [ inputs.musnix.nixosModules.musnix ];
 
-  boot = { kernelPackages = pkgs.master.linuxPackages_6_6; };
+  boot = {
+    kernelPackages = pkgs.master.linuxPackages_6_6;
+    kernelParams = lib.mkAfter [ "mitigations=off" ];
+  };
 
   musnix = {
     enable = true;
-    # kernel = {
-    # realtime = true;
-    # packages = pkgs.linuxPackages_6_9_rt;
-    # };
+
+    rtcqs.enable = true;
+    soundcardPciId = "06:00.6";
   };
 
   hardware.bluetooth.enable = lib.mkForce false;
