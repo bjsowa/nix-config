@@ -228,10 +228,12 @@
       ncdu
       ninja
       nix-output-monitor
+      nix-tree
       nmap
       nwg-displays
       pamixer
       pavucontrol
+      pciutils
       playerctl
       pkg-config
       protonup
