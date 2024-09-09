@@ -9,6 +9,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     outputs.nixosModules.schroot
+    inputs.nixos-cosmic.nixosModules.default
   ];
 
   boot = {
@@ -288,8 +289,8 @@
       driSupport = true;
       driSupport32Bit = true;
 
-      package = pkgs.hyprland-nixpkgs.mesa.drivers;
-      package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
+      # package = pkgs.hyprland-nixpkgs.mesa.drivers;
+      # package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
     };
 
     sane = {
@@ -345,6 +346,10 @@
       flake-registry = "";
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
+
+      substituters = lib.mkAfter [ "https://cosmic.cachix.org/" ];
+      trusted-public-keys = lib.mkAfter
+        [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
 
       trusted-users = [ "root" "blazej" ];
     };
@@ -412,18 +417,22 @@
       openFirewall = true;
     };
 
+    desktopManager = { cosmic.enable = true; };
+
     displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
+      cosmic-greeter.enable = true;
 
-      autoLogin = {
-        enable = true;
-        user = "blazej";
-      };
+      # sddm = {
+      # enable = true;
+      # wayland.enable = true;
+      # };
 
-      defaultSession = "hyprland";
+      # autoLogin = {
+      # enable = true;
+      # user = "blazej";
+      # };
+
+      # defaultSession = "hyprland";
     };
 
     fstrim.enable = true;

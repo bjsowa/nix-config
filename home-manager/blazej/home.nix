@@ -81,7 +81,10 @@
     };
     waybar = {
       enable = true;
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+        target = "hyprland-session.target";
+      };
     };
     zsh = {
       enable = true;
@@ -161,8 +164,7 @@
         Unit = {
           Description = "KDE Polkit authentication agent";
           Documentation = "https://gitlab.freedesktop.org/polkit/polkit/";
-          After = [ "graphical-session-pre.target" ];
-          PartOf = [ "graphical-session.target" ];
+          PartOf = [ "hyprland-session.target" ];
         };
 
         Service = {
@@ -174,7 +176,7 @@
           TimeoutStopSec = 10;
         };
 
-        Install.WantedBy = [ "graphical-session.target" ];
+        Install.WantedBy = [ "hyprland-session.target" ];
       };
     };
   };

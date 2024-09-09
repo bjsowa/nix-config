@@ -27,6 +27,12 @@
 
     # hyprlock-git
     hyprlock.url = "git+https://github.com/hyprwm/Hyprlock";
+
+    # cosmic
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
