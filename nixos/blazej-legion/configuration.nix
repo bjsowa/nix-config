@@ -108,8 +108,10 @@
           ".vscode-server"
           ".vst3"
 
+          ".config/BetterDiscord"
           ".config/Caprine"
           ".config/Code"
+          ".config/cosmic"
           ".config/discord"
           ".config/Element"
           ".config/GitKraken"
