@@ -120,6 +120,7 @@
           ".config/REAPER"
           ".config/Slack"
           ".config/vivaldi"
+          ".config/Youtube Music"
 
           ".local/share/direnv"
           ".local/share/dolphin"
@@ -272,6 +273,7 @@
       yabridge
       yabridgectl
       yarn
+      youtube-music
     ];
   };
 
