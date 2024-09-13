@@ -6,7 +6,7 @@
     packages = with pkgs; [
       (catppuccin-kvantum.override {
         accent = "Blue";
-        variant = "Macchiato";
+        variant = "Frappe";
       })
       libsForQt5.qtstyleplugin-kvantum
       libsForQt5.qt5ct
@@ -15,8 +15,8 @@
 
     pointerCursor = {
       gtk.enable = true;
-      name = "catppuccin-macchiato-dark-cursors";
-      package = pkgs.catppuccin-cursors.macchiatoDark;
+      name = "catppuccin-frappe-dark-cursors";
+      package = pkgs.catppuccin-cursors.frappeDark;
       size = 24;
     };
 
@@ -31,23 +31,23 @@
   gtk = {
     enable = true;
     theme = {
-      name = "catppuccin-macchiato-blue-standard";
+      name = "catppuccin-frappe-blue-standard";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
-        variant = "macchiato";
+        variant = "frappe";
       };
     };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "macchiato";
+        flavor = "frappe";
         accent = "blue";
       };
     };
     cursorTheme = {
-      name = "catppuccin-macchiato-dark-cursors";
-      package = pkgs.catppuccin-cursors.macchiatoDark;
+      name = "catppuccin-frappe-dark-cursors";
+      package = pkgs.catppuccin-cursors.frappeDark;
     };
     gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
@@ -191,7 +191,7 @@
     configFile = {
       "Kvantum/kvantum.kvconfig".source =
         (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = "Catppuccin-Macchiato-Blue";
+          General.theme = "Catppuccin-Frappe-Blue";
         };
       "dunst".source = ../../dotfiles/dunst;
       "hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
