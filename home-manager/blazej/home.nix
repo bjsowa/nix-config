@@ -1,4 +1,8 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
+  imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
+  ];
+
   home = {
     username = "blazej";
     homeDirectory = "/home/${config.home.username}";
@@ -14,14 +18,18 @@
     ];
 
     pointerCursor = {
-      gtk.enable = true;
-      name = "catppuccin-frappe-dark-cursors";
-      package = pkgs.catppuccin-cursors.frappeDark;
       size = 24;
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
+  };
+
+  catppuccin = {
+    enable = true;
+    flavor = "frappe";
+    accent = "blue";
+    pointerCursor.enable = true;
   };
 
   dconf.settings = {
@@ -30,24 +38,13 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = "catppuccin-frappe-blue-standard";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "blue" ];
-        size = "standard";
-        variant = "frappe";
-      };
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "frappe";
-        accent = "blue";
-      };
+    catppuccin = {
+      enable = true; # DEPRECATED, may break in the future
+      icon.enable = true;
     };
     cursorTheme = {
       name = "catppuccin-frappe-dark-cursors";
-      package = pkgs.catppuccin-cursors.frappeDark;
+      package = pkgs.catppuccin-cursors.frappeBlue;
     };
     gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
@@ -146,7 +143,10 @@
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum";
+    style = {
+      name = "kvantum";
+      catppuccin.enable = false; # can be change once catppuccin/nix support qtct
+    };
   };
 
   services = {
@@ -193,7 +193,7 @@
         (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
           General.theme = "Catppuccin-Frappe-Blue";
         };
-      "dunst".source = ../../dotfiles/dunst;
+      # "dunst/dunstrc".source = ../../dotfiles/dunst/dunstrc;
       "hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
       "hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
       "hypr/macchiato.conf".source = ../../dotfiles/hypr/macchiato.conf;

@@ -10,6 +10,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     outputs.nixosModules.schroot
     inputs.nixos-cosmic.nixosModules.default
+    inputs.catppuccin.nixosModules.catppuccin
   ];
 
   boot = {
@@ -61,6 +62,12 @@
       btrfs subvolume create /btrfs_tmp/root
       umount /btrfs_tmp
     '';
+  };
+
+  catppuccin = {
+    enable = true;
+    flavor = "frappe";
+    accent = "blue";
   };
 
   console = {
