@@ -127,7 +127,7 @@
           ".config/REAPER"
           ".config/Slack"
           ".config/vivaldi"
-          ".config/Youtube Music"
+          ".config/YouTube Music"
 
           ".local/share/direnv"
           ".local/share/dolphin"
