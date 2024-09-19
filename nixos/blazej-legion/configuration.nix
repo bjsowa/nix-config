@@ -218,6 +218,7 @@
       file
       htop
       keyutils
+      kicad
       lenovo-legion
       libsForQt5.ark
       libsForQt5.dolphin
