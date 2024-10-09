@@ -57,11 +57,5 @@
       system = final.system;
       config.allowUnfree = true;
     };
-    hyprland-nixpkgs = import inputs.hyprland.inputs.nixpkgs {
-      system = final.system;
-      config.allowUnfree = true;
-    };
-    hyprland-git = inputs.hyprland.packages.${final.system};
-    hyprlock-git = inputs.hyprlock.packages.${final.system};
   };
 }

@@ -22,12 +22,6 @@
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # hyprland-git
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    # hyprlock-git
-    hyprlock.url = "git+https://github.com/hyprwm/Hyprlock";
-
     # cosmic
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
