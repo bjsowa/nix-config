@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ lib, config, ... }: {
 
   boot = {
     extraModprobeConfig = lib.mkAfter ''
