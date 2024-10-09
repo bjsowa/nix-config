@@ -39,7 +39,7 @@
   gtk = {
     enable = true;
     catppuccin = {
-      enable = true; # DEPRECATED, may break in the future
+      enable = false; # DEPRECATED, may break in the future
       icon.enable = true;
     };
     cursorTheme = {
