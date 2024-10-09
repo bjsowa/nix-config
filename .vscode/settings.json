@@ -1,0 +1,5 @@
+{
+    "editor.fontFamily": "'DejaVu Sans Mono', 'Font Awesome 6 Free Regular', 'Font Awesome 6 Free Solid', 'Font Awesome 6 Brands', 'monospace', monospace",
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd"
+}
