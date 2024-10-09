@@ -570,8 +570,8 @@
       };
     };
     portal = {
-      extraPortals = lib.mkAfter [ pkgs.xdg-desktop-portal-gtk ];
-      xdgOpenUsePortal = true;
+      # extraPortals = lib.mkAfter [ pkgs.xdg-desktop-portal-gtk ];
+      # xdgOpenUsePortal = true;
     };
   };
 }
