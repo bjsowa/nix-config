@@ -240,6 +240,8 @@
       ninja
       nix-output-monitor
       nix-tree
+      unstable.nixd
+      nixfmt-classic
       nmap
       nwg-displays
       pamixer
@@ -259,6 +261,7 @@
       screen
       sidequest
       slack
+      sshfs
       thunderbird
       tor-browser
       usbutils
