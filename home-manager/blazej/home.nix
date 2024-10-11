@@ -70,6 +70,11 @@
       enable = true;
       userName = "Błażej Sowa";
       userEmail = "bsowa123@gmail.com";
+      extraConfig = {
+        url."ssh://git@github.com/" = {
+          pushInsteadOf = "https://github.com/";
+        };
+      };
     };
     home-manager.enable = true;
     pyenv = {
