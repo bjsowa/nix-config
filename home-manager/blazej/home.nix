@@ -191,13 +191,15 @@
     extraConfig = builtins.readFile ../../dotfiles/hypr/hyprland.conf;
   };
 
-  xdg = {
+  xdg = let dotfiles_path = "${config.home.homeDirectory}/nix-config/dotfiles";
+  in {
     configFile = {
       "Kvantum/kvantum.kvconfig".source =
         (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
           General.theme = "Catppuccin-Frappe-Blue";
         };
-      # "dunst/dunstrc".source = ../../dotfiles/dunst/dunstrc;
+      "dunst/dunstrc".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
       "hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
       "hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
       "hypr/macchiato.conf".source = ../../dotfiles/hypr/macchiato.conf;
