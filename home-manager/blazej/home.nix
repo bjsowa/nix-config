@@ -1,7 +1,5 @@
-{ inputs, outputs, config, pkgs, ... }: {
-  imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
-  ];
+{ inputs, outputs, config, lib, pkgs, ... }: {
+  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
   home = {
     username = "blazej";
@@ -17,9 +15,7 @@
       papirus-folders
     ];
 
-    pointerCursor = {
-      size = 24;
-    };
+    pointerCursor = { size = 24; };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
@@ -150,7 +146,8 @@
     platformTheme.name = "qtct";
     style = {
       name = "kvantum";
-      catppuccin.enable = false; # can be change once catppuccin/nix support qtct
+      # can be change once catppuccin/nix support qtct
+      catppuccin.enable = false;
     };
   };
 
