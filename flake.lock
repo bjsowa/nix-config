@@ -174,6 +174,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-schroot": {
+      "locked": {
+        "lastModified": 1730075046,
+        "narHash": "sha256-Ezcx2QuYGgqvR/AFsWkbX1VyXv5wA4NTJb3Oh/SUqqE=",
+        "owner": "bjsowa",
+        "repo": "nixpkgs",
+        "rev": "ce2bcc793b59a9450df3a06d8e71c7dc17ae1247",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bjsowa",
+        "ref": "add-schroot",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1728627514,
@@ -217,6 +233,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-old": "nixpkgs-old",
+        "nixpkgs-schroot": "nixpkgs-schroot",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
