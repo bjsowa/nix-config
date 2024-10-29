@@ -220,7 +220,8 @@
         };
     };
     dataFile = {
-      "datafiles".source = ../../datafiles;
+      "datafiles".source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/nix-config/datafiles";
       "dunst/scripts".source = "${pkgs.my-nixos-scripts}/dunst";
       "hypr/scripts".source = "${pkgs.my-nixos-scripts}/hypr";
       "waybar/scripts".source = "${pkgs.my-nixos-scripts}/waybar";
