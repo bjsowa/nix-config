@@ -289,6 +289,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = { blazej = import ../../home-manager/blazej/home.nix; };
+    useGlobalPkgs = true;
   };
 
   i18n = {
