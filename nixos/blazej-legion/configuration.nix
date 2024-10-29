@@ -2,15 +2,16 @@
   imports = [
     ./hardware-configuration.nix
     ./nvidia.nix
+    ./schroot.nix
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    outputs.nixosModules.schroot
     inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin
+    (inputs.nixpkgs-schroot + "/nixos/modules/programs/schroot.nix")
   ];
 
   boot = {
@@ -150,46 +151,6 @@
   };
 
   environment = {
-    etc = {
-      "schroot/schroot.conf".source =
-        (pkgs.formats.ini { }).generate "schroot.conf" {
-          "focal" = {
-            type = "directory";
-            description = "Ubuntu 20.04 Focal Fossa";
-            directory = "/srv/chroot/focal";
-            users = "blazej";
-            root-users = "blazej";
-            personality = "linux";
-            preserve-environment = false;
-            profile = "my-profile";
-            shell = "/bin/zsh";
-          };
-          "jammy" = {
-            type = "directory";
-            description = "Ubuntu 22.04 Jammy Jellyfish";
-            directory = "/srv/chroot/jammy";
-            users = "blazej";
-            root-users = "blazej";
-            personality = "linux";
-            preserve-environment = false;
-            profile = "my-profile";
-            shell = "/bin/zsh";
-          };
-          "noble" = {
-            type = "directory";
-            description = "Ubuntu 24.04 Noble";
-            directory = "/srv/chroot/noble";
-            users = "blazej";
-            root-users = "blazej";
-            personality = "linux";
-            preserve-environment = false;
-            profile = "my-profile";
-            shell = "/bin/zsh";
-          };
-        };
-      "schroot/my-profile".source = ../../dotfiles/schroot/my-profile;
-    };
-
     systemPackages = with pkgs; [
       autoconf
       automake
@@ -409,8 +370,6 @@
     };
 
     nix-ld = { enable = true; };
-
-    schroot.enable = true;
 
     steam = {
       enable = true;

@@ -1,5 +1,9 @@
 { inputs, ... }: {
-  additions = final: _prev: import ../pkgs final.pkgs;
+  additions = final: _prev:
+    import ../pkgs final.pkgs // {
+      schroot =
+        (import inputs.nixpkgs-schroot { system = final.system; }).schroot;
+    };
 
   modifications = final: prev: {
     caprine-bin = prev.appimageTools.wrapType2 rec {
