@@ -70,7 +70,7 @@ progress_bar_max_width = 300
 
 # Frame
 frame_width = 1
-frame_color = "#1C2325"
+frame_color = "#8caaee"
 
 # The transparency of the window. range: [0; 100]
 # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -127,7 +127,7 @@ text_icon_padding = 16
 #  * foreground: use the same color as the foreground
 #  * frame: use the same color as the frame.
 #  * anything else will be interpreted as a X color
-separator_color = auto
+separator_color = frame
 
 # Align icons left/right/off
 icon_position = left
@@ -160,26 +160,21 @@ icon_theme = "breeze-dark, Papirus-Dark"
 
 [urgency_low]
 timeout = 6
-background = "#0d0f16"
-foreground = "#CDD6F4"
-frame_color = "#191d24"
-highlight = "#7ba5dd"
+background = "#303446"
+foreground = "#c6d0f5"
 
 [urgency_normal]
 script = ~/.local/share/dunst/scripts/playNotificationSound.sh
 timeout = 6
-background = "#0d0f16"
-foreground = "#CDD6F4"
-frame_color = "#0d0f16"
-highlight = "#7ba5dd"
+background = "#303446"
+foreground = "#c6d0f5"
 
 [urgency_critical]
 script = ~/.local/share/dunst/scripts/playNotificationSound.sh
 timeout = 6
-background = "#0d0f16"
-foreground = "#CDD6F4"
-frame_color = "#0d0f16"
-highlight = "#ee6a70"
+background = "#303446"
+foreground = "#c6d0f5"
+frame_color = "#ef9f76"
 
 [backlight]
 summary = "Backlight"
