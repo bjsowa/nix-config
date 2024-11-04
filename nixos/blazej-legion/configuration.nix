@@ -367,11 +367,13 @@
 
     hyprland = {
       enable = true;
+      package = pkgs.unstable.hyprland;
       xwayland.enable = true;
     };
 
     hyprlock = {
       enable = true;
+      package = pkgs.unstable.hyprlock;
     };
 
     nix-ld = { enable = true; };
