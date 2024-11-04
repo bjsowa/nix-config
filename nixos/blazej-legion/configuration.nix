@@ -400,19 +400,20 @@
     desktopManager = { cosmic.enable = true; };
 
     displayManager = {
-      cosmic-greeter.enable = true;
+      # cosmic-greeter.enable = true;
 
-      # sddm = {
-      # enable = true;
-      # wayland.enable = true;
-      # };
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        package = pkgs.kdePackages.sddm;
+      };
 
-      # autoLogin = {
-      # enable = true;
-      # user = "blazej";
-      # };
+      autoLogin = {
+        enable = true;
+        user = "blazej";
+      };
 
-      # defaultSession = "hyprland";
+      defaultSession = "hyprland";
     };
 
     flatpak.enable = true;
