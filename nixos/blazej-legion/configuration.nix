@@ -159,7 +159,7 @@
       autoconf
       automake
       brightnessctl
-      caprine-bin
+      unstable.caprine
       clang-tools
       cmake
       cryptsetup
@@ -205,6 +205,7 @@
       ninja
       nix-output-monitor
       nix-tree
+      nurl
       unstable.nixd
       nixfmt-classic
       nmap
@@ -227,6 +228,7 @@
       sidequest
       slack
       sshfs
+      syncplay
       thunderbird
       tor-browser
       usbutils
