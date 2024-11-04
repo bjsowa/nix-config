@@ -86,6 +86,7 @@
         "/var/cache"
         "/var/log"
         "/var/lib/bluetooth"
+        "/var/lib/flatpak"
         "/var/lib/libvirt"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
@@ -134,6 +135,7 @@
 
           ".local/share/direnv"
           ".local/share/dolphin"
+          ".local/share/flatpak"
           ".local/share/konsole"
           ".local/share/lutris"
           ".local/share/pyenv"
@@ -412,6 +414,8 @@
 
       # defaultSession = "hyprland";
     };
+
+    flatpak.enable = true;
 
     fstrim.enable = true;
 
