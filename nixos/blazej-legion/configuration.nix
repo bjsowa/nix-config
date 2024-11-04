@@ -349,7 +349,10 @@
   programs = {
     adb.enable = true;
 
-    alvr.enable = true;
+    alvr = {
+      enable = true;
+      openFirewall = true;
+    };
 
     appimage = {
       enable = true;
