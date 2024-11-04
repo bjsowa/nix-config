@@ -26,7 +26,7 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_10;
+    kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_6;
 
     loader = {
       efi.canTouchEfiVariables = true;
