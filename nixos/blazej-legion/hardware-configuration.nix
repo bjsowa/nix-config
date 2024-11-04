@@ -18,6 +18,12 @@
     options = [ "subvol=root" ];
   };
 
+  fileSystems."/old_roots" = {
+    device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
+    fsType = "btrfs";
+    options = [ "subvol=old_roots" ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/8741-BFA8";
     fsType = "vfat";
