@@ -69,6 +69,7 @@
       enableBashIntegration = true;
     };
     waybar = {
+      catppuccin.enable = false;
       enable = true;
       systemd = {
         enable = true;
@@ -176,7 +177,9 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = builtins.readFile ../../dotfiles/hypr/hyprland.conf;
+    extraConfig = ''
+      source = ~/.config/hypr/hyprland-custom.conf
+    '';
   };
 
   xdg = let dotfiles_path = "${config.home.homeDirectory}/nix-config/dotfiles";
@@ -188,10 +191,14 @@
         };
       "dunst/dunstrc".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
-      "hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
-      "hypr/hyprpaper.conf".source = ../../dotfiles/hypr/hyprpaper.conf;
-      "hypr/macchiato.conf".source = ../../dotfiles/hypr/macchiato.conf;
-      "hypr/pyprland.toml".source = ../../dotfiles/hypr/pyprland.toml;
+      "hypr/hyprland-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/hypr/hyprland.conf";
+      "hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/hypr/hyprlock.conf";
+      "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/hypr/hyprpaper.conf";
+      "hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/hypr/pyprland.toml";
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";
       };
@@ -201,8 +208,10 @@
       "qt6ct/qt6ct.conf".source = (pkgs.formats.ini { }).generate "qt6ct.conf" {
         Appearance.icon_theme = "Papirus-Dark";
       };
-      "rofi".source = ../../dotfiles/rofi;
-      "waybar".source = ../../dotfiles/waybar;
+      "rofi".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/rofi";
+      "waybar".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/waybar";
       "yabridgectl/config.toml".source =
         (pkgs.formats.toml { }).generate "config.toml" {
           plugin_dirs = [
