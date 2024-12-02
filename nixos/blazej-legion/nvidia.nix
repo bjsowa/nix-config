@@ -15,9 +15,9 @@
     modesetting.enable = lib.mkDefault true;
     powerManagement.enable = lib.mkDefault false;
     powerManagement.finegrained = lib.mkDefault false;
-    open = lib.mkDefault false;
+    open = lib.mkDefault true;
     nvidiaSettings = lib.mkDefault true;
-    package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
+    package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   services.xserver.videoDrivers = lib.mkAfter [ "nvidia" ];

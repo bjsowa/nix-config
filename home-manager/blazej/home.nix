@@ -7,8 +7,8 @@
 
     packages = with pkgs; [
       (catppuccin-kvantum.override {
-        accent = "Blue";
-        variant = "Frappe";
+        accent = "blue";
+        variant = "frappe";
       })
       libsForQt5.qtstyleplugin-kvantum
       libsForQt5.qt5ct
@@ -39,10 +39,11 @@
       icon.enable = true;
     };
     cursorTheme = {
-      name = "catppuccin-frappe-dark-cursors";
+      name = "catppuccin-frappe-blue-cursors";
       package = pkgs.catppuccin-cursors.frappeBlue;
     };
     gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
+    gtk4 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
 
   programs = {
@@ -156,7 +157,7 @@
         Unit = {
           Description = "KDE Polkit authentication agent";
           Documentation = "https://gitlab.freedesktop.org/polkit/polkit/";
-          PartOf = [ "hyprland-session.target" ];
+          PartOf = [ "graphical-session.target" ];
         };
 
         Service = {
@@ -183,7 +184,7 @@
     configFile = {
       "Kvantum/kvantum.kvconfig".source =
         (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = "Catppuccin-Frappe-Blue";
+          General.theme = "catppuccin-frappe-blue";
         };
       "dunst/dunstrc".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
@@ -195,6 +196,9 @@
         "Desktop Entry".DefaultProfile = "Default.profile";
       };
       "qt5ct/qt5ct.conf".source = (pkgs.formats.ini { }).generate "qt5ct.conf" {
+        Appearance.icon_theme = "Papirus-Dark";
+      };
+      "qt6ct/qt6ct.conf".source = (pkgs.formats.ini { }).generate "qt6ct.conf" {
         Appearance.icon_theme = "Papirus-Dark";
       };
       "rofi".source = ../../dotfiles/rofi;

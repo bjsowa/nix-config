@@ -26,7 +26,7 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.master.linuxPackages_6_6;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -164,6 +164,7 @@
       clang-tools
       cmake
       cryptsetup
+      dconf-editor
       debootstrap
       discord
       dmidecode
@@ -176,8 +177,6 @@
       gdb
       git
       master.gitkraken
-      gnome.dconf-editor
-      gnome.simple-scan
       gnumake
       gparted
       grim
@@ -186,21 +185,22 @@
       keyutils
       kicad
       lenovo-legion
-      libsForQt5.ark
-      libsForQt5.dolphin
-      libsForQt5.ffmpegthumbs
-      libsForQt5.gwenview
-      libsForQt5.kdegraphics-thumbnailers
-      libsForQt5.kio-admin
-      libsForQt5.kio-extras
-      libsForQt5.konsole
-      libsForQt5.okular
+      kdePackages.ark
+      kdePackages.dolphin
+      kdePackages.ffmpegthumbs
+      kdePackages.gwenview
+      kdePackages.kdegraphics-thumbnailers
+      kdePackages.kio-admin
+      kdePackages.kio-extras
+      kdePackages.konsole
+      kdePackages.okular
       libtool
       light
       lm_sensors
       lshw
       lutris
       mattermost-desktop
+      megasync
       mpv
       ncdu
       ninja
@@ -219,19 +219,21 @@
       protonup
       prusa-slicer
       pulseaudio
-      pyprland
+      unstable.pyprland
       python3
-      qbittorrent-qt5
+      qbittorrent
       qjackctl
       reaper
       rofi-wayland
       screen
       sidequest
+      simple-scan
       slack
       sshfs
       syncplay
       thunderbird
       tor-browser
+      unrar
       usbutils
       waybar
       wdisplays
@@ -269,10 +271,9 @@
       powerOnBoot = true;
     };
 
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
 
       # package = pkgs.hyprland-nixpkgs.mesa.drivers;
       # package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
@@ -503,8 +504,6 @@
   specialisation = {
     rt-audio.configuration = { imports = [ ./specialisations/rt-audio.nix ]; };
   };
-
-  sound.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
