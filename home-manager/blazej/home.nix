@@ -64,6 +64,12 @@
       };
     };
     home-manager.enable = true;
+    hyprlock = {
+      enable = true;
+      extraConfig = ''
+        source = ~/.config/hypr/hyprlock-custom.conf
+      '';
+    };
     pyenv = {
       enable = true;
       enableBashIntegration = true;
@@ -193,7 +199,7 @@
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
       "hypr/hyprland-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/hyprland.conf";
-      "hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink
+      "hypr/hyprlock-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/hyprlock.conf";
       "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/hyprpaper.conf";
