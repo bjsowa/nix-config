@@ -171,6 +171,7 @@
       dunst
       ecryptfs
       element-desktop
+      exfatprogs
       flameshot
       font-manager
       gcc
