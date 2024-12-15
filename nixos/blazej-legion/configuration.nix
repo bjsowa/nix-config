@@ -397,7 +397,13 @@
     zsh.enable = true;
   };
 
-  security.polkit.enable = true;
+  security = {
+    polkit.enable = true;
+
+    sudo.extraConfig = ''
+      Defaults lecture="never"
+    '';
+  };
 
   services = {
     avahi = {
