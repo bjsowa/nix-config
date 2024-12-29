@@ -25,7 +25,17 @@
     enable = true;
     flavor = "frappe";
     accent = "blue";
-    pointerCursor.enable = true;
+    cursors.enable = true;
+
+    # Collision with current custom theme
+    waybar.enable = false;
+
+    # can be change once catppuccin/nix support qtct
+    kvantum.enable = false;
+
+    # DEPRECATED, may break in the future
+    gtk.enable = false;
+    gtk.icon.enable = true;
   };
 
   dconf.settings = {
@@ -34,10 +44,6 @@
 
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = false; # DEPRECATED, may break in the future
-      icon.enable = true;
-    };
     cursorTheme = {
       name = "catppuccin-frappe-blue-cursors";
       package = pkgs.catppuccin-cursors.frappeBlue;
@@ -76,7 +82,6 @@
       enableBashIntegration = true;
     };
     waybar = {
-      catppuccin.enable = false;
       enable = true;
       systemd = {
         enable = true;
@@ -143,11 +148,7 @@
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style = {
-      name = "kvantum";
-      # can be change once catppuccin/nix support qtct
-      catppuccin.enable = false;
-    };
+    style = { name = "kvantum"; };
   };
 
   services = {
