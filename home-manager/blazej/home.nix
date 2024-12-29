@@ -55,6 +55,7 @@
     };
     git = {
       enable = true;
+      lfs.enable = true;
       userName = "Błażej Sowa";
       userEmail = "bsowa123@gmail.com";
       extraConfig = {
