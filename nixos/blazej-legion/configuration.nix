@@ -11,7 +11,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin
-    (inputs.nixpkgs-schroot + "/nixos/modules/programs/schroot.nix")
+    (inputs.nixpkgs-unstable + "/nixos/modules/programs/schroot.nix")
   ];
 
   boot = {

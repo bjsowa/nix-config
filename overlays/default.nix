@@ -1,9 +1,5 @@
 { inputs, ... }: {
-  additions = final: _prev:
-    import ../pkgs final.pkgs // {
-      schroot =
-        (import inputs.nixpkgs-schroot { system = final.system; }).schroot;
-    };
+  additions = final: prev: import ../pkgs final.pkgs;
 
   modifications = final: prev: {
     flameshot = prev.flameshot.overrideAttrs (old: {
