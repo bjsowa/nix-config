@@ -197,6 +197,7 @@
       kdePackages.kio-extras
       kdePackages.konsole
       kdePackages.okular
+      kdePackages.plasma-workspace
       libtool
       light
       lm_sensors
@@ -549,6 +550,7 @@
   virtualisation.libvirtd.enable = true;
 
   xdg = {
+    menus.enable = true;
     mime = {
       addedAssociations = {
         "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
