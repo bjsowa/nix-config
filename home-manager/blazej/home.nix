@@ -10,8 +10,15 @@
         accent = "blue";
         variant = "frappe";
       })
-      libsForQt5.qtstyleplugin-kvantum
-      libsForQt5.qt5ct
+      (catppuccin-kde.override {
+        accents = [ "blue" ];
+        flavour = [ "frappe" ];
+      })
+      (catppuccin-papirus-folders.override {
+        accent = "blue";
+        flavor = "frappe";
+      })
+      kdePackages.qtstyleplugin-kvantum
       papirus-folders
     ];
 
@@ -30,7 +37,7 @@
     # Collision with current custom theme
     waybar.enable = false;
 
-    # can be change once catppuccin/nix support qtct
+    # Does not work qith qtct
     kvantum.enable = false;
 
     # DEPRECATED, may break in the future
@@ -204,6 +211,8 @@
         "${dotfiles_path}/hypr/hyprpaper.conf";
       "hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/pyprland.toml";
+      "kdeglobals".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/kdeglobals";
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";
       };
