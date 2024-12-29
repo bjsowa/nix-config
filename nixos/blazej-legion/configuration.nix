@@ -279,8 +279,8 @@
       enable = true;
       enable32Bit = true;
 
-      # package = pkgs.hyprland-nixpkgs.mesa.drivers;
-      # package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
+      package = pkgs.hyprland-nixpkgs.mesa.drivers;
+      package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
     };
 
     sane = {
@@ -378,7 +378,11 @@
 
     hyprland = {
       enable = true;
-      package = pkgs.unstable.hyprland;
+      # package = pkgs.unstable.hyprland;
+      package =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 
