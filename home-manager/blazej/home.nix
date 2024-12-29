@@ -44,10 +44,7 @@
 
   gtk = {
     enable = true;
-    cursorTheme = {
-      name = "catppuccin-frappe-blue-cursors";
-      package = pkgs.catppuccin-cursors.frappeBlue;
-    };
+    cursorTheme.name = "catppuccin-frappe-blue-cursors";
     gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
     gtk4 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
