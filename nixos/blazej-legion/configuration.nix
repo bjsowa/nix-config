@@ -191,6 +191,7 @@
       kdePackages.dolphin
       kdePackages.ffmpegthumbs
       kdePackages.gwenview
+      kdePackages.kcalc
       kdePackages.kdegraphics-thumbnailers
       kdePackages.kio-admin
       kdePackages.kio-extras
@@ -208,6 +209,7 @@
       ninja
       nix-output-monitor
       nix-tree
+      nodejs
       nurl
       unstable.nixd
       nixfmt-classic
