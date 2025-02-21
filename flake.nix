@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.05";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
@@ -16,7 +17,7 @@
 
     # Musnix
     musnix.url = "github:musnix/musnix";
-    musnix.inputs.nixpkgs.follows = "nixpkgs";
+    # musnix.inputs.nixpkgs.follows = "nixpkgs";
 
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
