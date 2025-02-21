@@ -193,6 +193,7 @@
       kdePackages.gwenview
       kdePackages.kcalc
       kdePackages.kdegraphics-thumbnailers
+      kdePackages.kdenlive
       kdePackages.kio-admin
       kdePackages.kio-extras
       kdePackages.konsole
@@ -260,6 +261,7 @@
       yabridgectl
       yarn
       youtube-music
+      yt-dlp
     ];
   };
 
