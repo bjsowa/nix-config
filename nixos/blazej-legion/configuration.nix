@@ -522,6 +522,8 @@
 
     udisks2 = { enable = true; };
 
+    teamviewer = { enable = true; };
+
   };
 
   specialisation = {
