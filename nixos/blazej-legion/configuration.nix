@@ -10,7 +10,7 @@
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    inputs.nixos-cosmic.nixosModules.default
+    # inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin
     (inputs.nixpkgs-unstable + "/nixos/modules/programs/schroot.nix")
   ];
@@ -346,9 +346,9 @@
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
 
-      substituters = lib.mkAfter [ "https://cosmic.cachix.org/" ];
-      trusted-public-keys = lib.mkAfter
-        [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+      # substituters = lib.mkAfter [ "https://cosmic.cachix.org/" ];
+      # trusted-public-keys = lib.mkAfter
+      # [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
 
       trusted-users = [ "root" "blazej" ];
     };
@@ -428,7 +428,7 @@
       openFirewall = true;
     };
 
-    desktopManager = { cosmic.enable = true; };
+    # desktopManager = { cosmic.enable = true; };
 
     displayManager = {
       # cosmic-greeter.enable = true;
