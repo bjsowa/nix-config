@@ -17,6 +17,7 @@
 
     # Musnix
     musnix.url = "github:musnix/musnix";
+    # This causes often rt kernel recompiles
     # musnix.inputs.nixpkgs.follows = "nixpkgs";
 
     # nixos-hardware
@@ -33,6 +34,7 @@
   
     # hyprland
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
