@@ -23,6 +23,10 @@
       system = final.system;
       config.allowUnfree = true;
     };
+    old = import inputs.nixpkgs-old {
+      system = final.system;
+      config.allowUnfree = true;
+    };
     hyprland-nixpkgs = import inputs.hyprland.inputs.nixpkgs {
       system = final.system;
       config.allowUnfree = true;
