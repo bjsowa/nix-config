@@ -7,6 +7,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.nixos-cosmic.nixosModules.default
@@ -26,7 +27,9 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
+    kernelPackages = lib.mkDefault pkgs.unstable.linuxPackages_6_13;
+
+    kernelParams = [ "amdgpu.abmlevel=0" ];
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -521,7 +524,10 @@
   };
 
   specialisation = {
-    rt-audio.configuration = { imports = [ ./specialisations/rt-audio.nix ]; };
+    rt-audio.configuration = {
+      imports = [ ./specialisations/rt-audio.nix ];
+      disabledModules = [ ./nvidia.nix ];
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
