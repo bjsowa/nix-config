@@ -135,6 +135,7 @@
           ".config/PrusaSlicer"
           ".config/REAPER"
           ".config/Slack"
+          ".config/teamviewer"
           ".config/vivaldi"
           ".config/YouTube Music"
 
