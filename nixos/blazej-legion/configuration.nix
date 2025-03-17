@@ -1,4 +1,6 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
+  disabledModules = [ "programs/wayland/hyprland.nix" ];
+
   imports = [
     ./hardware-configuration.nix
     ./nvidia.nix
@@ -13,6 +15,7 @@
     # inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin
     (inputs.nixpkgs-unstable + "/nixos/modules/programs/schroot.nix")
+    (inputs.nixpkgs-unstable + "/nixos/modules/programs/wayland/hyprland.nix")
   ];
 
   boot = {
