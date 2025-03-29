@@ -31,6 +31,7 @@
 
     # catppuccin
     catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   
     # hyprland
     hyprland.url = "github:hyprwm/Hyprland";
