@@ -9,8 +9,8 @@
     nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.05";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
@@ -34,7 +34,7 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   
     # hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.1-b";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
