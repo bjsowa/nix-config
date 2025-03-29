@@ -189,6 +189,12 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+
+    # Use packages defined in NixOS module
+    package = null;
+    portalPackage = null;
+
+    # source our custom config
     extraConfig = ''
       source = ~/.config/hypr/hyprland-custom.conf
     '';
