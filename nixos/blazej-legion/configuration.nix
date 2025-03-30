@@ -290,10 +290,8 @@
       enable = true;
       enable32Bit = true;
 
-      package = pkgs.unstable.mesa.drivers;
-      package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
-      # package = pkgs.hyprland-nixpkgs.mesa.drivers;
-      # package32 = pkgs.hyprland-nixpkgs.pkgsi686Linux.mesa.drivers;
+      package = pkgs.unstable.mesa;
+      package32 = pkgs.unstable.pkgsi686Linux.mesa;
     };
 
     sane = {
