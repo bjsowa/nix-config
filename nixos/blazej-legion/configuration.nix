@@ -376,6 +376,8 @@
       binfmt = true;
     };
 
+    corectrl = { enable = true; };
+
     ecryptfs.enable = true;
 
     fuse.userAllowOther = true;
