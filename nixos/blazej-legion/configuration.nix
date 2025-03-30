@@ -391,7 +391,6 @@
 
     hyprland = {
       enable = true;
-      # package = pkgs.unstable.hyprland;
       package =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
@@ -578,6 +577,7 @@
         "x-scheme-handler/https" = "vivaldi-stable.desktop";
         "x-scheme-handler/about" = "vivaldi-stable.desktop";
         "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+        "application/xhtml+xml" = "vivaldi-stable.desktop";
       };
     };
     portal = {
