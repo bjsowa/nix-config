@@ -181,12 +181,12 @@
       ecryptfs
       element-desktop
       exfatprogs
-      flameshot
+      (flameshot.override { enableWlrSupport = true; })
       font-manager
       gcc
       gdb
       git
-      master.gitkraken
+      unstable.gitkraken
       gnumake
       gparted
       grim
@@ -245,7 +245,7 @@
       slack
       sshfs
       syncplay
-      thunderbird
+      unstable.thunderbird
       tor-browser
       unrar
       usbutils
@@ -257,12 +257,12 @@
       vim
       wineWowPackages.staging
       winetricks
-      (vivaldi.override {
+      (unstable.vivaldi.override {
         proprietaryCodecs = true;
         enableWidevine = true;
       })
       wl-clipboard
-      master.vscode
+      unstable.vscode
       xorg.xeyes
       xorg.xhost
       yabridge
