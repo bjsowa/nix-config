@@ -2,6 +2,8 @@
 
   programs.schroot = {
     enable = true;
+    package = pkgs.unstable.schroot;
+
     settings = {
       "focal" = {
         type = "directory";
