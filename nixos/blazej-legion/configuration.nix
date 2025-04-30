@@ -128,6 +128,7 @@
           ".vscode-server"
           ".vst3"
 
+          ".config/anytype"
           ".config/BetterDiscord"
           ".config/Caprine"
           ".config/Code"
