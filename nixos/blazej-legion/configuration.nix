@@ -146,6 +146,7 @@
           ".local/share/direnv"
           ".local/share/dolphin"
           ".local/share/flatpak"
+          ".local/share/keyrings"
           ".local/share/konsole"
           ".local/share/lutris"
           ".local/share/pyenv"
@@ -457,6 +458,8 @@
     flatpak.enable = true;
 
     fstrim.enable = true;
+
+    gnome.gnome-keyring.enable = true;
 
     logind.lidSwitch = "ignore";
 
