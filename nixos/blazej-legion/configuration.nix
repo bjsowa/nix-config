@@ -587,9 +587,6 @@
         "application/xhtml+xml" = "vivaldi-stable.desktop";
       };
     };
-    portal = {
-      # extraPortals = lib.mkAfter [ pkgs.xdg-desktop-portal-gtk ];
-      # xdgOpenUsePortal = true;
-    };
+    portal = { xdgOpenUsePortal = true; };
   };
 }
