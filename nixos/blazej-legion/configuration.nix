@@ -540,9 +540,7 @@
   };
 
   specialisation = {
-    rt-audio.configuration = {
-      imports = [ ./specialisations/rt-audio.nix ];
-    };
+    rt-audio.configuration = { imports = [ ./specialisations/rt-audio.nix ]; };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
