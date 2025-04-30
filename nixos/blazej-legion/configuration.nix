@@ -166,6 +166,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      unstable.anytype
       autoconf
       automake
       brightnessctl
@@ -214,7 +215,7 @@
       lutris
       mattermost-desktop
       megasync
-      mpv
+      unstable.mpv
       ncdu
       ninja
       nix-output-monitor
@@ -231,7 +232,7 @@
       playerctl
       pkg-config
       protonup
-      prusa-slicer
+      unstable.prusa-slicer
       pulseaudio
       unstable.pyprland
       python3
@@ -249,7 +250,6 @@
       tor-browser
       unrar
       usbutils
-      waybar
       wdisplays
       wget
       winbox
@@ -355,6 +355,8 @@
 
       trusted-users = [ "root" "blazej" ];
     };
+    package = pkgs.unstable.nix;
+
     # Opinionated: disable channels
     channel.enable = false;
 
@@ -408,6 +410,7 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
+      package = pkgs.unstable.steam;
     };
 
     wireshark.enable = true;

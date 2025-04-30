@@ -77,6 +77,7 @@
     home-manager.enable = true;
     hyprlock = {
       enable = true;
+      package = null;
       extraConfig = ''
         source = ~/.config/hypr/hyprlock-custom.conf
       '';
@@ -87,6 +88,7 @@
     };
     waybar = {
       enable = true;
+      package = pkgs.unstable.waybar;
       systemd = {
         enable = true;
         target = "hyprland-session.target";
