@@ -314,7 +314,7 @@
   home-manager = {
     extraSpecialArgs = {
       inherit inputs outputs;
-      pkgs = pkgs.unstable // { my-nixos-scripts = pkgs.my-nixos-scripts; };
+      pkgs = pkgs // { formats = pkgs.unstable.formats; };
     };
     users = { blazej = import ../../home-manager/blazej/home.nix; };
     useGlobalPkgs = true;
