@@ -1,5 +1,5 @@
 { inputs, outputs, config, lib, pkgs, ... }: {
-  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+  imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
   home = {
     username = "blazej";
@@ -88,7 +88,7 @@
     };
     waybar = {
       enable = true;
-      package = pkgs.unstable.waybar;
+      # package = pkgs.unstable.waybar;
       systemd = {
         enable = true;
         target = "hyprland-session.target";
