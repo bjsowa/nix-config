@@ -539,7 +539,6 @@
   specialisation = {
     rt-audio.configuration = {
       imports = [ ./specialisations/rt-audio.nix ];
-      disabledModules = [ ./nvidia.nix ];
     };
   };
 

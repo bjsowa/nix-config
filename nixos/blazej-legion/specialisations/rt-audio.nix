@@ -1,21 +1,35 @@
-{ inputs, pkgs, lib, ... }: {
-  imports = [
-    inputs.musnix.nixosModules.musnix
-    # can't use nvidia with realtime kernel
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
-  ];
+{ inputs, pkgs, lib, ... }:
+let
+  rtLinuxPackages = (pkgs.unstable.linuxPackagesFor
+    (pkgs.unstable.linux_6_13.override {
+      structuredExtraConfig = with lib.kernel; {
+        EXPERT = yes;
+        PREEMPT_RT = yes;
+        RT_GROUP_SCHED = no;
+      };
+      ignoreConfigErrors = true;
+    }));
+  nvidiaOpenPackage = rtLinuxPackages.nvidiaPackages.beta.open.overrideAttrs
+    (old: { makeFlags = old.makeFlags ++ [ "IGNORE_PREEMPT_RT_PRESENCE=1" ]; });
+  nvidiaPackages = rtLinuxPackages.nvidiaPackages.beta // {
+    open = nvidiaOpenPackage;
+  };
+in {
+  imports = [ inputs.musnix.nixosModules.musnix ];
 
-  boot.kernelParams = lib.mkAfter [ "mitigations=off" ];
+  boot = {
+    kernelParams = lib.mkAfter [ "mitigations=off" ];
+    kernelPackages = rtLinuxPackages;
+  };
+
+  hardware.nvidia.package = nvidiaPackages;
 
   musnix = {
     enable = true;
 
     rtcqs.enable = true;
     soundcardPciId = "06:00.6";
-
-    kernel = {
-      realtime = true;
-      packages = pkgs.linuxPackages_6_11_rt;
-    };
   };
+
+  security.rtkit.enable = true;
 }
