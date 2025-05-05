@@ -1,7 +1,9 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
     inputs.impermanence.nixosModules.impermanence
+    inputs.disko.nixosModules.default
   ];
 
   boot = {

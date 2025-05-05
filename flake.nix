@@ -36,6 +36,12 @@
     # hyprland
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.1-b";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # disko
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
