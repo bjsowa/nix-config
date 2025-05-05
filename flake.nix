@@ -32,7 +32,7 @@
     # catppuccin
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-  
+
     # hyprland
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.1-b";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -57,6 +57,10 @@
         blazej-legion = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./nixos/blazej-legion/configuration.nix ];
+        };
+        ionix = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/ionix/configuration.nix ];
         };
       };
     };
