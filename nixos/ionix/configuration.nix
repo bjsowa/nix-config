@@ -57,6 +57,15 @@
         "/srv/chroot"
       ];
       files = [ "/etc/machine-id" ];
+      users.blazej = {
+        directories = [
+          "nix-config"
+
+          ".gnupg"
+          ".ssh"
+        ];
+        files = [ ".bash_history" ".scdhistory" ];
+      };
     };
   };
 
