@@ -194,7 +194,15 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  users = { users = { }; };
+  users = {
+    users = {
+      blazej = {
+        initialPassword = "blazej";
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+      };
+    };
+  };
 
   virtualisation.libvirtd.enable = true;
 }
