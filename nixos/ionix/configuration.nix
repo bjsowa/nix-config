@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
+    inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.default
   ];
@@ -59,10 +60,15 @@
       files = [ "/etc/machine-id" ];
       users.blazej = {
         directories = [
+          "Documents"
+
           "nix-config"
 
+          ".cache"
           ".gnupg"
           ".ssh"
+
+          ".local/share/zsh"
         ];
         files = [ ".bash_history" ".scdhistory" ];
       };
@@ -106,6 +112,15 @@
   };
 
   fileSystems."/persist".neededForBoot = true;
+
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs outputs;
+      pkgs = pkgs // { formats = pkgs.unstable.formats; };
+    };
+    users = { blazej = import ../../home-manager/ionix/blazej.nix; };
+    useGlobalPkgs = true;
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -185,6 +200,17 @@
         PermitRootLogin = "no";
         PasswordAuthentication = false;
       };
+      hostKeys = [
+        {
+          bits = 4096;
+          path = "/persist/secrets/ssh_host_rsa_key";
+          type = "rsa";
+        }
+        {
+          path = "/persist/secrets/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
     };
   };
 
@@ -206,9 +232,10 @@
   users = {
     users = {
       blazej = {
-        initialPassword = "blazej";
+        hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
+        shell = pkgs.zsh;
       };
     };
   };

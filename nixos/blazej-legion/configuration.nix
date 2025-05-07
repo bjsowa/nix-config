@@ -316,7 +316,7 @@
       inherit inputs outputs;
       pkgs = pkgs // { formats = pkgs.unstable.formats; };
     };
-    users = { blazej = import ../../home-manager/blazej/home.nix; };
+    users = { blazej = import ../../home-manager/blazej-legion/blazej.nix; };
     useGlobalPkgs = true;
   };
 
