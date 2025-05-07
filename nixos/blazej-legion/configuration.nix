@@ -184,7 +184,7 @@
       ecryptfs
       element-desktop
       exfatprogs
-      (flameshot.override { enableWlrSupport = true; })
+      file
       font-manager
       gcc
       gdb
@@ -193,8 +193,8 @@
       gnumake
       gparted
       grim
-      file
       htop
+      hyprshot
       keyutils
       kicad
       lenovo-legion

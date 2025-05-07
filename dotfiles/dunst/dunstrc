@@ -192,8 +192,3 @@ highlight = "#ee6a70"
 [volume-unmuted]
 summary = "Volume Unmuted"
 highlight = "#ee6a70"
-
-[flameshot-warning]
-appname = "flameshot"
-summary = "Flameshot Warning"
-skip_display = true
