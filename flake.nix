@@ -34,7 +34,7 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # hyprland
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.1-b";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # disko
