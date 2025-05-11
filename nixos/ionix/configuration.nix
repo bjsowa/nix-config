@@ -230,13 +230,18 @@
   time.timeZone = "Europe/Warsaw";
 
   users = {
-    users = {
+    users = let
+      blazej-legion-public-key =
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5ka8MWsrKaPsywWPZNiEVHzHKNf0x2Vzk6uIkNSMbr blazej@blazej-legion";
+    in {
       blazej = {
         hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
+        openssh.authorizedKeys.keys = [ blazej-legion-public-key ];
       };
+      root = { openssh.authorizedKeys.keys = [ blazej-legion-public-key ]; };
     };
   };
 
