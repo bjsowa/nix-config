@@ -107,6 +107,7 @@
       unrar
       usbutils
       wget
+      wireguard-tools
       vim
     ];
   };
@@ -134,8 +135,32 @@
 
   networking = {
     hostName = "ionix";
-    firewall ={
+
+    firewall = {
       enable = true;
+      allowedUDPPorts = [ 51820 ];
+    };
+
+    nat = {
+      enable = true;
+      externalInterface = "enp1s0";
+      internalInterfaces = [ "wg0" ];
+    };
+
+    wireguard = {
+      enable = true;
+      interfaces = {
+        wg0 = {
+          ips = [ "10.100.0.1/24" ];
+          listenPort = 51820;
+          privateKeyFile = "/persist/secrets/wg-private";
+          peers = [{
+            name = "blazej-legion";
+            publicKey = "bl/3slnkZnl3A1W+dlfTp624ykKsDukiFY00rca1t28=";
+            allowedIPs = [ "10.100.0.2/32" ];
+          }];
+        };
+      };
     };
 
     nftables.enable = true;
