@@ -134,10 +134,13 @@
 
   networking = {
     hostName = "ionix";
-    firewall.enable = false;
+    firewall ={
+      enable = true;
+    };
 
-    # We configure DHCP in systemd-networkd
-    useDHCP = false;
+    nftables.enable = true;
+    useNetworkd = true;
+    useDHCP = true;
   };
 
   nixpkgs = {
@@ -216,16 +219,6 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
-
-  systemd.network = {
-    enable = true;
-    networks = {
-      "10-enp1s0" = {
-        matchConfig.Name = "enp1s0";
-        networkConfig.DHCP = "yes";
-      };
-    };
-  };
 
   time.timeZone = "Europe/Warsaw";
 
