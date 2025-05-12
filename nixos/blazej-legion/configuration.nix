@@ -241,7 +241,6 @@
       qbittorrent
       qjackctl
       reaper
-      rofi-wayland
       screen
       sidequest
       simple-scan

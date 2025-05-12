@@ -1,57 +1,33 @@
-{ inputs, outputs, config, lib, pkgs, ... }: {
-  imports = [ inputs.catppuccin.homeModules.catppuccin ];
+{ inputs, outputs, config, lib, pkgs, ... }:
+let
+  iconThemePackage = (pkgs.catppuccin-papirus-folders.override {
+    accent = "blue";
+    flavor = "frappe";
+  });
+in {
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   home = {
     username = "blazej";
     homeDirectory = "/home/${config.home.username}";
 
-    packages = with pkgs; [
-      (catppuccin-kvantum.override {
-        accent = "blue";
-        variant = "frappe";
-      })
-      (catppuccin-kde.override {
-        accents = [ "blue" ];
-        flavour = [ "frappe" ];
-      })
-      (catppuccin-papirus-folders.override {
-        accent = "blue";
-        flavor = "frappe";
-      })
-      kdePackages.qtstyleplugin-kvantum
-      papirus-folders
+    packages = [
+      iconThemePackage # Needs to be added for qt theming to work
     ];
-
-    pointerCursor = { size = 24; };
+    pointerCursor = { size = lib.mkForce 24; };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
   };
 
-  catppuccin = {
-    enable = true;
-    flavor = "frappe";
-    accent = "blue";
-    cursors.enable = true;
-
-    # Collision with current custom theme
-    waybar.enable = false;
-
-    # Does not work qith qtct
-    kvantum.enable = false;
-
-    # DEPRECATED, may break in the future
-    gtk.enable = false;
-    gtk.icon.enable = true;
-  };
-
   dconf.settings = {
-    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+    "org/gnome/desktop/interface" = {
+      color-scheme = lib.mkForce "prefer-dark";
+    };
   };
 
   gtk = {
     enable = true;
-    cursorTheme.name = "catppuccin-frappe-blue-cursors";
     gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
     gtk4 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
@@ -85,6 +61,10 @@
     pyenv = {
       enable = true;
       enableBashIntegration = true;
+    };
+    rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
     };
     waybar = {
       enable = true;
@@ -151,16 +131,34 @@
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-    style = { name = "kvantum"; };
-  };
-
   services = {
     dunst = { enable = true; };
     hyprpaper = { enable = true; };
     mpris-proxy.enable = true;
+  };
+
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
+    cursor = {
+      name = "catppuccin-frappe-blue-cursors";
+      package = pkgs.catppuccin-cursors.frappeBlue;
+      size = 24;
+    };
+    iconTheme = {
+      dark = "Papirus-Dark";
+      package = iconThemePackage;
+    };
+    image = pkgs.fetchurl {
+      url =
+        "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
+      sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
+    };
+    polarity = "dark";
+    targets = {
+      dunst.enable = false;
+      waybar.enable = false;
+    };
   };
 
   systemd.user = {
@@ -205,10 +203,6 @@
   xdg = let dotfiles_path = "${config.home.homeDirectory}/nix-config/dotfiles";
   in {
     configFile = {
-      "Kvantum/kvantum.kvconfig".source =
-        (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = "catppuccin-frappe-blue";
-        };
       "dunst/dunstrc".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
       "hypr/hyprland-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
@@ -224,14 +218,6 @@
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
         "Desktop Entry".DefaultProfile = "Default.profile";
       };
-      "qt5ct/qt5ct.conf".source = (pkgs.formats.ini { }).generate "qt5ct.conf" {
-        Appearance.icon_theme = "Papirus-Dark";
-      };
-      "qt6ct/qt6ct.conf".source = (pkgs.formats.ini { }).generate "qt6ct.conf" {
-        Appearance.icon_theme = "Papirus-Dark";
-      };
-      "rofi".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/rofi";
       "waybar".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/waybar";
       "yabridgectl/config.toml".source =
@@ -249,6 +235,11 @@
         "${config.home.homeDirectory}/nix-config/datafiles";
       "dunst/scripts".source = "${pkgs.my-nixos-scripts}/dunst";
       "hypr/scripts".source = "${pkgs.my-nixos-scripts}/hypr";
+      "rofi/themes/config-custom.rasi".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/rofi/config.rasi";
+      "rofi/themes/custom.rasi".text = lib.mkAfter ''
+        @import "config-custom"
+      '';
       "waybar/scripts".source = "${pkgs.my-nixos-scripts}/waybar";
       "konsole/Default.profile".source =
         (pkgs.formats.ini { }).generate "Default.profile" {
