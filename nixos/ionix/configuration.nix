@@ -8,7 +8,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkDefault pkgs.unstable.linuxPackages_6_13;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_14;
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -97,7 +97,7 @@
       ninja
       nix-output-monitor
       nix-tree
-      unstable.nixd
+      nixd
       nixfmt-classic
       nmap
       pkg-config
@@ -115,10 +115,7 @@
   fileSystems."/persist".neededForBoot = true;
 
   home-manager = {
-    extraSpecialArgs = {
-      inherit inputs outputs;
-      pkgs = pkgs // { formats = pkgs.unstable.formats; };
-    };
+    extraSpecialArgs = { inherit inputs outputs; };
     users = { blazej = import ../../home-manager/ionix/blazej.nix; };
     useGlobalPkgs = true;
   };
@@ -188,7 +185,6 @@
 
       trusted-users = [ "root" "blazej" ];
     };
-    package = pkgs.unstable.nix;
 
     # Opinionated: disable channels
     channel.enable = false;

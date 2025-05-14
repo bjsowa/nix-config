@@ -1,7 +1,7 @@
 { inputs, pkgs, lib, ... }:
 let
-  rtLinuxPackages = (pkgs.unstable.linuxPackagesFor
-    (pkgs.unstable.linux_6_13.override {
+  rtLinuxPackages = (pkgs.linuxPackagesFor
+    (pkgs.linux_6_14.override {
       structuredExtraConfig = with lib.kernel; {
         EXPERT = yes;
         PREEMPT_RT = yes;

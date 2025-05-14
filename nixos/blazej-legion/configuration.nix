@@ -1,5 +1,5 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  disabledModules = [ "programs/wayland/hyprland.nix" ];
+  # disabledModules = [ "programs/wayland/hyprland.nix" ];
 
   imports = [
     ./hardware-configuration.nix
@@ -14,8 +14,8 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     # inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin
-    (inputs.nixpkgs-unstable + "/nixos/modules/programs/schroot.nix")
-    (inputs.nixpkgs-unstable + "/nixos/modules/programs/wayland/hyprland.nix")
+    # (inputs.nixpkgs-unstable + "/nixos/modules/programs/schroot.nix")
+    # (inputs.nixpkgs-unstable + "/nixos/modules/programs/wayland/hyprland.nix")
   ];
 
   boot = {
@@ -31,7 +31,7 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.unstable.linuxPackages_6_13;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_14;
 
     kernelParams = [ "amdgpu.abmlevel=0" ];
 
@@ -169,11 +169,11 @@
 
   environment = {
     systemPackages = with pkgs; [
-      unstable.anytype
+      anytype
       autoconf
       automake
       brightnessctl
-      unstable.caprine
+      caprine
       clang-tools
       cmake
       cryptsetup
@@ -190,7 +190,7 @@
       gcc
       gdb
       git
-      unstable.gitkraken
+      gitkraken
       gnumake
       gparted
       grim
@@ -219,14 +219,14 @@
       lutris
       mattermost-desktop
       megasync
-      unstable.mpv
+      mpv
       ncdu
       ninja
       nix-output-monitor
       nix-tree
       nodejs
       nurl
-      unstable.nixd
+      nixd
       nixfmt-classic
       nmap
       nwg-displays
@@ -236,9 +236,9 @@
       playerctl
       pkg-config
       protonup
-      unstable.prusa-slicer
+      prusa-slicer
       pulseaudio
-      unstable.pyprland
+      pyprland
       python3
       qbittorrent
       qjackctl
@@ -249,7 +249,7 @@
       slack
       sshfs
       syncplay
-      unstable.thunderbird
+      thunderbird
       tor-browser
       unrar
       usbutils
@@ -260,12 +260,12 @@
       vim
       wineWowPackages.staging
       winetricks
-      (unstable.vivaldi.override {
+      (vivaldi.override {
         proprietaryCodecs = true;
         enableWidevine = true;
       })
       wl-clipboard
-      unstable.vscode
+      vscode
       xorg.xeyes
       xorg.xhost
       yabridge
@@ -280,7 +280,9 @@
 
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [ nerdfonts font-awesome google-fonts ];
+    packages = with pkgs;
+      [ font-awesome google-fonts ] ++ builtins.filter lib.attrsets.isDerivation
+      (builtins.attrValues pkgs.nerd-fonts);
   };
 
   hardware = {
@@ -293,8 +295,8 @@
       enable = true;
       enable32Bit = true;
 
-      package = pkgs.unstable.mesa;
-      package32 = pkgs.unstable.pkgsi686Linux.mesa;
+      # package = pkgs.unstable.mesa;
+      # package32 = pkgs.unstable.pkgsi686Linux.mesa;
     };
 
     sane = {
@@ -315,7 +317,7 @@
   home-manager = {
     extraSpecialArgs = {
       inherit inputs outputs;
-      pkgs = pkgs // { formats = pkgs.unstable.formats; };
+      # pkgs = pkgs // { formats = pkgs.unstable.formats; };
     };
     users = { blazej = import ../../home-manager/blazej-legion/blazej.nix; };
     useGlobalPkgs = true;
@@ -376,7 +378,7 @@
 
       trusted-users = [ "blazej" ];
     };
-    package = pkgs.unstable.nix;
+    # package = pkgs.unstable.nix;
 
     distributedBuilds = true;
 
@@ -439,7 +441,7 @@
 
     hyprlock = {
       enable = true;
-      package = pkgs.unstable.hyprlock;
+      # package = pkgs.hyprlock;
     };
 
     nix-ld = { enable = true; };
@@ -447,7 +449,7 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
-      package = pkgs.unstable.steam;
+      # package = pkgs.steam;
     };
 
     wireshark.enable = true;

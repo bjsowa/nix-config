@@ -68,7 +68,7 @@ in {
     };
     waybar = {
       enable = true;
-      package = pkgs.unstable.waybar;
+      package = pkgs.waybar;
       systemd = {
         enable = true;
         target = "hyprland-session.target";
