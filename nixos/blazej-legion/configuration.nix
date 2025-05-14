@@ -136,6 +136,7 @@
           ".config/discord"
           ".config/Element"
           ".config/GitKraken"
+          ".config/hcloud"
           ".config/Mattermost"
           ".config/PrusaSlicer"
           ".config/REAPER"
@@ -193,6 +194,7 @@
       gnumake
       gparted
       grim
+      hcloud
       htop
       hyprshot
       keyutils
@@ -333,6 +335,21 @@
     hostName = "blazej-legion";
     networkmanager.enable = true;
     firewall.enable = false;
+
+    wg-quick.interfaces = {
+      wg-io = {
+        autostart = false;
+        address = [ "10.100.0.2/24" ];
+        privateKeyFile = "/persist/secrets/wg-private";
+
+        peers = [{
+          publicKey = "HVrJn+4sble4gn6U5k6QmhC1nFPAVbfluY8l/2qfHT8=";
+          allowedIPs = [ "0.0.0.0/0" ];
+          endpoint = "78.46.205.86:51820";
+          persistentKeepalive = 25;
+        }];
+      };
+    };
   };
 
   nixpkgs = {
@@ -357,9 +374,25 @@
       # trusted-public-keys = lib.mkAfter
       # [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
 
-      trusted-users = [ "root" "blazej" ];
+      trusted-users = [ "blazej" ];
     };
     package = pkgs.unstable.nix;
+
+    distributedBuilds = true;
+
+    buildMachines = [
+      # flnix
+      {
+        system = "aarch64-linux";
+        sshUser = "pi";
+        hostName = "192.168.1.6";
+        sshKey = "/persist/secrets/ssh_flnix";
+        supportedFeatures = [ "kvm" ];
+        maxJobs = 4;
+        publicHostKey =
+          "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUx1dllpMDU3bXhRU1BUODFTQUt0TDJsZkE2Y0xOQWtYOUM5dDE1NTVBcEkgcm9vdEBmbG5peAo=";
+      }
+    ];
 
     # Opinionated: disable channels
     channel.enable = false;
