@@ -198,7 +198,6 @@
       htop
       hyprshot
       keyutils
-      kicad
       lenovo-legion
       kdePackages.ark
       kdePackages.dolphin
