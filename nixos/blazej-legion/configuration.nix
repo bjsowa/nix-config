@@ -216,7 +216,6 @@
       lshw
       lutris
       mattermost-desktop
-      megasync
       mpv
       ncdu
       ninja
