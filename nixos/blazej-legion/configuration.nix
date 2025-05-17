@@ -210,7 +210,6 @@
       kdePackages.kio-extras
       kdePackages.konsole
       kdePackages.okular
-      kdePackages.plasma-workspace
       libtool
       light
       lm_sensors
