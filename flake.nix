@@ -3,10 +3,10 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/staging-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -17,8 +17,7 @@
 
     # Musnix
     musnix.url = "github:musnix/musnix";
-    # This causes often rt kernel recompiles
-    # musnix.inputs.nixpkgs.follows = "nixpkgs";
+    musnix.inputs.nixpkgs.follows = "nixpkgs";
 
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
