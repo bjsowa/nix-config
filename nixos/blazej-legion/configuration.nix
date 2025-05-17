@@ -1,6 +1,4 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  # disabledModules = [ "programs/wayland/hyprland.nix" ];
-
   imports = [
     ./hardware-configuration.nix
     ./nvidia.nix
@@ -14,8 +12,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     # inputs.nixos-cosmic.nixosModules.default
     inputs.catppuccin.nixosModules.catppuccin
-    # (inputs.nixpkgs-unstable + "/nixos/modules/programs/schroot.nix")
-    # (inputs.nixpkgs-unstable + "/nixos/modules/programs/wayland/hyprland.nix")
   ];
 
   boot = {
@@ -429,16 +425,11 @@
 
     hyprland = {
       enable = true;
-      package =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 
     hyprlock = {
       enable = true;
-      # package = pkgs.hyprlock;
     };
 
     nix-ld = { enable = true; };
