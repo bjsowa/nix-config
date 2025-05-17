@@ -5,7 +5,7 @@ let
     flavor = "frappe";
   });
 in {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.homeModules.stylix ];
 
   home = {
     username = "blazej";
