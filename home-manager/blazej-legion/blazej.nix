@@ -154,6 +154,7 @@ in {
       dunst.enable = false;
       waybar.enable = false;
     };
+    overlays.enable = false;
   };
 
   systemd.user = {
