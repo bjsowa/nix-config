@@ -135,6 +135,7 @@
           ".config/hcloud"
           ".config/Mattermost"
           ".config/PrusaSlicer"
+          ".config/rclone"
           ".config/REAPER"
           ".config/Slack"
           ".config/teamviewer"
@@ -236,6 +237,7 @@
       qbittorrent
       qjackctl
       reaper
+      rclone
       screen
       sidequest
       simple-scan
