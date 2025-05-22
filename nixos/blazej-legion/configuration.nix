@@ -304,7 +304,7 @@
           };
         };
       };
-      brscan5.enable = false;
+      brscan5.enable = true;
       enable = true;
     };
   };
