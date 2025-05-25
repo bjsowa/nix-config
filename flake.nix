@@ -9,32 +9,34 @@
     nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
     # Musnix
-    musnix.url = "github:musnix/musnix";
-    musnix.inputs.nixpkgs.follows = "nixpkgs";
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nixos-hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # cosmic
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      # inputs.nixpkgs.follows = "nixpkgs";
+    # catppuccin
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # catppuccin
-    catppuccin.url = "github:catppuccin/nix";
-    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-
     # hyprland
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.49.0";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # disko
     disko = {
@@ -43,8 +45,11 @@
     };
 
     # stylix
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    stylix = {
+      url = "github:danth/stylix/release-25.05";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
