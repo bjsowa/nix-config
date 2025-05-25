@@ -26,7 +26,7 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_14;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
 
     kernelParams = [ "amdgpu.abmlevel=0" ];
 
