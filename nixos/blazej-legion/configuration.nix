@@ -425,9 +425,7 @@
       xwayland.enable = true;
     };
 
-    hyprlock = {
-      enable = true;
-    };
+    hyprlock = { enable = true; };
 
     nix-ld = { enable = true; };
 
