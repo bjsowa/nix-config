@@ -151,6 +151,8 @@
           ".local/share/pyenv"
           ".local/share/Steam"
           ".local/share/zsh"
+
+          ".local/state/nix"
         ];
         files = [
           ".bash_history"
