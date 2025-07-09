@@ -246,6 +246,7 @@
       slack
       sshfs
       syncplay
+      system-config-printer
       thunderbird
       tor-browser
       unrar
