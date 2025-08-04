@@ -510,7 +510,7 @@
 
     printing = {
       enable = true;
-      drivers = [ ];
+      drivers = [ pkgs.brlaser ];
       # browsing = true;
       # defaultShared = true;
     };
