@@ -46,7 +46,7 @@ in {
       userEmail = "bsowa123@gmail.com";
       extraConfig = {
         commit.gpgsign = true;
-        tag.gpgsign = true;
+        # tag.gpgsign = true;
         gpg.format = "ssh";
         user.signingKey = "${config.home.homeDirectory}/.ssh/id_ed25519";
         url."ssh://git@github.com/" = {
