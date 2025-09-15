@@ -15,8 +15,11 @@
 
   boot = {
     binfmt = {
-      emulatedSystems = [ "aarch64-linux" ];
-      registrations = { "aarch64-linux" = { fixBinary = true; }; };
+      emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
+      registrations = {
+        "aarch64-linux" = { fixBinary = true; };
+        "armv7l-linux" = { fixBinary = true; };
+      };
       preferStaticEmulators = true;
     };
 
