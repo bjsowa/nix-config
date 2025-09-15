@@ -432,6 +432,8 @@
 
     nix-ld = { enable = true; };
 
+    noisetorch.enable = true;
+
     steam = {
       enable = true;
       gamescopeSession.enable = true;
