@@ -592,7 +592,12 @@
     };
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+
+    containers.enable = true;
+    podman.enable = true;
+  };
 
   xdg = {
     menus.enable = true;
