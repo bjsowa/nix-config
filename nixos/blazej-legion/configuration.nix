@@ -551,6 +551,9 @@
 
       # Insta360 X4
       SUBSYSTEM=="usb", ATTRS{idVendor}=="2e1a", ATTRS{idProduct}=="0002", MODE="0666", SYMLINK+="insta%n"
+      
+      # eDRUMin 4
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="0465", MODE="0666", SYMLINK+="edrumin%n"
     '';
 
     udev.packages = [ pkgs.openocd ];
