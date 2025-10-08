@@ -369,7 +369,9 @@
     settings = {
       experimental-features = "nix-command flakes";
       flake-registry = "";
-      trusted-users = [ "blazej" ];
+      trusted-users = lib.mkAfter [ "blazej" ];
+      trusted-public-keys =
+        lib.mkAfter [ "flnix:+tMGg+wtEYV7Fc8bEiZcCttdjqnsHbkNP/zc9AfEPNY=" ];
     };
     # package = pkgs.unstable.nix;
 
