@@ -151,11 +151,18 @@
           ips = [ "10.100.0.1/24" ];
           listenPort = 51820;
           privateKeyFile = "/persist/secrets/wg-private";
-          peers = [{
-            name = "blazej-legion";
-            publicKey = "bl/3slnkZnl3A1W+dlfTp624ykKsDukiFY00rca1t28=";
-            allowedIPs = [ "10.100.0.2/32" ];
-          }];
+          peers = [
+            {
+              name = "blazej-legion";
+              publicKey = "bl/3slnkZnl3A1W+dlfTp624ykKsDukiFY00rca1t28=";
+              allowedIPs = [ "10.100.0.2/32" ];
+            }
+            {
+              name = "blazej-home-mikrotik";
+              publicKey = "hm/ngzQeP365+qP5ehWNgk28XDJtewWGQqMMrCkFK1k=";
+              allowedIPs = [ "10.100.0.3/32" ];
+            }
+          ];
         };
       };
     };

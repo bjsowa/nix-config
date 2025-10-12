@@ -346,7 +346,7 @@
         privateKeyFile = "/persist/secrets/wg-private";
 
         peers = [{
-          publicKey = "HVrJn+4sble4gn6U5k6QmhC1nFPAVbfluY8l/2qfHT8=";
+          publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
           allowedIPs = [ "0.0.0.0/0" ];
           endpoint = "78.46.205.86:51820";
           persistentKeepalive = 25;
