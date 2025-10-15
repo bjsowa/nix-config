@@ -151,6 +151,7 @@
           ".local/share/keyrings"
           ".local/share/konsole"
           ".local/share/lutris"
+          ".local/share/MikroTik"
           ".local/share/pyenv"
           ".local/share/Steam"
           ".local/share/zsh"
@@ -256,7 +257,7 @@
       usbutils
       wdisplays
       wget
-      winbox
+      winbox4
       wireshark
       vim
       wineWowPackages.staging
