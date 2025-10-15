@@ -2,7 +2,7 @@
 
   programs.schroot = {
     enable = true;
-    package = pkgs.unstable.schroot;
+    package = pkgs.schroot;
 
     settings = {
       "focal" = {
