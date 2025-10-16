@@ -67,6 +67,7 @@
           ".cache"
           ".gnupg"
           ".ssh"
+          ".vscode-server"
 
           ".local/share/zsh"
         ];
