@@ -53,6 +53,7 @@
       directories = [
         "/var/cache"
         "/var/log"
+        "/var/lib/bluetooth"
         "/var/lib/libvirt"
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
@@ -114,6 +115,13 @@
   };
 
   fileSystems."/persist".neededForBoot = true;
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
