@@ -235,8 +235,7 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5ka8MWsrKaPsywWPZNiEVHzHKNf0x2Vzk6uIkNSMbr blazej@blazej-legion";
     in {
       blazej = {
-        # hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
-        initialPassword = "blazej";
+        hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
