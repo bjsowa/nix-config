@@ -76,6 +76,10 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./nixos/ionix/configuration.nix ];
         };
+        homenix = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/homenix/configuration.nix ];
+        };
       };
     };
 }
