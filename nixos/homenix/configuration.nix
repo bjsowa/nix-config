@@ -210,6 +210,25 @@
       };
     };
 
+    esphome = {
+      enable = true;
+      openFirewall = true;
+      address = "0.0.0.0";
+    };
+
+    home-assistant = {
+      enable = true;
+      openFirewall = true;
+      configDir = "/persist/home-assistant";
+      config = {
+        # Includes dependencies for a basic setup
+        # https://www.home-assistant.io/integrations/default_config/
+        default_config = { };
+      };
+      extraComponents = [ "esphome" "met" ];
+      extraPackages = ps: with ps; [ gtts ];
+    };
+
     locate.enable = true;
 
     openssh = {
