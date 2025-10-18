@@ -261,7 +261,7 @@
       blazej = {
         hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "dialout" "wheel" ];
         shell = pkgs.zsh;
         openssh.authorizedKeys.keys = [ blazej-legion-public-key ];
         linger = true;
