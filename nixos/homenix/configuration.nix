@@ -142,7 +142,10 @@
   networking = {
     hostName = "homenix";
 
-    firewall = { enable = true; };
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 6052 ];
+    };
 
     nftables.enable = true;
     useNetworkd = true;
@@ -210,12 +213,6 @@
       };
     };
 
-    esphome = {
-      enable = true;
-      openFirewall = true;
-      address = "0.0.0.0";
-    };
-
     home-assistant = {
       enable = true;
       openFirewall = true;
@@ -267,6 +264,7 @@
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
         openssh.authorizedKeys.keys = [ blazej-legion-public-key ];
+        linger = true;
       };
       root = { openssh.authorizedKeys.keys = [ blazej-legion-public-key ]; };
     };

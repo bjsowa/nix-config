@@ -1,11 +1,25 @@
 { inputs, outputs, config, lib, pkgs, ... }: {
 
+  imports = [
+    outputs.homeManagerModules.esphome
+  ];
+
   home = {
     username = "blazej";
     homeDirectory = "/home/${config.home.username}";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.11";
+  };
+
+  my = {
+    services = {
+      esphome = {
+        enable = true;
+        address = "0.0.0.0";
+        stateDir = "${config.home.homeDirectory}/nix-config/esphome";
+      };
+    };
   };
 
   programs = {
