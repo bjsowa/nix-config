@@ -340,18 +340,22 @@
     networkmanager.enable = true;
     firewall.enable = false;
 
-    wg-quick.interfaces = {
-      wg-io = {
-        autostart = false;
-        address = [ "10.100.0.2/24" ];
-        privateKeyFile = "/persist/secrets/wg-private";
-
-        peers = [{
-          publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
-          allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "78.46.205.86:51820";
-          persistentKeepalive = 25;
-        }];
+    wireguard = {
+      enable = true;
+      interfaces = {
+        wg0 = {
+          ips = [ "10.100.0.2/24" ];
+          listenPort = 51820;
+          privateKeyFile = "/persist/secrets/wg-private";
+          peers = [
+            {
+              name = "ionix";
+              endpoint = "78.46.205.86:51820";
+              publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
+              allowedIPs = [ "10.100.0.0/24" "192.168.10.0/24" ];
+            }
+          ];
+        };
       };
     };
   };
