@@ -160,7 +160,7 @@
             {
               name = "blazej-home-mikrotik";
               publicKey = "hm/ngzQeP365+qP5ehWNgk28XDJtewWGQqMMrCkFK1k=";
-              allowedIPs = [ "10.100.0.3/32" ];
+              allowedIPs = [ "10.100.0.3/32" "192.168.10.0/24" ];
             }
           ];
         };
