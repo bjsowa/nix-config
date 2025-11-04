@@ -341,22 +341,40 @@
     networkmanager.enable = true;
     firewall.enable = false;
 
-    wireguard = {
-      enable = true;
-      interfaces = {
-        wg0 = {
-          ips = [ "10.100.0.2/24" ];
-          listenPort = 51820;
-          privateKeyFile = "/persist/secrets/wg-private";
-          peers = [
-            {
-              name = "ionix";
-              endpoint = "78.46.205.86:51820";
-              publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
-              allowedIPs = [ "10.100.0.0/24" "192.168.10.0/24" ];
-            }
-          ];
-        };
+    wg-quick.interfaces = {
+      wg-io = {
+        autostart = false;
+        address = [ "10.100.0.2/24" ];
+        listenPort = 51820;
+        privateKeyFile = "/persist/secrets/wg-private";
+        peers = [{
+          publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
+          endpoint = "78.46.205.86:51820";
+          allowedIPs = [ "10.100.0.0/24" "192.168.10.0/24" ];
+        }];
+      };
+      wg-fl = {
+        autostart = false;
+        address = [ "10.2.0.100/32" ];
+        listenPort = 51821;
+        privateKeyFile = "/persist/secrets/wg-private";
+        peers = [{
+          publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
+          endpoint = "85.222.96.158:41232";
+          allowedIPs =
+            [ "10.2.0.1/32" "192.168.1.0/24" "10.2.0.4/32" "192.168.77.0/24" ];
+        }];
+      };
+      wg-nlp = {
+        autostart = false;
+        address = [ "10.3.0.10/32" ];
+        listenPort = 51822;
+        privateKeyFile = "/persist/secrets/wg-nlp-private";
+        peers = [{
+          publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
+          endpoint = "85.222.96.158:41232";
+          allowedIPs = [ "192.168.77.0/24" ];
+        }];
       };
     };
   };
