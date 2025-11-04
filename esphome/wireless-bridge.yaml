@@ -2,41 +2,17 @@ esphome:
   name: wireless-bridge
   friendly_name: "Wireless Bridge"
 
-  on_boot:
-    - priority: 600 # Before sensors are initialized
-      then:
-        - light.turn_on:
-            id: led_onboard
-            brightness: 50%
-            red: 100%
-            green: 0%
-            blue: 0%
-    - priority: 300 # Before wifi is initialized
-      then:
-        - light.turn_on:
-            id: led_onboard
-            brightness: 50%
-            red: 100%
-            green: 100%
-            blue: 0%
-            effect: pulse
-    - priority: 100 # After wifi is initialized
-      then:
-        - light.turn_on:
-            id: led_onboard
-            brightness: 50%
-            red: 0%
-            green: 100%
-            blue: 0%
-            effect: none
-
 esp32:
-  board: esp32-c6-devkitc-1
+  board: esp32dev
   framework:
-    type: esp-idf
+    type: arduino
+
+external_components:
+  - source: github://SzczepanLeon/esphome-components@version_4
 
 # Enable logging
 logger:
+  level: VERBOSE
 
 # Enable Home Assistant API
 api:
@@ -58,16 +34,71 @@ wifi:
 
 captive_portal:
 
-light:
-  - platform: esp32_rmt_led_strip
-    id: led_onboard
-    rgb_order: GRB
-    pin: GPIO8
-    num_leds: 1
-    chipset: ws2812
-    name: "Onboard LED"
-    default_transition_length: 0s
-    effects:
-      - pulse:
-          transition_length: 550ms
-          update_interval: 550ms
+time:
+  - platform: sntp
+    id: time_sntp
+
+wmbus:
+  all_drivers: True
+  log_all: True
+  sync_mode: True
+
+  mosi_pin: GPIO13
+  clk_pin: GPIO14
+  miso_pin: GPIO12
+  gdo2_pin: GPIO23
+  gdo0_pin: GPIO22
+  cs_pin: GPIO15
+
+sensor:
+  - platform: wmbus
+    # meter_id: 0x50600500
+    meter_id: 0x00056050
+    type: amiplus
+    key: "5BAA8D5E8BE14F44D8354D617FD901D7"
+    sensors:
+      - name: "Current Power Consumption"
+        field: "current_power_consumption"
+        accuracy_decimals: 3
+        unit_of_measurement: "kW"
+        device_class: "power"
+        state_class: "measurement"
+        icon: "mdi:transmission-tower-import"
+      - name: "Total energy on T1"
+        field: "total_energy_consumption_tariff_1"
+        accuracy_decimals: 3
+        unit_of_measurement: "kWh"
+        device_class: "energy"
+        state_class: "total_increasing"
+        icon: "mdi:transmission-tower-import"
+      - name: "Total energy on T2"
+        field: "total_energy_consumption_tariff_2"
+        accuracy_decimals: 3
+        unit_of_measurement: "kWh"
+        device_class: "energy"
+        state_class: "total_increasing"
+        icon: "mdi:transmission-tower-import"
+      - name: "Voltage at Phase 1"
+        field: "voltage_at_phase_1"
+        accuracy_decimals: 0
+        unit_of_measurement: "V"
+        device_class: "voltage"
+        state_class: "measurement"
+        icon: "mdi:sine-wave"
+      - name: "Voltage at Phase 2"
+        field: "voltage_at_phase_2"
+        accuracy_decimals: 0
+        unit_of_measurement: "V"
+        device_class: "voltage"
+        state_class: "measurement"
+        icon: "mdi:sine-wave"
+      - name: "Voltage at Phase 3"
+        field: "voltage_at_phase_3"
+        accuracy_decimals: 0
+        unit_of_measurement: "V"
+        device_class: "voltage"
+        state_class: "measurement"
+        icon: "mdi:sine-wave"
+  - platform: wmbus
+    meter_id: 0x20245417
+    type: hydrodigit
