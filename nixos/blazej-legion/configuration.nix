@@ -136,6 +136,7 @@
           ".config/Element"
           ".config/GitKraken"
           ".config/hcloud"
+          ".config/kicad"
           ".config/Mattermost"
           ".config/PrusaSlicer"
           ".config/rclone"
@@ -149,6 +150,7 @@
           ".local/share/dolphin"
           ".local/share/flatpak"
           ".local/share/keyrings"
+          ".local/share/kicad"
           ".local/share/konsole"
           ".local/share/lutris"
           ".local/share/MikroTik"
@@ -172,7 +174,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      anytype
+      unstable.anytype
       autoconf
       automake
       brightnessctl
@@ -186,7 +188,8 @@
       dmidecode
       dunst
       ecryptfs
-      element-desktop
+      unstable.element-desktop
+      esphome
       exfatprogs
       file
       font-manager
@@ -254,6 +257,7 @@
       system-config-printer
       thunderbird
       tor-browser
+      unityhub
       unrar
       usbutils
       wdisplays
@@ -264,11 +268,11 @@
       wineWowPackages.staging
       winetricks
       (vivaldi.override {
-        proprietaryCodecs = true;
-        enableWidevine = true;
+        proprietaryCodecs = false;
+        enableWidevine = false;
       })
       wl-clipboard
-      vscode
+      unstable.vscode
       xorg.xeyes
       xorg.xhost
       yabridge
