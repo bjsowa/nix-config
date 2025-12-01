@@ -47,7 +47,6 @@
     # stylix
     stylix = {
       url = "github:danth/stylix/release-25.11";
-      inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
