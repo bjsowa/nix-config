@@ -405,7 +405,7 @@
       flake-registry = "";
       trusted-users = lib.mkAfter [ "blazej" ];
       trusted-public-keys =
-        lib.mkAfter [ "flnix:+tMGg+wtEYV7Fc8bEiZcCttdjqnsHbkNP/zc9AfEPNY=" ];
+        lib.mkAfter [ "flnix:cu5wTA9fu6K5DAXKbbIoxI8OPAzU5twXAcHYsN62lQs=" ];
     };
     # package = pkgs.unstable.nix;
 
