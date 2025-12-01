@@ -247,6 +247,7 @@
       qbittorrent
       qjackctl
       reaper
+      reaper-sws-extension
       rclone
       screen
       sidequest
