@@ -49,7 +49,7 @@ stdenv.mkDerivation {
           hyprland # hyprctl
           hyprlock
           playerctl
-          rofi-wayland
+          rofi
           systemd # systemctl
         ]
       }"
@@ -62,7 +62,7 @@ stdenv.mkDerivation {
           coreutils # sleep
           gnugrep # grep
           procps # pgrep
-          rofi-wayland
+          rofi
           util-linux # rfkill, kill
         ]
       }"

@@ -66,10 +66,7 @@ in {
       enable = true;
       enableBashIntegration = true;
     };
-    rofi = {
-      enable = true;
-      package = pkgs.rofi-wayland;
-    };
+    rofi.enable = true;
     waybar = {
       enable = true;
       package = pkgs.waybar;
@@ -176,7 +173,7 @@ in {
         Service = {
           Type = "simple";
           ExecStart =
-            "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+            "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
           Restart = "always";
           RestartSec = 1;
           TimeoutStopSec = 10;

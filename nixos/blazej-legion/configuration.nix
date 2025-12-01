@@ -239,7 +239,7 @@
       pciutils
       playerctl
       pkg-config
-      protonup
+      protonup-ng
       prusa-slicer
       pulseaudio
       pyprland
