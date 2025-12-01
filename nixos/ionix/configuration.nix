@@ -8,7 +8,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_16;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_17;
 
     loader = {
       efi.canTouchEfiVariables = true;
