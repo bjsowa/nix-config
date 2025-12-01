@@ -523,7 +523,7 @@
 
     gnome.gnome-keyring.enable = true;
 
-    logind.lidSwitch = "ignore";
+    logind.settings.Login.HandleLidSwitch = "ignore";
 
     libinput.enable = true;
 
