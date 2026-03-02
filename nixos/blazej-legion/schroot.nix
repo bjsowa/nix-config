@@ -38,6 +38,17 @@
         profile = "my-profile";
         shell = "/bin/zsh";
       };
+      "resolute" = {
+        type = "directory";
+        description = "Ubuntu 26.04 Resolute Raccoon";
+        directory = "/srv/chroot/resolute";
+        users = "blazej";
+        root-users = "blazej";
+        personality = "linux";
+        preserve-environment = false;
+        profile = "my-profile";
+        shell = "/bin/zsh";
+      };
     };
 
     profiles = {
