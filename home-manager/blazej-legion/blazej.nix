@@ -197,6 +197,8 @@ in {
     package = null;
     portalPackage = null;
 
+    systemd.enableXdgAutostart = true;
+
     # source our custom config
     extraConfig = ''
       source = ~/.config/hypr/hyprland-custom.conf
@@ -205,6 +207,7 @@ in {
 
   xdg = let dotfiles_path = "${config.home.homeDirectory}/nix-config/dotfiles";
   in {
+    autostart.enable = true;
     configFile = {
       "dunst/dunstrc".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
