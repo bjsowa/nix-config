@@ -185,7 +185,9 @@
       cryptsetup
       dconf-editor
       debootstrap
+      dig
       discord
+      doxygen
       dmidecode
       dunst
       ecryptfs
@@ -238,8 +240,10 @@
       pamixer
       pavucontrol
       pciutils
+      perf
       playerctl
       pkg-config
+      pre-commit
       protonup-ng
       prusa-slicer
       pulseaudio
@@ -250,6 +254,8 @@
       reaper
       reaper-sws-extension
       rclone
+      remmina
+      ruff
       screen
       sidequest
       simple-scan
@@ -257,11 +263,14 @@
       sshfs
       syncplay
       system-config-printer
+      tftp-hpa
       thunderbird
+      tldr
       tor-browser
       unityhub
       unrar
       usbutils
+      uv
       wdisplays
       wget
       winbox4
@@ -270,7 +279,7 @@
       wineWowPackages.staging
       winetricks
       (vivaldi.override {
-        proprietaryCodecs = false;
+        proprietaryCodecs = true;
         enableWidevine = false;
       })
       wl-clipboard
@@ -282,6 +291,7 @@
       yarn
       youtube-music
       yt-dlp
+      zip
     ];
   };
 
