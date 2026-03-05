@@ -98,7 +98,7 @@
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
-        "/etc/cups"
+        # "/etc/cups"
         "/srv/chroot"
       ];
       files = [ "/etc/machine-id" ];
