@@ -137,6 +137,7 @@
           ".config/GitKraken"
           ".config/hcloud"
           ".config/kicad"
+          ".config/keepassxc"
           ".config/Mattermost"
           ".config/PrusaSlicer"
           ".config/rclone"
