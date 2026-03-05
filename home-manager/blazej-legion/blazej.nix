@@ -64,6 +64,10 @@ in {
         source = ~/.config/hypr/hyprlock-custom.conf
       '';
     };
+    keepassxc = {
+      enable = true;
+      autostart = false;
+    };
     pyenv = {
       enable = true;
       enableBashIntegration = true;
