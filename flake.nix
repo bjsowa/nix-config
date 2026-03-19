@@ -28,13 +28,13 @@
 
     # catppuccin
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:catppuccin/nix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # hyprland
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.52.1";
+      url = "github:hyprwm/Hyprland?ref=v0.54.1";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
