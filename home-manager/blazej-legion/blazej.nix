@@ -217,8 +217,8 @@ in {
         "${dotfiles_path}/hypr/hyprlock.conf";
       "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/hyprpaper.conf";
-      "hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/hypr/pyprland.toml";
+      "pypr/config.toml".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/pypr/config.toml";
       "kdeglobals".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/kdeglobals";
       "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
