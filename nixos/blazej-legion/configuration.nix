@@ -133,6 +133,7 @@
           ".wine"
           ".vscode"
           ".vscode-server"
+          ".vscode-shared"
           ".vst3"
 
           ".config/anytype"
