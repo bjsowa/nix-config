@@ -230,6 +230,7 @@ in {
         (pkgs.formats.toml { }).generate "config.toml" {
           plugin_dirs = [
             "${config.home.homeDirectory}/.wine/drive_c/Program Files/Common Files/VST3"
+            "${config.home.homeDirectory}/.wine/drive_c/Program Files/Steinberg/VSTPlugins"
           ];
           vst2_location = "centralized";
           no_verify = false;
