@@ -29,7 +29,7 @@
 
     kernel.sysctl."kernel.sysrq" = 1;
 
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_18;
 
     kernelParams = [ "amdgpu.abmlevel=0" ];
 
@@ -45,7 +45,14 @@
 
     initrd.luks.devices.cryptroot.device =
       "/dev/disk/by-uuid/1200359f-6591-46d5-8de4-85bea1ab9a59";
-    initrd.postDeviceCommands = lib.mkAfter ''
+    initrd.systemd.services.rollback = {
+      description = "Rollback BTRFS root subvolume";
+      wantedBy = [ "initrd.target" ];
+      after = [ "initrd-root-device.target" ];
+      before = [ "sysroot.mount" ];
+      unitConfig.DefaultDependencies = "no";
+      serviceConfig.Type = "oneshot";
+      script = ''
       mkdir /btrfs_tmp
       mount /dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e /btrfs_tmp
       if [[ -e /btrfs_tmp/root ]]; then
@@ -70,6 +77,7 @@
       btrfs subvolume create /btrfs_tmp/root
       umount /btrfs_tmp
     '';
+    };
 
     supportedFilesystems = { ntfs = true; };
   };
@@ -175,7 +183,8 @@
 
   environment = {
     systemPackages = with pkgs; [
-      unstable.anytype
+      android-tools
+      anytype
       autoconf
       automake
       brightnessctl
@@ -190,8 +199,8 @@
       doxygen
       dmidecode
       dunst
-      ecryptfs
-      unstable.element-desktop
+      # ecryptfs
+      element-desktop
       esphome
       exfatprogs
       file
@@ -221,7 +230,7 @@
       kdePackages.okular
       kicad-small
       libtool
-      light
+      # light
       lm_sensors
       lshw
       lutris
@@ -445,7 +454,7 @@
   };
 
   programs = {
-    adb.enable = true;
+    # adb.enable = true;
 
     alvr = {
       enable = true;
@@ -459,7 +468,7 @@
 
     corectrl = { enable = true; };
 
-    ecryptfs.enable = true;
+    # ecryptfs.enable = true;
 
     fuse.userAllowOther = true;
 
@@ -611,9 +620,9 @@
 
   };
 
-  specialisation = {
-    rt-audio.configuration = { imports = [ ./specialisations/rt-audio.nix ]; };
-  };
+  # specialisation = {
+  #   rt-audio.configuration = { imports = [ ./specialisations/rt-audio.nix ]; };
+  # };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
