@@ -387,9 +387,8 @@
           publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
           endpoint = "85.222.96.158:41232";
           allowedIPs = [
-            "10.2.0.1/32"
+            "10.2.0.0/24"
             "192.168.1.0/24"
-            "10.2.0.4/32"
             "192.168.77.0/24"
             "192.168.99.0/24"
           ];
