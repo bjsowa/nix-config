@@ -414,6 +414,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      inputs.dolphin-overlay.overlays.default
     ];
     config = { allowUnfree = true; };
   };

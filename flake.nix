@@ -49,6 +49,12 @@
       url = "github:danth/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Dolphin overlay
+    dolphin-overlay = {
+      url = "github:MattiDragon/dolphin-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
