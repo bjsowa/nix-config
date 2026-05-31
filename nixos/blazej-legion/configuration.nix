@@ -211,6 +211,7 @@
       git
       gitkraken
       gnumake
+      gocryptfs
       gparted
       grim
       hcloud
@@ -231,7 +232,6 @@
       kdePackages.okular
       kicad-small
       libtool
-      # light
       lm_sensors
       lshw
       lutris
@@ -455,8 +455,6 @@
   };
 
   programs = {
-    # adb.enable = true;
-
     alvr = {
       enable = true;
       openFirewall = true;
@@ -468,8 +466,6 @@
     };
 
     corectrl = { enable = true; };
-
-    # ecryptfs.enable = true;
 
     fuse.userAllowOther = true;
 
