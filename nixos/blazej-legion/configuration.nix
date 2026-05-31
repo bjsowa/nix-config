@@ -53,30 +53,30 @@
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = ''
-      mkdir /btrfs_tmp
-      mount /dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e /btrfs_tmp
-      if [[ -e /btrfs_tmp/root ]]; then
-        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
-        mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-        rm -f /btrfs_tmp/old_roots/latest
-        ln -s $timestamp /btrfs_tmp/old_roots/latest
-      fi
+        mkdir /btrfs_tmp
+        mount /dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e /btrfs_tmp
+        if [[ -e /btrfs_tmp/root ]]; then
+          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
+          mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+          rm -f /btrfs_tmp/old_roots/latest
+          ln -s $timestamp /btrfs_tmp/old_roots/latest
+        fi
 
-      delete_subvolume_recursively() {
-        IFS=$'\n'
-        for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-          delete_subvolume_recursively "/btrfs_tmp/$i"
+        delete_subvolume_recursively() {
+          IFS=$'\n'
+          for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+            delete_subvolume_recursively "/btrfs_tmp/$i"
+          done
+          btrfs subvolume delete "$1"
+        }
+
+        for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +7); do
+          delete_subvolume_recursively "$i"
         done
-        btrfs subvolume delete "$1"
-      }
 
-      for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +7); do
-        delete_subvolume_recursively "$i"
-      done
-
-      btrfs subvolume create /btrfs_tmp/root
-      umount /btrfs_tmp
-    '';
+        btrfs subvolume create /btrfs_tmp/root
+        umount /btrfs_tmp
+      '';
     };
 
     supportedFilesystems = { ntfs = true; };
