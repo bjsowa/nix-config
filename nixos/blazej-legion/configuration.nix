@@ -508,6 +508,8 @@
     sudo.extraConfig = ''
       Defaults lecture="never"
     '';
+
+    pam.services.sddm-autologin.enableGnomeKeyring = true;
   };
 
   services = {
