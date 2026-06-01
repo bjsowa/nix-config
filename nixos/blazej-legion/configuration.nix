@@ -674,6 +674,18 @@
         "application/xhtml+xml" = "vivaldi-stable.desktop";
       };
     };
-    portal = { xdgOpenUsePortal = true; };
+    portal = {
+      xdgOpenUsePortal = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config = {
+        hyprland = {
+          default = [ "hyprland" "gtk" ];
+          "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+        };
+        common = {
+          default = [ "gtk" ];
+        };
+      };
+    };
   };
 }
