@@ -217,6 +217,8 @@ in {
         "${dotfiles_path}/hypr/hyprlock.conf";
       "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/hyprpaper.conf";
+      "hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/hypr/hypridle.conf";
       "pypr/config.toml".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/pypr/config.toml";
       "kdeglobals".source =
