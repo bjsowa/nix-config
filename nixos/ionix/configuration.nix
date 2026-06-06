@@ -25,12 +25,6 @@
       script = ''
         mkdir /btrfs_tmp
         mount /dev/root_vg/root /btrfs_tmp
-        if [[ -e /btrfs_tmp/root ]]; then
-          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
-          mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-          rm -f /btrfs_tmp/old_roots/latest
-          ln -s $timestamp /btrfs_tmp/old_roots/latest
-        fi
 
         delete_subvolume_recursively() {
           IFS=$'\n'
