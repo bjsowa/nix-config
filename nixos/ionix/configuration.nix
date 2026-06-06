@@ -15,29 +15,39 @@
       systemd-boot.enable = true;
     };
 
-    initrd.postDeviceCommands = lib.mkAfter ''
-      mkdir /btrfs_tmp
-      mount /dev/root_vg/root /btrfs_tmp
+    initrd.systemd.services.rollback = {
+      description = "Rollback BTRFS root subvolume";
+      wantedBy = [ "initrd.target" ];
+      after = [ "initrd-root-device.target" ];
+      before = [ "sysroot.mount" ];
+      unitConfig.DefaultDependencies = "no";
+      serviceConfig.Type = "oneshot";
+      script = ''
+        mkdir /btrfs_tmp
+        mount /dev/root_vg/root /btrfs_tmp
+        if [[ -e /btrfs_tmp/root ]]; then
+          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
+          mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+          rm -f /btrfs_tmp/old_roots/latest
+          ln -s $timestamp /btrfs_tmp/old_roots/latest
+        fi
 
-      delete_subvolume_recursively() {
-        IFS=$'\n'
-        for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-          delete_subvolume_recursively "/btrfs_tmp/$i"
+        delete_subvolume_recursively() {
+          IFS=$'\n'
+          for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+            delete_subvolume_recursively "/btrfs_tmp/$i"
+          done
+          btrfs subvolume delete "$1"
+        }
+
+        for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +7); do
+          delete_subvolume_recursively "$i"
         done
-        btrfs subvolume delete "$1"
-      }
 
-      if [[ -e /btrfs_tmp/old_root ]]; then
-        delete_subvolume_recursively /btrfs_tmp/old_root
-      fi
-
-      if [[ -e /btrfs_tmp/root ]]; then
-        mv /btrfs_tmp/root "/btrfs_tmp/old_root"
-      fi
-
-      btrfs subvolume create /btrfs_tmp/root
-      umount /btrfs_tmp
-    '';
+        btrfs subvolume create /btrfs_tmp/root
+        umount /btrfs_tmp
+      '';
+    };
   };
 
   console = {
