@@ -122,6 +122,7 @@
 
           "nix-config"
           "praca"
+          "ti"
 
           ".cache"
           ".ecryptfs"
@@ -153,6 +154,7 @@
           ".config/REAPER"
           ".config/Slack"
           ".config/teamviewer"
+          ".config/Texas Instruments"
           ".config/vivaldi"
           ".config/YouTube Music"
 
