@@ -192,6 +192,7 @@
       automake
       brightnessctl
       caprine
+      ccstudio
       clang-tools
       cmake
       cryptsetup
