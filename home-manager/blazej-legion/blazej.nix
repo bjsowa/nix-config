@@ -173,15 +173,20 @@ in {
         Unit = {
           Description = "KDE Polkit authentication agent";
           Documentation = "https://gitlab.freedesktop.org/polkit/polkit/";
+          After = [ "graphical-session.target" ];
+          Wants = [ "graphical-session.target" ];
           PartOf = [ "graphical-session.target" ];
+          StartLimitIntervalSec = 0;
         };
 
         Service = {
           Type = "simple";
           ExecStart =
             "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+          UnsetEnvironment = [ "QT_STYLE_OVERRIDE" ];
+          Environment = [ "QT_QUICK_CONTROLS_STYLE=org.kde.desktop" ];
           Restart = "always";
-          RestartSec = 1;
+          RestartSec = 3;
           TimeoutStopSec = 10;
         };
 
@@ -193,6 +198,8 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
 
+    configType = "lua";
+
     # Use packages defined in NixOS module
     package = null;
     portalPackage = null;
@@ -201,7 +208,7 @@ in {
 
     # source our custom config
     extraConfig = ''
-      source = ~/.config/hypr/hyprland-custom.conf
+      require "hyprland-custom"
     '';
   };
 
@@ -211,8 +218,8 @@ in {
     configFile = {
       "dunst/dunstrc".source =
         config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
-      "hypr/hyprland-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/hypr/hyprland.conf";
+      "hypr/hyprland-custom.lua".source = config.lib.file.mkOutOfStoreSymlink
+        "${dotfiles_path}/hypr/hyprland.lua";
       "hypr/hyprlock-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
         "${dotfiles_path}/hypr/hyprlock.conf";
       "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink

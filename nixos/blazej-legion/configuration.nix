@@ -175,7 +175,7 @@
         files = [
           ".bash_history"
           ".config/bloom"
-          ".config/hypr/monitors.conf"
+          ".config/hypr/monitors.lua"
           ".scdhistory"
         ];
       };
@@ -249,7 +249,7 @@
       nixd
       nixfmt-classic
       nmap
-      nwg-displays
+      unstable.nwg-displays
       pamixer
       pavucontrol
       pciutils
@@ -260,7 +260,7 @@
       protonup-ng
       prusa-slicer
       pulseaudio
-      pyprland
+      unstable.pyprland
       python3
       qbittorrent
       qjackctl
@@ -289,9 +289,9 @@
       winbox4
       wireshark
       vim
-      wineWowPackages.staging
+      wineWow64Packages.stable
       winetricks
-      (vivaldi.override {
+      (unstable.vivaldi.override {
         proprietaryCodecs = true;
         enableWidevine = false;
       })
@@ -395,6 +395,7 @@
             "192.168.1.0/24"
             "192.168.77.0/24"
             "192.168.99.0/24"
+            "10.100.120.0/22"
           ];
         }];
       };
@@ -418,6 +419,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       inputs.dolphin-overlay.overlays.default
+      inputs.ccstudio-nix.overlays.default
     ];
     config = { allowUnfree = true; };
   };
@@ -614,6 +616,10 @@
 
       # eDRUMin 4
       SUBSYSTEM=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="0465", MODE="0666", SYMLINK+="edrumin%n"
+
+      # MAB Candle
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0069", ATTRS{idProduct}=="1000", MODE="0666"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0069", ATTRS{idProduct}=="2000", MODE="0666"  
     '';
 
     udev.packages = [ pkgs.openocd ];
@@ -685,9 +691,7 @@
           default = [ "hyprland" "gtk" ];
           "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
         };
-        common = {
-          default = [ "gtk" ];
-        };
+        common = { default = [ "gtk" ]; };
       };
     };
   };

@@ -34,7 +34,7 @@
 
     # hyprland
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.55.4";
+      url = "github:hyprwm/Hyprland?ref=main";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -46,13 +46,18 @@
 
     # stylix
     stylix = {
-      url = "github:danth/stylix/release-25.11";
+      url = "github:danth/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Dolphin overlay
     dolphin-overlay = {
       url = "github:MattiDragon/dolphin-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ccstudio-nix = {
+      url = "github:bjsowa/ccstudio-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
