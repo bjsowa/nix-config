@@ -11,26 +11,31 @@ hl.env("XDG_MENU_PREFIX", "plasma-")
 -- VARIABLES #########
 
 hl.config({
-    cursor = {
-        no_warps = true,
+    general = {
+        gaps_in = 2,
+        gaps_out = 3,
+        border_size = 1,
+        resize_on_border = true,
+        layout = "dwindle",
     },
-})
-
-hl.config({
-    debug = {
-        disable_logs = false,
-        vfr = true,
+    decoration = {
+        rounding = 5,
+        blur = {
+            enabled = true,
+            size = 3,
+            passes = 1,
+            new_optimizations = true,
+        },
+        shadow = {
+            enabled = true,
+            range = 4,
+            render_power = 3,
+            color = "rgba(1a1a1aee)",
+        },
     },
-})
-
-hl.config({
-    ecosystem = {
-        no_update_news = true,
-        no_donation_nag = true,
+    animations = {
+        enabled = true,
     },
-})
-
-hl.config({
     input = {
         kb_layout = "pl",
         -- kb_options = grp:ctrls_toggle
@@ -47,16 +52,10 @@ hl.config({
         -- -1.0 - 1.0, 0 means no modification.
         left_handed = false,
     },
-})
-
-hl.config({
     gestures = {
         -- workspace_swipe=true 
         workspace_swipe_min_speed_to_force = 5,
     },
-})
-
-hl.config({
     group = {
         drag_into_group = 2,
         merge_floated_into_tiled_on_groupbar = true,
@@ -71,69 +70,36 @@ hl.config({
             gaps_out = 0,
         },
     },
-})
-
-hl.config({
-    general = {
-        gaps_in = 2,
-        gaps_out = 3,
-        border_size = 1,
-        resize_on_border = true,
-        layout = "dwindle",
-    },
-})
-
-hl.config({
-    decoration = {
-        -- See https://wiki.hyprland.org/Configuring/Variables/ for more
-        rounding = 5,
-        blur = {
-            enabled = true,
-            size = 3,
-            passes = 1,
-            new_optimizations = true,
-        },
-        shadow = {
-            enabled = true,
-            range = 4,
-            render_power = 3,
-            color = "rgba(1a1a1aee)",
-        },
-    },
-})
-
--- Blur for waybar 
-
--- TODO: manual review: blurls = "waybar"
-
-hl.config({
-    animations = {
-        enabled = true,
-        -- Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-    },
-})
-
-hl.config({
-    dwindle = {
-        -- See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        preserve_split = true,
-        -- you probably want this
-    },
-})
-
-hl.config({
-    master = {
-        -- See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_status = "master",
-    },
-})
-
-hl.config({
     misc = {
         disable_hyprland_logo = true,
         disable_splash_rendering = true,
         mouse_move_enables_dpms = true,
         focus_on_activate = true,
+    },
+    xwayland = {
+        force_zero_scaling = true,
+    },
+    cursor = {
+        no_warps = true,
+    },
+    ecosystem = {
+        no_update_news = true,
+        no_donation_nag = true,
+    },
+    debug = {
+        disable_logs = false,
+        vfr = true,
+    },
+})
+
+-- LAYOUT #########
+
+hl.config({
+    dwindle = {
+        preserve_split = true,
+    },
+    master = {
+        new_status = "master",
     },
 })
 
@@ -347,12 +313,6 @@ hl.window_rule({
     },
     border_size = 0,
     rounding = 0,
-})
-
-hl.config({
-    xwayland = {
-        force_zero_scaling = true,
-    },
 })
 
 -- Autostart
