@@ -1,6 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkEnableOption mkIf mkOption mkPackageOption types;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    mkPackageOption
+    types
+    ;
 
   cfg = config.my.services.esphome;
 
@@ -9,7 +20,8 @@ let
   ensureDir = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p ${lib.escapeShellArg cfg.stateDir}
   '';
-in {
+in
+{
   options.my.services.esphome = {
     enable = mkEnableOption "ESPHome dashboard as a user service";
 
@@ -50,8 +62,7 @@ in {
         Wants = [ "network-online.target" ];
       };
       Service = {
-        ExecStart =
-          "${cfg.package}/bin/esphome dashboard ${esphomeParams} ${cfg.stateDir}";
+        ExecStart = "${cfg.package}/bin/esphome dashboard ${esphomeParams} ${cfg.stateDir}";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "default.target" ];

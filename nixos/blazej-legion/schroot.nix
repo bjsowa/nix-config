@@ -70,7 +70,11 @@
           /run/user/1000  /run/user/1000  none    rw,bind,uid=1000,gid=1000         0       0
           /proc/sys/fs/binfmt_misc /proc/sys/fs/binfmt_misc none    rw,bind         0       0
         '';
-        nssdatabases = [ "services" "protocols" "hosts" ];
+        nssdatabases = [
+          "services"
+          "protocols"
+          "hosts"
+        ];
       };
     };
   };

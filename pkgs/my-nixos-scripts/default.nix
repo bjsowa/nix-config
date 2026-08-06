@@ -1,4 +1,10 @@
-{ lib, pkgs, stdenv, makeWrapper, ... }:
+{
+  lib,
+  pkgs,
+  stdenv,
+  makeWrapper,
+  ...
+}:
 stdenv.mkDerivation {
   name = "my-nixos-scripts";
   src = ./src;
@@ -6,8 +12,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ makeWrapper ];
 
   propagatedBuildInputs = [
-    (pkgs.python3.withPackages
-      (pythonPackages: with pythonPackages; [ requests ]))
+    (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [ requests ]))
   ];
 
   installPhase = ''

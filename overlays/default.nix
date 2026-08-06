@@ -2,9 +2,7 @@
   additions = final: prev: import ../pkgs final.pkgs;
 
   modifications = final: prev: {
-    # hyprland = inputs.hyprland.packages.${final.system}.hyprland;
-    # xdg-desktop-portal-hyprland =
-    #   inputs.hyprland.packages.${final.system}.xdg-desktop-portal-hyprland;
+
   };
 
   unstable-packages = final: _prev: {

@@ -1,4 +1,13 @@
-{ inputs, outputs, lib, config, pkgs, modulesPath, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
@@ -9,7 +18,7 @@
   ];
 
   boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_17;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_18;
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -80,7 +89,10 @@
 
           ".local/share/zsh"
         ];
-        files = [ ".bash_history" ".scdhistory" ];
+        files = [
+          ".bash_history"
+          ".scdhistory"
+        ];
       };
     };
   };
@@ -133,7 +145,9 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
-    users = { blazej = import ../../home-manager/homenix/blazej.nix; };
+    users = {
+      blazej = import ../../home-manager/homenix/blazej.nix;
+    };
     useGlobalPkgs = true;
   };
 
@@ -166,28 +180,36 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
-    config = { allowUnfree = true; };
-  };
-
-  nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
-
-      trusted-users = [ "root" "blazej" ];
+    config = {
+      allowUnfree = true;
     };
-
-    # Opinionated: disable channels
-    channel.enable = false;
-
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
+
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = "";
+        # Workaround for https://github.com/NixOS/nix/issues/9574
+        nix-path = config.nix.nixPath;
+
+        trusted-users = [
+          "root"
+          "blazej"
+        ];
+      };
+
+      # Opinionated: disable channels
+      channel.enable = false;
+
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
 
   programs = {
     gnupg.agent = {
@@ -195,7 +217,9 @@
       enableSSHSupport = true;
     };
 
-    nix-ld = { enable = true; };
+    nix-ld = {
+      enable = true;
+    };
 
     virt-manager.enable = true;
 
@@ -230,7 +254,10 @@
         # https://www.home-assistant.io/integrations/default_config/
         default_config = { };
       };
-      extraComponents = [ "esphome" "met" ];
+      extraComponents = [
+        "esphome"
+        "met"
+      ];
       extraPackages = ps: with ps; [ gtts ];
     };
 
@@ -262,20 +289,26 @@
   time.timeZone = "Europe/Warsaw";
 
   users = {
-    users = let
-      blazej-legion-public-key =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5ka8MWsrKaPsywWPZNiEVHzHKNf0x2Vzk6uIkNSMbr blazej@blazej-legion";
-    in {
-      blazej = {
-        hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
-        isNormalUser = true;
-        extraGroups = [ "dialout" "wheel" ];
-        shell = pkgs.zsh;
-        openssh.authorizedKeys.keys = [ blazej-legion-public-key ];
-        linger = true;
+    users =
+      let
+        blazej-legion-public-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5ka8MWsrKaPsywWPZNiEVHzHKNf0x2Vzk6uIkNSMbr blazej@blazej-legion";
+      in
+      {
+        blazej = {
+          hashedPasswordFile = "/persist/secrets/blazej-hashed-password";
+          isNormalUser = true;
+          extraGroups = [
+            "dialout"
+            "wheel"
+          ];
+          shell = pkgs.zsh;
+          openssh.authorizedKeys.keys = [ blazej-legion-public-key ];
+          linger = true;
+        };
+        root = {
+          openssh.authorizedKeys.keys = [ blazej-legion-public-key ];
+        };
       };
-      root = { openssh.authorizedKeys.keys = [ blazej-legion-public-key ]; };
-    };
   };
 
   virtualisation.libvirtd.enable = true;

@@ -1,10 +1,20 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  outputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  iconThemePackage = (pkgs.catppuccin-papirus-folders.override {
-    accent = "blue";
-    flavor = "frappe";
-  });
-in {
+  iconThemePackage = (
+    pkgs.catppuccin-papirus-folders.override {
+      accent = "blue";
+      flavor = "frappe";
+    }
+  );
+in
+{
   imports = [ inputs.stylix.homeModules.stylix ];
 
   home = {
@@ -14,7 +24,9 @@ in {
     packages = [
       iconThemePackage # Needs to be added for qt theming to work
     ];
-    pointerCursor = { size = lib.mkForce 24; };
+    pointerCursor = {
+      size = lib.mkForce 24;
+    };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "24.05";
@@ -28,8 +40,12 @@ in {
 
   gtk = {
     enable = true;
-    gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
-    gtk4 = { extraConfig.gtk-application-prefer-dark-theme = true; };
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+    gtk4 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
   };
 
   programs = {
@@ -92,8 +108,7 @@ in {
       };
       oh-my-zsh = {
         enable = true;
-        custom =
-          "${config.home.homeDirectory}/.local/share/datafiles/oh-my-zsh";
+        custom = "${config.home.homeDirectory}/.local/share/datafiles/oh-my-zsh";
         theme = "agnoster-custom";
         plugins = [
           "aliases"
@@ -116,31 +131,31 @@ in {
       envExtra = ''
         export DEFAULT_USER=${config.home.username}
       '';
-      shellAliases = let COLCON_COMMON_ARGS = "--symlink-install";
-      in {
-        cc-build =
-          "colcon build ${COLCON_COMMON_ARGS} --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON";
-        cc-buildpackage =
-          "colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-select";
-        cc-buildpackage-verbose =
-          "VERBOSE=1 colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-select";
-        cc-buildupto =
-          "colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-up-to";
-        cc-test = "colcon test";
-        cc-testpackage =
-          "colcon test --event-handlers console_direct+ --packages-select";
-        cc-testpackage-verbose =
-          "VERBOSE=1 colcon test --event-handlers console_direct+ --packages-select";
-        cc-clean = "colcon build ${COLCON_COMMON_ARGS} --cmake-target clean";
-        cc-cleanpackage =
-          "colcon build ${COLCON_COMMON_ARGS} --cmake-target clean --packages-select";
-      };
+      shellAliases =
+        let
+          COLCON_COMMON_ARGS = "--symlink-install";
+        in
+        {
+          cc-build = "colcon build ${COLCON_COMMON_ARGS} --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON";
+          cc-buildpackage = "colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-select";
+          cc-buildpackage-verbose = "VERBOSE=1 colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-select";
+          cc-buildupto = "colcon build ${COLCON_COMMON_ARGS} --event-handlers console_direct+ --cmake-clean-cache --packages-up-to";
+          cc-test = "colcon test";
+          cc-testpackage = "colcon test --event-handlers console_direct+ --packages-select";
+          cc-testpackage-verbose = "VERBOSE=1 colcon test --event-handlers console_direct+ --packages-select";
+          cc-clean = "colcon build ${COLCON_COMMON_ARGS} --cmake-target clean";
+          cc-cleanpackage = "colcon build ${COLCON_COMMON_ARGS} --cmake-target clean --packages-select";
+        };
     };
   };
 
   services = {
-    dunst = { enable = true; };
-    hyprpaper = { enable = true; };
+    dunst = {
+      enable = true;
+    };
+    hyprpaper = {
+      enable = true;
+    };
     mpris-proxy.enable = true;
   };
 
@@ -181,8 +196,7 @@ in {
 
         Service = {
           Type = "simple";
-          ExecStart =
-            "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+          ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
           UnsetEnvironment = [ "QT_STYLE_OVERRIDE" ];
           Environment = [ "QT_QUICK_CONTROLS_STYLE=org.kde.desktop" ];
           Restart = "always";
@@ -212,31 +226,29 @@ in {
     '';
   };
 
-  xdg = let dotfiles_path = "${config.home.homeDirectory}/nix-config/dotfiles";
-  in {
-    autostart.enable = true;
-    configFile = {
-      "dunst/dunstrc".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
-      "hypr/hyprland-custom.lua".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/hypr/hyprland.lua";
-      "hypr/hyprlock-custom.conf".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/hypr/hyprlock.conf";
-      "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/hypr/hyprpaper.conf";
-      "hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/hypr/hypridle.conf";
-      "pypr/config.toml".source = config.lib.file.mkOutOfStoreSymlink
-        "${dotfiles_path}/pypr/config.toml";
-      "kdeglobals".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/kdeglobals";
-      "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
-        "Desktop Entry".DefaultProfile = "Default.profile";
-      };
-      "waybar".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/waybar";
-      "yabridgectl/config.toml".source =
-        (pkgs.formats.toml { }).generate "config.toml" {
+  xdg =
+    let
+      dotfiles_path = "${config.home.homeDirectory}/nix-config/dotfiles";
+    in
+    {
+      autostart.enable = true;
+      configFile = {
+        "dunst/dunstrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/dunst/dunstrc";
+        "hypr/hyprland-custom.lua".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/hypr/hyprland.lua";
+        "hypr/hyprlock-custom.conf".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/hypr/hyprlock.conf";
+        "hypr/hyprpaper.conf".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/hypr/hyprpaper.conf";
+        "hypr/hypridle.conf".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/hypr/hypridle.conf";
+        "pypr/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/pypr/config.toml";
+        "kdeglobals".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/kdeglobals";
+        "konsolerc".source = (pkgs.formats.ini { }).generate "konsolerc" {
+          "Desktop Entry".DefaultProfile = "Default.profile";
+        };
+        "waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/waybar";
+        "yabridgectl/config.toml".source = (pkgs.formats.toml { }).generate "config.toml" {
           plugin_dirs = [
             "${config.home.homeDirectory}/.wine/drive_c/Program Files/Common Files/VST3"
             "${config.home.homeDirectory}/.wine/drive_c/Program Files/Steinberg/VSTPlugins"
@@ -245,20 +257,19 @@ in {
           no_verify = false;
           blacklist = [ ];
         };
-    };
-    dataFile = {
-      "datafiles".source = config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/nix-config/datafiles";
-      "dunst/scripts".source = "${pkgs.my-nixos-scripts}/dunst";
-      "hypr/scripts".source = "${pkgs.my-nixos-scripts}/hypr";
-      "rofi/themes/config-custom.rasi".source =
-        config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/rofi/config.rasi";
-      "rofi/themes/custom.rasi".text = lib.mkAfter ''
-        @import "config-custom"
-      '';
-      "waybar/scripts".source = "${pkgs.my-nixos-scripts}/waybar";
-      "konsole/Default.profile".source =
-        (pkgs.formats.ini { }).generate "Default.profile" {
+      };
+      dataFile = {
+        "datafiles".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/datafiles";
+        "dunst/scripts".source = "${pkgs.my-nixos-scripts}/dunst";
+        "hypr/scripts".source = "${pkgs.my-nixos-scripts}/hypr";
+        "rofi/themes/config-custom.rasi".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles_path}/rofi/config.rasi";
+        "rofi/themes/custom.rasi".text = lib.mkAfter ''
+          @import "config-custom"
+        '';
+        "waybar/scripts".source = "${pkgs.my-nixos-scripts}/waybar";
+        "konsole/Default.profile".source = (pkgs.formats.ini { }).generate "Default.profile" {
           Appearance.Font = "DejaVu Sans Mono,12,-1,5,50,0,0,0,0,0";
           General = {
             Name = "Default";
@@ -266,8 +277,10 @@ in {
           };
           Scrolling.HistorySize = 50000;
         };
-    };
+      };
 
-    mimeApps = { enable = true; };
-  };
+      mimeApps = {
+        enable = true;
+      };
+    };
 }

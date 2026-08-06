@@ -1,4 +1,12 @@
-{ inputs, outputs, config, lib, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   imports = [
     outputs.homeManagerModules.esphome
@@ -58,8 +66,7 @@
       };
       oh-my-zsh = {
         enable = true;
-        custom =
-          "${config.home.homeDirectory}/.local/share/datafiles/oh-my-zsh";
+        custom = "${config.home.homeDirectory}/.local/share/datafiles/oh-my-zsh";
         theme = "agnoster-custom";
         plugins = [
           "aliases"
@@ -87,8 +94,8 @@
 
   xdg = {
     dataFile = {
-      "datafiles".source = config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/nix-config/datafiles";
+      "datafiles".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/datafiles";
     };
   };
 }

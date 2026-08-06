@@ -1,4 +1,12 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./nvidia.nix
@@ -15,10 +23,17 @@
 
   boot = {
     binfmt = {
-      emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
+      emulatedSystems = [
+        "aarch64-linux"
+        "armv7l-linux"
+      ];
       registrations = {
-        "aarch64-linux" = { fixBinary = true; };
-        "armv7l-linux" = { fixBinary = true; };
+        "aarch64-linux" = {
+          fixBinary = true;
+        };
+        "armv7l-linux" = {
+          fixBinary = true;
+        };
       };
       preferStaticEmulators = true;
     };
@@ -43,8 +58,7 @@
       };
     };
 
-    initrd.luks.devices.cryptroot.device =
-      "/dev/disk/by-uuid/1200359f-6591-46d5-8de4-85bea1ab9a59";
+    initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/1200359f-6591-46d5-8de4-85bea1ab9a59";
     initrd.systemd.services.rollback = {
       description = "Rollback BTRFS root subvolume";
       wantedBy = [ "initrd.target" ];
@@ -79,7 +93,9 @@
       '';
     };
 
-    supportedFilesystems = { ntfs = true; };
+    supportedFilesystems = {
+      ntfs = true;
+    };
   };
 
   catppuccin = {
@@ -181,7 +197,9 @@
       };
     };
 
-    sessionVariables = { NIXOS_OZONE_WL = "1"; };
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
 
   environment = {
@@ -312,9 +330,13 @@
 
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs;
-      [ font-awesome google-fonts ] ++ builtins.filter lib.attrsets.isDerivation
-      (builtins.attrValues pkgs.nerd-fonts);
+    packages =
+      with pkgs;
+      [
+        font-awesome
+        google-fonts
+      ]
+      ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   };
 
   hardware = {
@@ -351,7 +373,9 @@
       inherit inputs outputs;
       # pkgs = pkgs // { formats = pkgs.unstable.formats; };
     };
-    users = { blazej = import ../../home-manager/blazej-legion/blazej.nix; };
+    users = {
+      blazej = import ../../home-manager/blazej-legion/blazej.nix;
+    };
     useGlobalPkgs = true;
   };
 
@@ -376,39 +400,61 @@
         address = [ "10.100.0.2/24" ];
         listenPort = 51820;
         privateKeyFile = "/persist/secrets/wg-private";
-        peers = [{
-          publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
-          endpoint = "78.46.205.86:51820";
-          allowedIPs = [ "10.100.0.0/24" "192.168.10.0/24" ];
-        }];
+        peers = [
+          {
+            publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
+            endpoint = "78.46.205.86:51820";
+            allowedIPs = [
+              "10.100.0.0/24"
+              "192.168.10.0/24"
+            ];
+          }
+        ];
+      };
+      wg-io-route-all = {
+        autostart = false;
+        address = [ "10.100.0.2/24" ];
+        listenPort = 51820;
+        privateKeyFile = "/persist/secrets/wg-private";
+        peers = [
+          {
+            publicKey = "io/aP205KKnDPV8GYWUbIfnodrjl4lwdcEFMhM9IlE4=";
+            endpoint = "78.46.205.86:51820";
+            allowedIPs = [ "0.0.0.0/0" ];
+          }
+        ];
       };
       wg-fl = {
         autostart = false;
         address = [ "10.2.0.100/32" ];
         listenPort = 51821;
         privateKeyFile = "/persist/secrets/wg-private";
-        peers = [{
-          publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
-          endpoint = "85.222.96.158:41232";
-          allowedIPs = [
-            "10.2.0.0/24"
-            "192.168.1.0/24"
-            "192.168.77.0/24"
-            "192.168.99.0/24"
-            "10.100.120.0/22"
-          ];
-        }];
+        peers = [
+          {
+            publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
+            endpoint = "85.222.96.158:41232";
+            allowedIPs = [
+              "10.2.0.0/24"
+              "192.168.1.0/24"
+              "192.168.77.0/24"
+              "192.168.99.0/24"
+              "10.100.120.0/22"
+            ];
+          }
+        ];
       };
       wg-nlp = {
         autostart = false;
         address = [ "10.3.0.10/32" ];
         listenPort = 51822;
         privateKeyFile = "/persist/secrets/wg-nlp-private";
-        peers = [{
-          publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
-          endpoint = "85.222.96.158:41232";
-          allowedIPs = [ "192.168.77.0/24" ];
-        }];
+        peers = [
+          {
+            publicKey = "FDFlixJjGKrdyogHLs6QIKVRq/mLlKkNQ9PnHXe96DE=";
+            endpoint = "85.222.96.158:41232";
+            allowedIPs = [ "192.168.77.0/24" ];
+          }
+        ];
       };
     };
   };
@@ -421,43 +467,46 @@
       inputs.dolphin-overlay.overlays.default
       inputs.ccstudio-nix.overlays.default
     ];
-    config = { allowUnfree = true; };
-  };
-
-  nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      flake-registry = "";
-      trusted-users = lib.mkAfter [ "blazej" ];
-      trusted-public-keys =
-        lib.mkAfter [ "flnix:cu5wTA9fu6K5DAXKbbIoxI8OPAzU5twXAcHYsN62lQs=" ];
+    config = {
+      allowUnfree = true;
     };
-    # package = pkgs.unstable.nix;
-
-    distributedBuilds = true;
-
-    buildMachines = [
-      # flnix
-      {
-        system = "aarch64-linux";
-        sshUser = "pi";
-        hostName = "192.168.1.6";
-        sshKey = "/persist/secrets/ssh_flnix";
-        supportedFeatures = [ "kvm" ];
-        maxJobs = 4;
-        publicHostKey =
-          "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUx1dllpMDU3bXhRU1BUODFTQUt0TDJsZkE2Y0xOQWtYOUM5dDE1NTVBcEkgcm9vdEBmbG5peAo=";
-      }
-    ];
-
-    # Opinionated: disable channels
-    channel.enable = false;
-
-    # Make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
+
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        flake-registry = "";
+        trusted-users = lib.mkAfter [ "blazej" ];
+        trusted-public-keys = lib.mkAfter [ "flnix:cu5wTA9fu6K5DAXKbbIoxI8OPAzU5twXAcHYsN62lQs=" ];
+      };
+      # package = pkgs.unstable.nix;
+
+      distributedBuilds = true;
+
+      buildMachines = [
+        # flnix
+        {
+          system = "aarch64-linux";
+          sshUser = "pi";
+          hostName = "192.168.1.6";
+          sshKey = "/persist/secrets/ssh_flnix";
+          supportedFeatures = [ "kvm" ];
+          maxJobs = 4;
+          publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUx1dllpMDU3bXhRU1BUODFTQUt0TDJsZkE2Y0xOQWtYOUM5dDE1NTVBcEkgcm9vdEBmbG5peAo=";
+        }
+      ];
+
+      # Opinionated: disable channels
+      channel.enable = false;
+
+      # Make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
 
   programs = {
     alvr = {
@@ -470,7 +519,9 @@
       binfmt = true;
     };
 
-    corectrl = { enable = true; };
+    corectrl = {
+      enable = true;
+    };
 
     fuse.userAllowOther = true;
 
@@ -486,9 +537,13 @@
       xwayland.enable = true;
     };
 
-    hyprlock = { enable = true; };
+    hyprlock = {
+      enable = true;
+    };
 
-    nix-ld = { enable = true; };
+    nix-ld = {
+      enable = true;
+    };
 
     noisetorch.enable = true;
 
@@ -624,9 +679,13 @@
 
     udev.packages = [ pkgs.openocd ];
 
-    udisks2 = { enable = true; };
+    udisks2 = {
+      enable = true;
+    };
 
-    teamviewer = { enable = true; };
+    teamviewer = {
+      enable = true;
+    };
 
   };
 
@@ -640,7 +699,9 @@
   time.timeZone = "Europe/Warsaw";
 
   users = {
-    groups = { plugdev = { }; };
+    groups = {
+      plugdev = { };
+    };
     users = {
       blazej = {
         hashedPasswordFile = "/persist/passwords/blazej";
@@ -688,10 +749,15 @@
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       config = {
         hyprland = {
-          default = [ "hyprland" "gtk" ];
+          default = [
+            "hyprland"
+            "gtk"
+          ];
           "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
         };
-        common = { default = [ "gtk" ]; };
+        common = {
+          default = [ "gtk" ];
+        };
       };
     };
   };
