@@ -282,6 +282,7 @@
       python3
       qbittorrent
       qjackctl
+      pear-desktop # Youtube Music
       reaper
       reaper-sws-extension
       rclone
@@ -315,12 +316,11 @@
       })
       wl-clipboard
       unstable.vscode
-      xorg.xeyes
-      xorg.xhost
+      xeyes
+      xhost
       yabridge
       yabridgectl
       yarn
-      youtube-music
       yt-dlp
       zip
     ];
