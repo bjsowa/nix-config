@@ -2,7 +2,7 @@
   additions = final: prev: import ../pkgs final.pkgs;
 
   modifications = final: prev: {
-
+    waybar = inputs.waybar-master.packages.${final.system}.waybar;
   };
 
   unstable-packages = final: _prev: {

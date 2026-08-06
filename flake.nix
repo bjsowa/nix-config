@@ -54,6 +54,11 @@
       url = "github:bjsowa/ccstudio-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    waybar-master = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
