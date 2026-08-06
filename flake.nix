@@ -32,12 +32,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # disko
     disko = {
       url = "github:nix-community/disko";
