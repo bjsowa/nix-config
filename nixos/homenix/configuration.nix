@@ -120,7 +120,7 @@
       nix-output-monitor
       nix-tree
       nixd
-      nixfmt-classic
+      nixfmt
       nmap
       pkg-config
       python3

@@ -265,7 +265,7 @@
       nodejs
       nurl
       nixd
-      nixfmt-classic
+      nixfmt
       nmap
       unstable.nwg-displays
       pamixer
