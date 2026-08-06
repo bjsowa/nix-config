@@ -94,7 +94,7 @@ in
       package = pkgs.waybar;
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        targets = [ "hyprland-session.target" ];
       };
     };
     zsh = {
@@ -167,7 +167,7 @@ in
       package = pkgs.catppuccin-cursors.frappeBlue;
       size = 24;
     };
-    iconTheme = {
+    icons = {
       dark = "Papirus-Dark";
       package = iconThemePackage;
     };
