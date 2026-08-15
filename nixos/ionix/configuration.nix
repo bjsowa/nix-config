@@ -156,7 +156,7 @@
 
     firewall = {
       enable = true;
-      allowedUDPPorts = [ 51820 ];
+      allowedUDPPorts = [ 51820 53 ];
     };
 
     nat = {
@@ -257,6 +257,13 @@
   };
 
   services = {
+    iodine.server = {
+      enable = true;
+      domain = "skonezy.pl";
+      ip = "10.22.0.1/24";
+      passwordFile = "/persist/secrets/iodine-password";
+    };  
+
     locate.enable = true;
 
     openssh = {
@@ -303,5 +310,5 @@
       };
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = false;
 }
