@@ -186,6 +186,11 @@
                 "192.168.10.0/24"
               ];
             }
+            {
+              name = "cnc";
+              publicKey = "cnc/vRIApfXMMC+uLlZovAKYJVoJsL1o7uEB0OL0pDo=";
+              allowedIPs = [ "10.100.0.4/32" ];
+            }
           ];
         };
       };
