@@ -57,6 +57,7 @@ hl.config({
         workspace_swipe_min_speed_to_force = 5,
     },
     group = {
+        auto_group = true,
         drag_into_group = 2,
         merge_floated_into_tiled_on_groupbar = true,
         groupbar = {
@@ -122,7 +123,7 @@ hl.bind(mainMod .. " + " .. "space", hl.dsp.window.float())
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + " .. "E", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + " .. "D", hl.dsp.exec_cmd("rofi -show drun"))
-hl.bind(mainMod .. " + " .. "W", hl.dsp.group.toggle())
+hl.bind(mainMod .. " + " .. "W", hl.dsp.exec_cmd("~/.local/share/hypr/scripts/toggle-group.py"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Return", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "E", hl.dsp.exit())

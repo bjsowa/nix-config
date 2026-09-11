@@ -23,38 +23,50 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
-    fsType = "btrfs";
-    options = [ "subvol=root" ];
-  };
-
-  fileSystems."/old_roots" = {
-    device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
-    fsType = "btrfs";
-    options = [ "subvol=old_roots" ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8741-BFA8";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
-    fsType = "btrfs";
-    options = [ "subvol=nix" ];
-  };
-
-  fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
-    fsType = "btrfs";
-    options = [ "subvol=persist" ];
-  };
+  fileSystems =
+    let
+      btrfs-mount-options = [
+        "compress=zstd"
+        "noatime"
+        "discard=async"
+        "space_cache=v2"
+      ];
+    in
+    {
+      "/" = {
+        device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
+        fsType = "btrfs";
+        options = [ "subvol=root" ] ++ btrfs-mount-options;
+      };
+      "/old_roots" = {
+        device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
+        fsType = "btrfs";
+        options = [ "subvol=old_roots" ] ++ btrfs-mount-options;
+      };
+      "/boot" = {
+        device = "/dev/disk/by-uuid/8741-BFA8";
+        fsType = "vfat";
+        options = [
+          "fmask=0022"
+          "dmask=0022"
+        ];
+      };
+      "/nix" = {
+        device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
+        fsType = "btrfs";
+        options = [ "subvol=nix" ] ++ btrfs-mount-options;
+      };
+      "/persist" = {
+        device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
+        fsType = "btrfs";
+        options = [ "subvol=persist" ] ++ btrfs-mount-options;
+      };
+      "/persist-snapshots" = {
+        device = "/dev/disk/by-uuid/0184e3ee-792a-406f-98ea-ec99a16c6c5e";
+        fsType = "btrfs";
+        options = [ "subvol=persist-snapshots" ] ++ btrfs-mount-options;
+      };
+    };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/1563cd08-9a71-4a87-8d93-5fdb28b727c0"; } ];
 
