@@ -123,7 +123,40 @@ hl.bind(mainMod .. " + " .. "space", hl.dsp.window.float())
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + " .. "E", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + " .. "D", hl.dsp.exec_cmd("rofi -show drun"))
-hl.bind(mainMod .. " + " .. "W", hl.dsp.exec_cmd("~/.local/share/hypr/scripts/toggle-group.py"))
+hl.bind(mainMod .. " + " .. "W", function()
+    local win = hl.get_active_window()
+    if not win then return end
+
+    local ws = hl.get_active_workspace()
+    local wins = hl.get_workspace_windows(ws)
+    local non_floating_wins = {}
+    for _, w in ipairs(wins) do
+        if not w.floating then
+            table.insert(non_floating_wins, w)
+        end
+    end
+
+    if #non_floating_wins <= 1 then
+        hl.dispatch(hl.dsp.group.toggle())
+        return
+    end
+
+    -- Toggle group on the active window
+    hl.dispatch(hl.dsp.group.toggle())
+
+    -- Merge all other non-floating windows on this workspace/monitor into the group
+    for _, w in ipairs(non_floating_wins) do
+        if w.address ~= win.address then
+            hl.dispatch(hl.dsp.focus({ window = w }))
+            hl.dispatch(hl.dsp.window.move({ into_group = "l" }))
+            hl.dispatch(hl.dsp.window.move({ into_group = "r" }))
+            hl.dispatch(hl.dsp.window.move({ into_group = "u" }))
+            hl.dispatch(hl.dsp.window.move({ into_group = "d" }))
+        end
+    end
+
+    hl.dispatch(hl.dsp.focus({ window = win }))
+end)
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Return", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "E", hl.dsp.exit())
