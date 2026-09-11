@@ -723,7 +723,7 @@
   };
 
   virtualisation = {
-    libvirtd.enable = false; # TODO: systemd service fails
+    libvirtd.enable = true;
 
     containers.enable = true;
     podman.enable = true;
