@@ -120,7 +120,7 @@
         "/var/lib/flatpak"
         "/var/lib/libvirt"
         "/var/lib/nixos"
-        "/var/lib/systemd/coredump"
+        "/var/lib/systemd"
         "/etc/NetworkManager/system-connections"
         # "/etc/cups"
         "/srv/chroot"
