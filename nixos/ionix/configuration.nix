@@ -156,7 +156,10 @@
 
     firewall = {
       enable = true;
-      allowedUDPPorts = [ 51820 53 ];
+      allowedUDPPorts = [
+        51820
+        53
+      ];
     };
 
     nat = {
@@ -267,7 +270,7 @@
       domain = "skonezy.pl";
       ip = "10.22.0.1/24";
       passwordFile = "/persist/secrets/iodine-password";
-    };  
+    };
 
     locate.enable = true;
 

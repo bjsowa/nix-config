@@ -125,7 +125,9 @@
         # "/etc/cups"
         "/srv/chroot"
       ];
-      files = [ "/etc/machine-id" ];
+      files = [
+        "/etc/machine-id"
+      ];
       users.blazej = {
         directories = [
           "Documents"
